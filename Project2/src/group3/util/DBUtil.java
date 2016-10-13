@@ -8,18 +8,14 @@ import java.sql.SQLException;
 import org.apache.commons.dbcp.BasicDataSource;
 
 public class DBUtil {
-	private static final String username = "candy001";
-	private static final String password = "123";
-	private static final String dbUrl = "jdbc:oracle:thin:@ITA-031-W7.corp.oocl.com:1521:XE";
-	private static final String driver_classname = "oracle.jdbc.OracleDriver";
 	private static BasicDataSource ds;
 	static {
 		ds = new BasicDataSource();
 		ds.setMaxActive(2);
-		ds.setUrl(dbUrl);
-		ds.setDriverClassName(driver_classname);
-		ds.setUsername(username);
-		ds.setPassword(password);
+		ds.setUrl(ProjectConstant.DB_URL);
+		ds.setDriverClassName(ProjectConstant.DB_DRIVER_CLASSNAME);
+		ds.setUsername(ProjectConstant.DB_USERNAME);
+		ds.setPassword(ProjectConstant.DB_PASSWORD);
 	}
 	
 	public static Connection createConnection() {
@@ -54,14 +50,5 @@ public class DBUtil {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-	}
-	
-	public static void main(String[] args) {
-		Connection con1 = DBUtil.createConnection();
-		System.out.println((con1!=null)?con1:"null");
-		Connection con2 = DBUtil.createConnection();
-		System.out.println((con2!=null)?con2:"null");
-		Connection con3 = DBUtil.createConnection();
-		System.out.println((con3!=null)?con3:"null");
 	}
 }
