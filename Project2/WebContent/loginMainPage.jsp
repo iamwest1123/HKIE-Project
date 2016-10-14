@@ -22,4 +22,6 @@
   	<a class="btn btn-default" href="loginAs?userType=ADMIN">Administrator</a>
   </div>
 </body>
+<br/>
+<img src="Food.jpg" alt="food" style="width:550px;height:400px;">
 </html>
