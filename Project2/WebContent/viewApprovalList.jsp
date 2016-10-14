@@ -16,22 +16,51 @@
 </head>
 <body>
 <h1>Pending Approval</h1>
-<table class="table table-striped">
-	<tr><th>Logo</th><th>Merchant Name</th><th>Age</th><th>Gender</th><th>Shop Name</th><th>Tel</th><th>Address</th><th>Register Time</th><th>Approve</th><th>Reject</th></tr>
-	<c:forEach var="m" items="${infoList}">
+<table class="table table-condensed" >
+	<tr>
+		<!--  <th>Logo</th>-->
+		<th>Merchant Name</th>
+		<th>Age</th>
+		<th>Gender</th>
+		<th>Shop Name</th>
+		<th>Tel</th>
+		<th>Address</th>
+		<th>Register Time</th>
+		<th>Status</th>
+		<th>Action</th>
+	</tr>
+	<c:forEach var="m" items="${merchantsList}">
 		<tr>
-			<td><img src="${m.shopPicUrl}" alt="${m.shopName}'s logo"></td>
-			<td>${m.merchantName}</td>
-			<td>${m.age}</td>
-			<td>${m.gender}</td>
-			<td>${m.shopName}</td>
-			<td>${m.telNum}</td>
-			<td>${m.address}</td>	
-			<td>${m.registerTime}</td>						
-			<td><a class="btn btn-primary" href="approve?id=${m.id}">Approve</a></td>
-			<td><a class="btn btn-primary" href="reject?id=${m.id}">Reject</a></td>
+			<!--  <td><img src="${m.key.shopPicUrl}" alt="${m.key.shopName}'s logo"></td>-->
+			<td>${m.key.merchantName}</td>
+			<td>${m.key.age}</td>
+			<td>${m.key.gender}</td>
+			<td>${m.key.shopName}</td>
+			<td>${m.key.telNum}</td>
+			<td>${m.key.address}</td>	
+			<td>${m.key.registerTime}</td>		
+			<td><pre>${m.value.status}</pre></td>		
+			<td>			
+			<c:choose>
+				<c:when test="${m.value.status.equals('UnderReview')}">
+					<a class="btn btn-primary btn-sm" href="approve?id=${m.key.id}">Approve</a>
+					<a class="btn btn-secondary btn-sm" href="reject?id=${m.key.id}">Reject</a>
+				</c:when>
+				<c:when test="${m.value.status.equals('Accepted')}">
+					<a class="btn btn-primary btn-sm" href="addBlacklist?id=${m.key.id}">blacklist</a>
+				</c:when>
+				<c:when test="${m.value.status.equals('Rejected')}">
+					<a class="btn btn-primary btn-sm" href="approve?id=${m.key.id}">Approve</a>
+				</c:when>
+				<c:when test="${m.value.status.equals('Forzen')}">
+					<a class="btn btn-primary btn-sm" href="removeBlacklist?id=${m.key.id}">Back to normal</a>
+				</c:when>
+			</c:choose>
+			<a class="btn btn-danger btn-sm" href="deleteMerchant?id=${m.key.id}">delete</a></td>
 		</tr>
 	</c:forEach>	
 </table>
+
+
 </body>
 </html>
