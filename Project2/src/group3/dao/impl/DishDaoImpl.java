@@ -167,4 +167,43 @@ public class DishDaoImpl implements DishDao {
 		return dishes;
 	}
 
+	@Override
+	public List<Dish> findMerchantDish(int id) {
+List<Dish> dishes = new ArrayList<Dish>(); 
+		
+		String sql = "select merchant_id mid,dish_id did,description des,price p,DISH_PIC_URL pic,name name,isvalid isv,qty qty from dish_info where merchant_id= ?";
+		Connection con = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+		
+		con=DBUtil.createConnection();
+		try {
+			pst=con.prepareStatement(sql);
+			pst.setInt(1, id);
+			rs=pst.executeQuery();
+			while(rs.next()){
+				Dish dish = new Dish();
+				
+				dish.setMerchantId(rs.getInt("mid"));
+				dish.setDishId(rs.getInt("did"));
+				dish.setDescription(rs.getString("des"));
+				dish.setPrice(rs.getDouble("p"));
+				dish.setDishPicUrl(rs.getString("pic"));
+				dish.setName(rs.getString("name"));
+				dish.setValid(rs.getString("isv"));
+				dish.setQty(rs.getDouble("qty"));
+				
+				dishes.add(dish);
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally{
+			DBUtil.free(con, pst, null);
+		}
+		
+		return dishes;
+	}
+
 }
