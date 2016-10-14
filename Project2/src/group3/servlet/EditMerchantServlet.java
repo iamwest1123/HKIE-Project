@@ -33,7 +33,7 @@ public class EditMerchantServlet extends HttpServlet {
 		try {
 			merchantId = Integer.parseInt(request.getParameter("merchantId"));
 		} catch (NumberFormatException e) {
-			merchantId = -1;
+			merchantId = 4;
 		}
 		
 		MerchantInfo u= ums.findMerchantInfo(merchantId);
