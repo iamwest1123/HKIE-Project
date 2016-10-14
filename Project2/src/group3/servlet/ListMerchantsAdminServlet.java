@@ -25,7 +25,7 @@ public class ListMerchantsAdminServlet extends HttpServlet {
 //		request.getRequestDispatcher("viewApprovalList.jsp").forward(request, response);
 		LinkedHashMap<MerchantInfo,MerchantStatus> merchantsList = adminService.findAllMerchant();
 		request.setAttribute("merchantsList", merchantsList);
-		request.getRequestDispatcher("viewApprovalList.jsp").forward(request, response);
+		request.getRequestDispatcher("viewMerchantList.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
