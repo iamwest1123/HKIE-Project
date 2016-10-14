@@ -5,10 +5,10 @@ import group3.po.MerchantInfo;
 
 public interface MerchantInfoDao {
 
-	public void addMerchant(MerchantInfo m);
-	public void updateMerchant(MerchantInfo m);
-	public void deleteMerchant(int id);
-	public MerchantInfo findMerchant();
-	public List<MerchantInfo> findAllMerchant();
+	public void addMerchantInfo(MerchantInfo m);
+	public void updateMerchantInfo(MerchantInfo m);
+	public void deleteMerchantInfo(int id);
+	public MerchantInfo findMerchantInfo(int id);
+	public List<MerchantInfo> findAllMerchantInfo();
 	
 }
