@@ -2,7 +2,7 @@ package group3.po;
 
 import java.sql.Date;
 
-public class Merchant {
+public class MerchantInfo {
 
 	
 	int id;
