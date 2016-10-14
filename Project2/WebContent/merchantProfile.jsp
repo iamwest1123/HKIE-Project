@@ -23,9 +23,9 @@
 			<td>${m.shopName}</td>
 			<td>${m.registerTime }</td>
 			<td>${m.address }</td>
-			<td>${m.shopPicUrl }</td>
+			<td><img src="${m.shopPicUrl }" style="width: 50px; height: 50px"/></td>
 			<td><a class="btn btn-primary" href="listMyDishes">my dishes</a></td>
-			<td><a class="btn btn-primary" href="updateMerchant">edit</a></td>
+			<td><a class="btn btn-primary" href="EditMerchant">edit</a></td>
 		</tr>	
 	</table>
 </body>
