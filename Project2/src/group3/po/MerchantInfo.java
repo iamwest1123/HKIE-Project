@@ -12,6 +12,9 @@ public class MerchantInfo {
 	Date registerTime;
 	String shopName;
 	String telNum;
+	String address;
+	String shopPicUrl;
+	
 	
 	public String getTelNum() {
 		return telNum;
@@ -31,9 +34,7 @@ public class MerchantInfo {
 	public void setShopName(String shopName) {
 		this.shopName = shopName;
 	}
-	String address;
-	String shopPicUrl;
-	
+
 	public int getId() {
 		return id;
 	}
