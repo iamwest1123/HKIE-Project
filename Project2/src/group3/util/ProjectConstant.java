@@ -17,6 +17,7 @@ public class ProjectConstant {
 	public static final String MERCHANT_STATUS_REJECTED="Rejected";
 	public static final String MERCHANT_STATUS_FORZEN="Forzen";
 	public static final String MERCHANT_STATUS_UNDERREVIEW="UnderReview";
+	public static final String MERCHANT_STATUS_DELETED="Deleted";
 
 	public static final String SESSION_ATTRIBUTE_USERID="UserId";
 	public static final String SESSION_ATTRIBUTE_USERNAME="UserName";
@@ -24,4 +25,5 @@ public class ProjectConstant {
 
 	public static final String UI_LOGIN = "loginMainPage.jsp";
 	public static final String UI_LOGIN_AS = "loginAs.jsp";
+	
 }
