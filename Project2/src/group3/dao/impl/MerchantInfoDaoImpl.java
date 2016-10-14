@@ -39,7 +39,7 @@ public class MerchantInfoDaoImpl implements MerchantInfoDao{
 			pst.setString(5,m.getShopPicUrl());
 			pst.setString(6, m.getTelNum());
 			pst.setString(7, m.getGender());
-			pst.setString(7, m.getShopName());
+			pst.setString(8, m.getShopName());
 			pst.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
