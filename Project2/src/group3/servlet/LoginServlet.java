@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet {
 			if (ProjectConstant.USERTYPE_MERCHENT.equals(userType)){
 				response.sendRedirect("myProfile");
 			}else if(ProjectConstant.USERTYPE_ADMIN.equals(userType)){
-				response.sendRedirect("myProfile");
+				response.sendRedirect("listMerchants");
 			}else{
 				response.sendRedirect("showMerchants");
 			}
