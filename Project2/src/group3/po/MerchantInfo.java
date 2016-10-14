@@ -6,9 +6,23 @@ public class MerchantInfo {
 
 	
 	int id;
-	String name;
+	String merchantName;
 	int age;
+	String gender;
 	Date registerTime;
+	String shopName;
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	public String getShopName() {
+		return shopName;
+	}
+	public void setShopName(String shopName) {
+		this.shopName = shopName;
+	}
 	String address;
 	String shopPicUrl;
 	
@@ -18,11 +32,11 @@ public class MerchantInfo {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public String getMerchantName() {
+		return merchantName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setMerchantName(String name) {
+		this.merchantName = name;
 	}
 	public int getAge() {
 		return age;
