@@ -19,9 +19,9 @@
 <body>
   <h1>Register Merchant</h1>
   <c:if test="${!isSuccess}"><label>${failReason}</label></c:if>
-  <form action="register" method="post">
+  <form action="regMerchant" method="post">
     <div class="form-group">
-      <label for="username">Merchant Name</label>
+      <label for="mname">Merchant Name</label>
       <input type="text" class="form-control" id="mname" placeholder="Merchant Name" name="mname" style="max-width:400px">
     </div>
     <div class="form-group">
@@ -29,31 +29,31 @@
       <input type="password" class="form-control" id="password" placeholder="Password" name="password" style="max-width:400px">
     </div>
     <div class="form-group">
-      <label for="password">Age</label>
-      <input type="password" class="form-control" id="age" placeholder="Age" name="age" style="max-width:400px">
+      <label for="age">Age</label>
+      <input type="text" class="form-control" id="age" placeholder="Age" name="age" style="max-width:400px">
     </div>
     <div class="form-group">
-      <label for="password">Gender</label>
-      <input type="password" class="form-control" id="gender" placeholder="Gender" name="gender" style="max-width:400px">
+      <label for="gender">Gender</label>
+      <input type="text" class="form-control" id="gender" placeholder="Gender" name="gender" style="max-width:400px">
     </div>
     <div class="form-group">
-      <label for="password">Shop Name</label>
-      <input type="password" class="form-control" id="sname" placeholder="Shop Name" name="sname" style="max-width:400px">
+      <label for="sname">Shop Name</label>
+      <input type="text" class="form-control" id="sname" placeholder="Shop Name" name="sname" style="max-width:400px">
     </div>
     <div class="form-group">
-      <label for="password">Shop logo</label>
-      <input type="password" class="form-control" id="logo" placeholder="Shop logo" name="logo" style="max-width:400px">
+      <label for="logo">Shop logo URL Link</label>
+      <input type="text" class="form-control" id="logo" placeholder="Shop logo" name="logo" style="max-width:400px">
     </div>
     <div class="form-group">
-      <label for="password">Shop Tel</label>
-      <input type="password" class="form-control" id="tel" placeholder="Shop Tel" name="tel" style="max-width:400px">
+      <label for="tel">Shop Tel</label>
+      <input type="text" class="form-control" id="tel" placeholder="Shop Tel" name="tel" style="max-width:400px">
     </div>
     <div class="form-group">
-      <label for="password">Shop Address</label>
-      <input type="password" class="form-control" id="addr" placeholder="Shop Address" name="addr" style="max-width:400px">
+      <label for="addr">Shop Address</label>
+      <input type="text" class="form-control" id="addr" placeholder="Shop Address" name="addr" style="max-width:400px">
     </div>
     
-    <button type="submit" class="btn btn-primary" href="">Register</button>
+    <button type="submit" class="btn btn-primary" >Register</button>
   </form>
 </body>
 </html>
