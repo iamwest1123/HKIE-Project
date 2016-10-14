@@ -10,8 +10,8 @@ public interface DishDao {
 	public void addDish(Dish m);
 	public void updateDish(Dish m);
 	public void deleteDish(int id);
-	public Dish findDish();
-	public List<Dish> findAllDissh();
+	public Dish loadDish(int id);
+	public List<Dish> findAllDish();
 	
 	
 }
