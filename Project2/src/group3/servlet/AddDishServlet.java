@@ -5,10 +5,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import group3.dao.DishDao;
 import group3.dao.impl.DishDaoImpl;
 import group3.po.Dish;
+import group3.util.ProjectConstant;
 
 /**
  * Servlet implementation class AddDishServlet
@@ -34,7 +36,14 @@ public class AddDishServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		Integer merchantId;
+		HttpSession sen = request.getSession();
+		
+		int merchantId = -1;
+		
+		if (sen.getAttribute(ProjectConstant.SESSION_ATTRIBUTE_USERNAME)!= null){
+			merchantId = (int)sen.getAttribute(ProjectConstant.SESSION_ATTRIBUTE_USERNAME);
+		}
+		
 		try {
 			merchantId = Integer.parseInt(request.getParameter("merchantId"));
 		} catch (NumberFormatException e) {
