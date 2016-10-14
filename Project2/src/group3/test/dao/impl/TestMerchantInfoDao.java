@@ -1,4 +1,4 @@
-package group3.test.dao.imple;
+package group3.test.dao.impl;
 
 import static org.junit.Assert.*;
 
