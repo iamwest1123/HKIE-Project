@@ -14,7 +14,7 @@
 <title>Insert title here</title>
 </head>
 <body>
- <form action="updateMerchant" method="post">
+ <form action="UpdateMerchant" method="post">
  
  <input type="hidden" class="form-control" id="id" value="${u.id }" name="id" />
  
@@ -51,7 +51,7 @@
       <input type="text" class="form-control" id="shopPicUrl" value="${u.shopPicUrl }" name="shopPicUrl" style="max-width:400px">
     </div>
     
-    <button type="submit" class="btn btn-primary" >Register</button>
+    <button type="submit" class="btn btn-primary" >Submit</button>
   </form>
 </body>
 </html>
