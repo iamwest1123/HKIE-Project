@@ -10,6 +10,6 @@ public interface MerchantStatusDao {
 	public void addMerchantStatus(MerchantStatus ms);
 	public void updateMerchantStatus(MerchantStatus ms);
 	public void deleteMerchantStatus(int id);
-	public MerchantStatus findMerchantStatus();
+	public MerchantStatus findMerchantStatus(int id);
 	public List<MerchantStatus> findAllMerchantStatus();
 }
