@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>After Registration</title>
+<title>Matched Name</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 <!-- Optional theme -->
@@ -20,7 +20,8 @@
 </head>
 <body>
 <h1>
-Thank you for your registration! Please wait for Admin's approval :)
+Your input name is matched with existing records. 
+Please back to the previous page to reset it.
 </h1>
 </body>
 </html>

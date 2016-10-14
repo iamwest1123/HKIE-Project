@@ -44,4 +44,10 @@ public class MerchantManagerImpl implements MerchantManager {
 		return mi.findAllMerchantInfo();
 	}
 
+	@Override
+	public MerchantInfo findMerchantInfoByName(String name) {
+
+		return mi.findMerchantInfoByName(name);
+	}
+
 }

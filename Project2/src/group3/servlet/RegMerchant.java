@@ -51,10 +51,16 @@ public class RegMerchant extends HttpServlet {
 		mi.setTelNum(tel);
 		mi.setAddress(addr);
 
-		mm.addMerchant(mi);
+		
+		if(mm.findMerchantInfoByName(mname) == null){
+			mm.addMerchant(mi);
+			response.sendRedirect("afterRegister.jsp");// hv to change to Sunny's
+											// page-ViewMerchant
+		}else{
+			
+			response.sendRedirect("matchedNameAlert.jsp");
+		}
 
-		response.sendRedirect("afterRegister.jsp");// hv to change to Sunny's
-										// page-ViewMerchant
 
 	}
 
