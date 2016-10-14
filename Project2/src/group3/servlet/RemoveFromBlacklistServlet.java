@@ -22,7 +22,7 @@ public class RemoveFromBlacklistServlet extends HttpServlet {
 		MerchantStatus merchantStatus = merchantStatusDao.findMerchantStatus(id);
 		merchantStatus.setStatus(ProjectConstant.MERCHANT_STATUS_ACCEPTED);
 		merchantStatusDao.updateMerchantStatus(merchantStatus);
-		response.sendRedirect("listUnapprove");
+		response.sendRedirect("listMerchants");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
