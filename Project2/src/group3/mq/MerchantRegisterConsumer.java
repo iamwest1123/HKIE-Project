@@ -32,9 +32,9 @@ import group3.po.MerchantStatus;
 import group3.util.ProjectConstant;
 
 public class MerchantRegisterConsumer {
-	static SAXBuilder builder=new SAXBuilder();
+	SAXBuilder builder=new SAXBuilder();
 	
-	public static void start() {
+	public void start() {
 		MerchantInfoDao mid = new MerchantInfoDaoImpl();
 		MerchantStatusDao msd = new MerchantStatusDaoImpl();
 		ConnectionFactory factory = new ActiveMQConnectionFactory(ProjectConstant.JMS_URL);
@@ -100,7 +100,7 @@ public class MerchantRegisterConsumer {
 		}
 	}
 	
-	public static MerchantInfo xmlToMerchantInfo(String s) {
+	public MerchantInfo xmlToMerchantInfo(String s) {
 		MerchantInfo result = null;
 		InputStream stream = null;
 		Document xmlDocument = null;
@@ -137,9 +137,5 @@ public class MerchantRegisterConsumer {
 			e.printStackTrace();
 		}
 		return result;
-	}
-	
-	public static void main(String[] args) {
-		start();
 	}
 }
