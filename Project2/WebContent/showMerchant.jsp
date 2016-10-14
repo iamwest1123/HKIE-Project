@@ -22,7 +22,7 @@
 	<c:forEach var="m" items="${merchantsInfos }">
 		<tr>
 			<td>${m.id }</td>
-			<td><a href="listMyDishes?id=${m.id }">${m.merchantName }</a></td>
+			<td><a href="customerListDishes?merchantId=${m.id }">${m.merchantName }</a></td>
 			<td>${m.age}</td>
 			<td>${m.gender}</td>
 			<td>${m.shopName}</td>
