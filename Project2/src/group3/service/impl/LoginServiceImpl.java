@@ -42,6 +42,8 @@ public class LoginServiceImpl implements LoginService {
 				reason = "Your application is pending for approval";
 			else if (ProjectConstant.MERCHANT_STATUS_FORZEN.equals(mStatus.getStatus()))
 				reason = "Your account has been frozen.";
+			else 
+				reason = "Merchant Status data error. please contact administrator.";
 		}
 		return reason;
 	}

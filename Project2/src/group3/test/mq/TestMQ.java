@@ -1,4 +1,4 @@
-package test.group3.mq;
+package group3.test.mq;
 
 import static org.junit.Assert.*;
 
