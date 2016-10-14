@@ -1,4 +1,5 @@
 package group3.servlet;
+
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,27 +12,18 @@ import group3.dao.impl.DishDaoImpl;
 import group3.po.Dish;
 
 /**
- * Servlet implementation class AddDishServlet
+ * Servlet implementation class EditDishServlet
  */
-@WebServlet("/addDish")
-public class AddDishServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;       
-	private DishDao dd = new DishDaoImpl();
+@WebServlet("/updateDish")
+public class UpdateDishServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 	
-    public AddDishServlet() {
+	private DishDao dd = new DishDaoImpl(); 
+
+    public UpdateDishServlet() {
         super();
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		this.doPost(request, response);		
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		Integer merchantId;
@@ -39,6 +31,13 @@ public class AddDishServlet extends HttpServlet {
 			merchantId = Integer.parseInt(request.getParameter("merchantId"));
 		} catch (NumberFormatException e) {
 			merchantId = -1;
+		}
+		
+		Integer dishId;
+		try {
+			dishId = Integer.parseInt(request.getParameter("dishId"));
+		} catch (NumberFormatException e) {
+			dishId = -1;
 		}
 		
 		String dishName = request.getParameter("dishName");
@@ -61,17 +60,17 @@ public class AddDishServlet extends HttpServlet {
 			qty = 0.0;
 		}
 		
-		Dish d = new Dish();			
+		Dish d = new Dish();				
 		d.setDescription(description);
 		d.setDishPicUrl("");
 		d.setMerchantId(merchantId);
+		d.setDishId(dishId);
 		d.setName(dishName);
 		d.setQty(qty);		
 		d.setValid("T");
 		d.setPrice(price);		
-		dd.addDish(d);
+		dd.updateDish(d);
 		
 		response.sendRedirect("listMyDishes");
 	}
-
 }

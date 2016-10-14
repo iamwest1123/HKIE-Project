@@ -16,7 +16,7 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
-<body>
+<body style="margin: 10px">
   <h1>Log In as ${userType}</h1>
   <c:if test="${!isSuccess}"><label>${failReason}</label></c:if>
   <form action="login" method="post">
@@ -29,7 +29,10 @@
       <label for="password">Password</label>
       <input type="password" class="form-control" id="password" placeholder="password" name="password" style="max-width:200px">
     </div>
-    <button type="submit" class="btn btn-primary">Log In</button>
+    <div class="row">
+	  <div class="col-sm-1"><button type="submit" class="btn btn-primary">Log In</button></div>
+	  <div class="col-sm-1"><a class="btn btn-default" href="#">Register</a></div>
+	</div>
   </form>
 </body>
 </html>

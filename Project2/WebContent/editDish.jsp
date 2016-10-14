@@ -15,32 +15,33 @@
 </head>
 <body>
 
-<form class="form-horizontal" action="addDish" method="post">
+<form class="form-horizontal" action="updateDish" method="post">
 
-	<input type="hidden" name="merchantId" value="${merchantId }">
+	<input type="hidden" name="merchantId" value="${d.merchantId }">
+	<input type="hidden" name="dishId" value="${d.dishId }">
 
   <div class="form-group">	
     <label class="col-sm-2 control-label">Dish Name</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" name="dishName" placeholder="Dish Name">
+      <input type="text" class="form-control" name="dishName" placeholder="${d.name }">
     </div>
   </div>
   <div class="form-group">
     <label class="col-sm-2 control-label">Dish Description</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" name="description" placeholder="Dish Description">
+      <input type="text" class="form-control" name="description" placeholder="${d.description }">
     </div>
   </div> 
   <div class="form-group">
     <label class="col-sm-2 control-label">Price</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" name="price" placeholder="Price">
+      <input type="text" class="form-control" name="price" placeholder="${d.price }">
     </div>
   </div>
   <div class="form-group">
     <label class="col-sm-2 control-label">Qty</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" name="qty" placeholder="Qty">
+      <input type="text" class="form-control" name="qty" placeholder="${d.qty }">
     </div>
   </div> 
 	

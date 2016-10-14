@@ -145,6 +145,36 @@ public class MerchantInfoDaoImpl implements MerchantInfoDao{
 		}
 		return mers;
 	}
-	
+
+	@Override
+	public MerchantInfo findMerchantInfoByName(String name) {
+		MerchantInfo mer = null;			
+		String sql = "SELECT * FROM MERCHANT_INFO WHERE MERCHANT_NAME = ?";
+		PreparedStatement pst = null;		
+		Connection con = DBUtil.createConnection();
+		ResultSet rs = null;
+		try {
+			pst = con.prepareStatement(sql);
+			pst.setString(1, name);
+			rs = pst.executeQuery();
+			if(rs.next()) {
+				mer = new MerchantInfo();
+				mer.setId(rs.getInt("ID"));
+				mer.setMerchantName(rs.getString("MERCHANT_NAME"));
+				mer.setAge(rs.getInt("AGE"));
+				mer.setRegisterTime(rs.getDate("REGISTER_TIME"));
+				mer.setAddress(rs.getString("ADDRESS"));
+				mer.setShopPicUrl(rs.getString("SHOP_PIC_URL"));
+				mer.setTelNum(rs.getString("TEL"));
+				mer.setGender(rs.getString("GENDER"));
+				mer.setShopName(rs.getString("SHOP_NAME"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.free(con, pst, rs);
+		}		
+		return mer;
+	}
 
 }

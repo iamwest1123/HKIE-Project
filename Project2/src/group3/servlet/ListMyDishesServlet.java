@@ -9,8 +9,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import group3.dao.DishDao;
+import group3.dao.impl.DishDaoImpl;
 import group3.po.Dish;
+import group3.util.ProjectConstant;
 
 /**
  * Servlet implementation class ListMyDishesServlet
@@ -19,7 +23,7 @@ import group3.po.Dish;
 public class ListMyDishesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	//DishDao dd = new DishDaoImpl();
+	DishDao dd = new DishDaoImpl();
 	
     public ListMyDishesServlet() {
         super();
@@ -28,18 +32,16 @@ public class ListMyDishesServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		//int id = Integer.parseInt(request.getParameter("merchantId"));
+		HttpSession sen = request.getSession();
 		
-		List<Dish> dishes = new ArrayList<Dish>();
+		int merchantId = -1;
 		
-		//dishes = dd.getAllDishes(id);
+		if (sen.getAttribute(ProjectConstant.SESSION_ATTRIBUTE_USERNAME)!= null){
+			merchantId = (int)sen.getAttribute(ProjectConstant.SESSION_ATTRIBUTE_USERNAME);
+		}
 		
-					Dish d = new Dish();
-					d.setDishId(1);
-					d.setName("RyanBB");
-					d.setDescription("Very handsome please buy");					
-					dishes.add(d);
-					
+		List<Dish> dishes = new ArrayList<Dish>();		
+		dishes = dd.findMerchantDish(merchantId);					
 		request.setAttribute("dishes", dishes);
 		request.getRequestDispatcher("myDishes.jsp").forward(request, response);	
 	}

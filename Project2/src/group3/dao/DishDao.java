@@ -12,6 +12,7 @@ public interface DishDao {
 	public void deleteDish(int id);
 	public Dish loadDish(int id);
 	public List<Dish> findAllDish();
+	public List<Dish> findMerchantDish(int id);
 	
 	
 }

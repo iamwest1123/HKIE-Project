@@ -66,4 +66,12 @@ public class TestDishDao {
 		}
 	}
 	
+	@Test
+	public void testFindMerchant() {
+		List<Dish> ds = dd.findMerchantDish(3);
+		for(Dish d:ds) {
+			System.out.print(d.getDescription()+" "+d.getDishId()+" "+d.getDishPicUrl()+" "+d.getMerchantId()+" "+d.getName()+" "+d.getPrice()+" "+d.getQty());
+		}
+	}
+	
 }
