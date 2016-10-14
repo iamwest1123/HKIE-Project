@@ -11,6 +11,14 @@ public class MerchantInfo {
 	String gender;
 	Date registerTime;
 	String shopName;
+	String telNum;
+	
+	public String getTelNum() {
+		return telNum;
+	}
+	public void setTelNum(String telNum) {
+		this.telNum = telNum;
+	}
 	public String getGender() {
 		return gender;
 	}
