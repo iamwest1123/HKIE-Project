@@ -35,10 +35,14 @@ public class showMerchantsServlet extends HttpServlet {
 //					merchantInfos=md.findAllMerchantInfo();
 		
 					merchantInfos=md.showAcceptedMerchants();
+					if(merchantInfos!=null){
 					for(MerchantInfo merchantInfo : merchantInfos){
 					}
-		request.setAttribute("merchantsInfos", merchantInfos);
-		request.getRequestDispatcher("showMerchant.jsp").forward(request, response);	
+					
+					request.setAttribute("merchantsInfos", merchantInfos);
+		
+					}
+					request.getRequestDispatcher("showMerchant.jsp").forward(request, response);
 	}
 
 }
