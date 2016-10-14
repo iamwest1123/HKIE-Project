@@ -52,7 +52,7 @@ public class LoginServiceImpl implements LoginService {
 	public Integer getUserId(String username, String password, String userType) {
 		if (ProjectConstant.USERTYPE_MERCHENT.equals(userType)) {
 			MerchantInfo mInfo = mid.findMerchantInfoByName(username);
-			return mInfo.getAge();
+			return mInfo.getId();
 		}
 		return null;
 	}
