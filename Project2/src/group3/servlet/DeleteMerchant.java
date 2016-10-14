@@ -1,27 +1,28 @@
 package group3.servlet;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import group3.po.MerchantInfo;
-import group3.service.ApprovalService;
-import group3.service.impl.ApprovalServiceImpl;
+import group3.dao.MerchantStatusDao;
+import group3.dao.impl.MerchantStatusDaoImpl;
+import group3.po.MerchantStatus;
+import group3.util.ProjectConstant;
 
-@WebServlet("/listUnapprove")
-public class ListUnapproveMerchantServlet extends HttpServlet {
+@WebServlet("/deleteMerchant")
+public class DeleteMerchant extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private ApprovalService approvalService = new ApprovalServiceImpl();
-
+	private MerchantStatusDao merchantStatusDao = new MerchantStatusDaoImpl();
+       
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<MerchantInfo> infoList = approvalService.findUnapprovalMerchants();
-		request.setAttribute("infoList", infoList);
-		request.getRequestDispatcher("viewApprovalList.jsp").forward(request, response);
+		int id = Integer.parseInt(request.getParameter("id"));
+		MerchantStatus merchantStatus = merchantStatusDao.findMerchantStatus(id);
+		merchantStatus.setStatus(ProjectConstant.MERCHANT_STATUS_DELETED);
+		merchantStatusDao.updateMerchantStatus(merchantStatus);
+		response.sendRedirect("listMerchants");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

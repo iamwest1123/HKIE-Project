@@ -12,21 +12,20 @@ import group3.dao.impl.MerchantStatusDaoImpl;
 import group3.po.MerchantStatus;
 import group3.util.ProjectConstant;
 
-@WebServlet("/reject")
-public class RejectMerchantServlet extends HttpServlet {
+@WebServlet("/removeBlacklist")
+public class RemoveFromBlacklistServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private MerchantStatusDao merchantStatusDao = new MerchantStatusDaoImpl();
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
 		MerchantStatus merchantStatus = merchantStatusDao.findMerchantStatus(id);
-		merchantStatus.setStatus(ProjectConstant.MERCHANT_STATUS_REJECTED);
+		merchantStatus.setStatus(ProjectConstant.MERCHANT_STATUS_ACCEPTED);
 		merchantStatusDao.updateMerchantStatus(merchantStatus);
 		response.sendRedirect("listMerchants");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
 	}
 
 }

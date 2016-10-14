@@ -40,7 +40,16 @@ public class LoginServlet extends HttpServlet {
 			sen.setAttribute(ProjectConstant.SESSION_ATTRIBUTE_USERID, id);
 			sen.setAttribute(ProjectConstant.SESSION_ATTRIBUTE_USERNAME, username);
 			sen.setAttribute(ProjectConstant.SESSION_ATTRIBUTE_USERTYPE, userType);
-			response.sendRedirect("myProfile");
+			
+			if (ProjectConstant.USERTYPE_MERCHENT.equals(userType)){
+				response.sendRedirect("myProfile");
+			}else if(ProjectConstant.USERTYPE_ADMIN.equals(userType)){
+				response.sendRedirect("myProfile");
+			}else{
+				response.sendRedirect("showMerchants");
+			}
+			
+			
 		}
 	
 	}
