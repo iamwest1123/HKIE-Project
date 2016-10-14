@@ -1,5 +1,4 @@
 package group3.servlet;
-
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,16 +37,16 @@ public class AddDishServlet extends HttpServlet {
 		String description = request.getParameter("description");
 		Double price = Double.parseDouble(request.getParameter("price"));
 		String picture = request.getParameter("picture");
-		Double qty = Double.parseDouble(request.getParameter("qty"));		
+		Double qty = Double.parseDouble(request.getParameter("qty"));
 		
 		Dish d = new Dish();
 		
 		d.setDescription(description);
 		d.setPrice(price);
-		d.setQty(qty);		
+		d.setQty(qty);
 		
-		//dd.addDish(d)
-
+		//dd.addDish(d);
+		
 		response.sendRedirect("listMyDishes");
 	}
 
