@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<form class="form-horizontal" action="updateUser" method="post">
+<form class="form-horizontal" action="addDish" method="post">
 
 	<input type="hidden" name="merchant_id" value="${merchant_id }">
 
