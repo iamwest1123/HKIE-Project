@@ -9,6 +9,7 @@ public interface MerchantInfoDao {
 	public void updateMerchantInfo(MerchantInfo m);
 	public void deleteMerchantInfo(int id);
 	public MerchantInfo findMerchantInfo(int id);
+	public MerchantInfo findMerchantInfoByName(String name);
 	public List<MerchantInfo> findAllMerchantInfo();
 	
 }

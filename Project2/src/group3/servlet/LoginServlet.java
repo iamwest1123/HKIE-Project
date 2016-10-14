@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import group3.service.LoginService;
 import group3.service.impl.LoginServiceImpl;
+import group3.util.ProjectConstant;
 
 /**
  * Servlet implementation class LoginServlet
@@ -29,8 +30,11 @@ public class LoginServlet extends HttpServlet {
 		String userType = request.getParameter("userType");
 		boolean isSuccess = loginService.Login(username, password, userType);
 		if (!isSuccess) {
-			String failedReason = loginService.LoginFailReason(username, password, userType);
-			// show reason on login page
+			String failReason = loginService.LoginFailReason(username, password, userType);
+			request.setAttribute("isSuccess", false);
+			request.setAttribute("failReason", failReason);
+			request.setAttribute("userType", userType);
+			request.getRequestDispatcher(ProjectConstant.UI_LOGIN_AS).forward(request, response);
 		} else {
 			// send user to their page
 		}

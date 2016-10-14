@@ -20,10 +20,11 @@ public class LoginAsServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(request.getParameter("userType"));
 		request.setAttribute("userType", request.getParameter("userType"));
-		request.setAttribute("isSuccess", false);
-		request.setAttribute("failReason", "haha");
+		if (request.getParameter("isSuccess")!=null)
+			request.setAttribute("isSuccess", request.getParameter("isSuccess"));
+		if (request.getParameter("failReason")!=null)
+			request.setAttribute("failReason", request.getParameter("failReason"));
 		request.getRequestDispatcher(ProjectConstant.UI_LOGIN_AS).forward(request, response);
 	}
 
