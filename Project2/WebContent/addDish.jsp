@@ -16,9 +16,7 @@
 <body>
 
 <form class="form-horizontal" action="addDish" method="post">
-
-	<input type="hidden" name="merchantId" value="${merchantId }">
-
+	
   <div class="form-group">	
     <label class="col-sm-2 control-label">Dish Name</label>
     <div class="col-sm-10">
