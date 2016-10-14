@@ -56,7 +56,12 @@
 					<a class="btn btn-primary btn-sm" href="removeBlacklist?id=${m.key.id}">Back to normal</a>
 				</c:when>
 			</c:choose>
-			<a class="btn btn-danger btn-sm" href="deleteMerchant?id=${m.key.id}">delete</a></td>
+			<c:choose>
+				<c:when test="${!m.value.status.equals('Deleted')}">
+				<a class="btn btn-danger btn-sm" href="deleteMerchant?id=${m.key.id}">delete</a>
+				</c:when>
+			</c:choose>
+			</td>
 		</tr>
 	</c:forEach>	
 </table>
