@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import group3.dao.DishDao;
 import group3.dao.impl.DishDaoImpl;
 import group3.po.Dish;
+import group3.util.ProjectConstant;
 
 /**
  * Servlet implementation class ListMyDishesServlet
@@ -35,8 +36,8 @@ public class ListMyDishesServlet extends HttpServlet {
 		
 		int merchantId = -1;
 		
-		if (sen.getAttribute("merchantId")!= null){
-			merchantId = (int)sen.getAttribute("merchantId");
+		if (sen.getAttribute(ProjectConstant.SESSION_ATTRIBUTE_USERNAME)!= null){
+			merchantId = (int)sen.getAttribute(ProjectConstant.SESSION_ATTRIBUTE_USERNAME);
 		}
 		
 		List<Dish> dishes = new ArrayList<Dish>();		
