@@ -31,7 +31,15 @@ public class EditDishServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int dishId = Integer.parseInt(request.getParameter("dishId"));
+		int dishId;
+		
+		try {
+			dishId = Integer.parseInt(request.getParameter("dishId"));
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			dishId = -1;
+		}
+		
 		Dish d = dd.loadDish(dishId);
 		request.setAttribute("d", d);
 		request.getRequestDispatcher("editDish.jsp").forward(request, response);		
