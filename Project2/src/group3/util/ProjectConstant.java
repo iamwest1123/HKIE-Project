@@ -10,11 +10,11 @@ public class ProjectConstant {
 	public static final String USERTYPE_ADMIN = "ADMIN";
 	public static final String USERTYPE_CUSTOMER = "CUSTOMER";
 
-	public static final String UI_LOGIN = "login.jsp";
 	public static final String MERCHANT_STATUS_ACCEPTED="Accepted";
 	public static final String MERCHANT_STATUS_REJECTED="Rejected";
 	public static final String MERCHANT_STATUS_FORZEN="Forzen";
 	public static final String MERCHANT_STATUS_UNDERREVIEW="UnderReview";
-	
+
+	public static final String UI_LOGIN = "login.jsp";
 	public static final String UI_LOGIN_AS = "loginAs.jsp";
 }
