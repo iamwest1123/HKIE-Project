@@ -44,12 +44,6 @@ public class AddDishServlet extends HttpServlet {
 			merchantId = (int)sen.getAttribute(ProjectConstant.SESSION_ATTRIBUTE_USERID);
 		}
 		
-		try {
-			merchantId = Integer.parseInt(request.getParameter("merchantId"));
-		} catch (NumberFormatException e) {
-			merchantId = -1;
-		}
-		
 		String dishName = request.getParameter("dishName");
 		String description = request.getParameter("description");
 		
