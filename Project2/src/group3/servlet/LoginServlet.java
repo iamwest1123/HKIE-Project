@@ -36,6 +36,8 @@ public class LoginServlet extends HttpServlet {
 			request.setAttribute("userType", userType);
 			request.getRequestDispatcher(ProjectConstant.UI_LOGIN_AS).forward(request, response);
 		} else {
+			Integer id = loginService.getUserId(username, password, userType);
+			sen.setAttribute(ProjectConstant.SESSION_ATTRIBUTE_USERID, id);
 			sen.setAttribute(ProjectConstant.SESSION_ATTRIBUTE_USERNAME, username);
 			sen.setAttribute(ProjectConstant.SESSION_ATTRIBUTE_USERTYPE, userType);
 			// TODO send user to their page

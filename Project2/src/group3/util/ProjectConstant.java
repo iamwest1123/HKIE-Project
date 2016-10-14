@@ -18,6 +18,7 @@ public class ProjectConstant {
 	public static final String MERCHANT_STATUS_FORZEN="Forzen";
 	public static final String MERCHANT_STATUS_UNDERREVIEW="UnderReview";
 
+	public static final String SESSION_ATTRIBUTE_USERID="UserId";
 	public static final String SESSION_ATTRIBUTE_USERNAME="UserName";
 	public static final String SESSION_ATTRIBUTE_USERTYPE="UserType";
 
