@@ -32,9 +32,9 @@ import group3.po.MerchantStatus;
 import group3.util.ProjectConstant;
 
 public class MerchantRegisterConsumer {
-	SAXBuilder builder=new SAXBuilder();
+	static SAXBuilder builder=new SAXBuilder();
 	
-	public void start() {
+	public static void start() {
 		MerchantInfoDao mid = new MerchantInfoDaoImpl();
 		MerchantStatusDao msd = new MerchantStatusDaoImpl();
 		ConnectionFactory factory = new ActiveMQConnectionFactory(ProjectConstant.JMS_URL);
@@ -67,7 +67,7 @@ public class MerchantRegisterConsumer {
 							mid.addMerchantInfo(mInfo);
 							pullInfo = mid.findMerchantInfoByName(mInfo.getMerchantName());
 							if (pullInfo==null) {
-								System.out.println("Error: unable to update/add merchant");
+								System.out.println("Error: unable to add merchant");
 								throw new Exception();
 							} else {
 								MerchantStatus ms = new MerchantStatus();
@@ -79,7 +79,7 @@ public class MerchantRegisterConsumer {
 							mid.updateMerchantInfo(mInfo);
 							pullInfo = mid.findMerchantInfo(mInfo.getId());
 							if (pullInfo==null) {
-								System.out.println("Error: unable to update/add merchant");
+								System.out.println("Error: unable to update merchant");
 								throw new Exception();
 							} else {
 								MerchantStatus ms = new MerchantStatus();
@@ -100,7 +100,7 @@ public class MerchantRegisterConsumer {
 		}
 	}
 	
-	public MerchantInfo xmlToMerchantInfo(String s) {
+	public static MerchantInfo xmlToMerchantInfo(String s) {
 		MerchantInfo result = null;
 		InputStream stream = null;
 		Document xmlDocument = null;
@@ -137,5 +137,9 @@ public class MerchantRegisterConsumer {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	
+	public static void main(String[] args) {
+		start();
 	}
 }

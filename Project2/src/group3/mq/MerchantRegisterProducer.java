@@ -18,12 +18,13 @@ import group3.po.MerchantInfo;
 import group3.util.ProjectConstant;
 
 public class MerchantRegisterProducer {
+	private ConnectionFactory factory = new ActiveMQConnectionFactory(ProjectConstant.JMS_URL);
+	private Destination queue = new ActiveMQQueue(ProjectConstant.JMS_QUEUE_NEW_MERCHENT);
 	private XMLOutputter outputter = new XMLOutputter();
 	private MerchantInfo merchantInfo;
 	
 	public boolean send() {
-		ConnectionFactory factory = new ActiveMQConnectionFactory(ProjectConstant.JMS_URL);
-		Destination queue = new ActiveMQQueue(ProjectConstant.JMS_QUEUE_NEW_MERCHENT);
+		boolean isSuccess = false;
 		Connection con = null;
 		Session sen = null;
 		MessageProducer producer = null;
@@ -36,10 +37,12 @@ public class MerchantRegisterProducer {
 			
 			producer = sen.createProducer(queue);
 			
-			TextMessage msg = sen.createTextMessage(" Ryan BB <3 ");
+			TextMessage msg = sen.createTextMessage(constructXMLString());
 			producer.send(msg);
+			isSuccess = true;
 		} catch (Exception e) {
 			e.printStackTrace();
+			isSuccess = false;
 		} finally {
 			try {
 				producer.close();
@@ -51,8 +54,7 @@ public class MerchantRegisterProducer {
 				con.close();
 			} catch (JMSException e) { }
 		}
-		
-		return true;
+		return isSuccess;
 	}
 	
 	public String constructXMLString() {
@@ -70,17 +72,21 @@ public class MerchantRegisterProducer {
 		Element telNum=new Element("telNum");
 		Element address=new Element("address");
 		Element shopPicUrl=new Element("shopPicUrl");
-		id.setText(merchantInfo.getId().toString());
+		if (merchantInfo.getId()!=null) {
+			id.setText(merchantInfo.getId().toString());
+			merchant.addContent(id);
+		}
+		if (merchantInfo.getAge()!=null) {
+			age.setText(merchantInfo.getAge().toString());
+			merchant.addContent(age);
+		}
 		merchantName.setText(merchantInfo.getMerchantName());
-		age.setText(merchantInfo.getAge().toString());
 		gender.setText(merchantInfo.getGender());
 		shopName.setText(merchantInfo.getShopName());
 		telNum.setText(merchantInfo.getTelNum());
 		address.setText(merchantInfo.getAddress());
 		shopPicUrl.setText(merchantInfo.getShopPicUrl());
-		merchant.addContent(id);
 		merchant.addContent(merchantName);
-		merchant.addContent(age);
 		merchant.addContent(gender);
 		merchant.addContent(shopName);
 		merchant.addContent(telNum);
