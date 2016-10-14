@@ -17,18 +17,36 @@
 
 <form class="form-horizontal" action="updateUser" method="post">
 
-	<input type="hidden" name="id" value="${u.id }">
+	<input type="hidden" name="merchant_id" value="${merchant_id }">
 
   <div class="form-group">
-    <label class="col-sm-2 control-label">User Name</label>
+    <label class="col-sm-2 control-label">Dish Name</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="uname" name="uname" placeholder="User Name">
+      <input type="text" class="form-control" name="dishName" placeholder="Dish Name">
     </div>
   </div>
   <div class="form-group">
-    <label class="col-sm-2 control-label">User Age</label>
+    <label class="col-sm-2 control-label">Dish Description</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="age" name="age" placeholder="User Age">
+      <input type="text" class="form-control" name="description" placeholder="Dish Description">
+    </div>
+  </div> 
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Price</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="price" placeholder="Price">
+    </div>
+  </div> 
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Picture</label>
+    <div class="col-sm-10">
+      <input type="file" class="form-control" name="picture" placeholder="Picture">
+    </div>
+  </div> 
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Qty</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="qty" placeholder="Qty">
     </div>
   </div> 
 	

@@ -27,8 +27,8 @@
 			<td>${d.description }</td>
 			<td>${d.price }</td>
 			<td>${d.qty }</td>						
-			<td><a class="btn btn-primary" href="deleteDish?id=${d.dishId }">delete</a></td>
-			<td><a class="btn btn-primary" href="editDish?id=${d.dishId }">edit</a></td>
+			<td><a class="btn btn-primary" href="deleteDish?dishId=${d.dishId }">delete</a></td>
+			<td><a class="btn btn-primary" href="editDish?dishId=${d.dishId }">edit</a></td>
 		</tr>
 	</c:forEach>	
 </table>
