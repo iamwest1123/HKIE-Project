@@ -67,6 +67,7 @@ public class MerchantRegisterProducer {
 		Element id=new Element("id");
 		Element merchantName=new Element("merchantName");
 		Element age=new Element("age");
+		Element date=new Element("date");
 		Element gender=new Element("gender");
 		Element shopName=new Element("shopName");
 		Element telNum=new Element("telNum");
@@ -79,6 +80,9 @@ public class MerchantRegisterProducer {
 		if (merchantInfo.getAge()!=null) {
 			age.setText(merchantInfo.getAge().toString());
 			merchant.addContent(age);
+		}
+		if (merchantInfo.getRegisterTime()!=null) {
+			// TODO to string then add content
 		}
 		merchantName.setText(merchantInfo.getMerchantName());
 		gender.setText(merchantInfo.getGender());

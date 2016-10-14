@@ -15,14 +15,17 @@ public class LoginServiceImpl implements LoginService {
 
 	@Override
 	public boolean Login(String username, String password, String userType) {
-		MerchantInfo mInfo = mid.findMerchantInfoByName(username);
-		if (mInfo==null)
-			return false;
-		MerchantStatus mStatus = msd.findMerchantStatus(mInfo.getId());
-		if (mStatus==null)
-			return false;
-		if (!ProjectConstant.MERCHANT_STATUS_ACCEPTED.equals(mStatus.getStatus()))
-			return false;
+		if (ProjectConstant.USERTYPE_MERCHENT.equals(userType)) {
+			MerchantInfo mInfo = mid.findMerchantInfoByName(username);
+			if (mInfo==null)
+				return false;
+			MerchantStatus mStatus = msd.findMerchantStatus(mInfo.getId());
+			if (mStatus==null)
+				return false;
+			if (!ProjectConstant.MERCHANT_STATUS_ACCEPTED.equals(mStatus.getStatus()))
+				return false;
+			return true;
+		}
 		return true;
 	}
 

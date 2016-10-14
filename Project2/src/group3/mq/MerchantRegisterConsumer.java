@@ -115,6 +115,8 @@ public class MerchantRegisterConsumer {
 				String merchantName = merchent.getChildText("merchantName");
 				String ageStr = merchent.getChildText("age");
 				Integer age = (ageStr!=null)?Integer.parseInt(ageStr):null;
+				String dateStr = merchent.getChildText("date");
+				// TODO
 				String gender = merchent.getChildText("gender");
 				String shopName = merchent.getChildText("shopName");
 				String telNum = merchent.getChildText("telNum");
