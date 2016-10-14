@@ -86,6 +86,7 @@ public class MerchantStatusDaoImpl implements MerchantStatusDao {
 			rs=pst.executeQuery();
 			if(rs.next()){
 				ms=new MerchantStatus();
+				ms.setId(rs.getInt("id"));
 				ms.setStatus(rs.getString("status"));			
 			}
 			
