@@ -15,7 +15,7 @@ public class DishDaoImpl implements DishDao {
 
 	@Override
 	public void addDish(Dish dish) {
-		String sql ="insert into dish_info values(?,DISH_INFO_SEQ.nextval,?,?,?,?,?,?);";
+		String sql ="insert into dish_info values(?,DISH_INFO_SEQ.nextval,?,?,?,?,?,?)";
 		Connection con = null;
 		PreparedStatement pst = null;
 		
@@ -41,7 +41,7 @@ public class DishDaoImpl implements DishDao {
 	@Override
 	public void updateDish(Dish dish) {
 
-		String sql ="update dish_info set MERCHANT_ID=?, DESCRIPTION=?,PRICE=?,DISH_PIC_URL=?,NAME=?,ISVALID=?,QTY=? where dish_id=?;";
+		String sql ="update dish_info set MERCHANT_ID=?, DESCRIPTION=?,PRICE=?,DISH_PIC_URL=?,NAME=?,ISVALID=?,QTY=? where dish_id=?";
 		Connection con = null;
 		PreparedStatement pst = null;
 		
@@ -55,6 +55,7 @@ public class DishDaoImpl implements DishDao {
 			pst.setString(5, dish.getName());
 			pst.setString(6, dish.isValid());
 			pst.setDouble(7, dish.getQty());
+			pst.setInt(8, dish.getDishId());
 			pst.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
