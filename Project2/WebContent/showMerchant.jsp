@@ -27,8 +27,8 @@
 			<td>${m.gender}</td>
 			<td>${m.shopName}</td>
 			<td>${m.registerTime }</td>				
-			<td>${m.address }</td>	
-			<td>${m.shopPicUrl }</td>				
+			<td>${m.address }</td>						
+			<td><img src="${m.shopPicUrl }" style="width: 50px; height: 50px"/></td>
 		
 		</tr>
 	</c:forEach>	
