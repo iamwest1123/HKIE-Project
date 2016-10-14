@@ -36,8 +36,8 @@ public class ListMyDishesServlet extends HttpServlet {
 		
 		int merchantId = -1;
 		
-		if (sen.getAttribute(ProjectConstant.SESSION_ATTRIBUTE_USERNAME)!= null){
-			merchantId = (int)sen.getAttribute(ProjectConstant.SESSION_ATTRIBUTE_USERNAME);
+		if (sen.getAttribute(ProjectConstant.SESSION_ATTRIBUTE_USERID)!= null){
+			merchantId = (int)sen.getAttribute(ProjectConstant.SESSION_ATTRIBUTE_USERID);
 		}
 		
 		List<Dish> dishes = new ArrayList<Dish>();		
