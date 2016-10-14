@@ -12,4 +12,5 @@ public interface MerchantManager {
 	public void deleteMerchant(int id);
 	public MerchantInfo loadMerchant(int id);
 	public List<MerchantInfo> findAllMerchant();
+	public MerchantInfo findMerchantInfoByName(String name);
 }

@@ -34,7 +34,7 @@
     </div>
     <div class="form-group">
       <label for="gender">Gender</label>
-      <input type="text" class="form-control" id="gender" placeholder="Gender" name="gender" style="max-width:400px">
+      <input type="text" class="form-control" id="gender" placeholder="Gender" name="gender" style="max-width:400px" maxlength="1">
     </div>
     <div class="form-group">
       <label for="sname">Shop Name</label>
