@@ -20,7 +20,7 @@ import group3.service.impl.ShowMerchantsServiceImpl;
 
 
 @WebServlet("/showMerchants")
-public class showMerchantsServlet extends HttpServlet {
+public class ShowMerchantsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	ShowMerchantsService md=new ShowMerchantsServiceImpl();
