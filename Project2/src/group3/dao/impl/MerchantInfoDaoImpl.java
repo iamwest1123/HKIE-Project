@@ -50,15 +50,16 @@ public class MerchantInfoDaoImpl implements MerchantInfoDao{
 
 	@Override
 	public void updateMerchantInfo(MerchantInfo m) {
-		String sql = "UPDATE MERCHANT_INFO SET SHOP_PIC_URL = ?,TEL = ?, ADDRESS = ? WHERE ID=?";
+		String sql = "UPDATE MERCHANT_INFO SET SHOP_NAME = ?, SHOP_PIC_URL = ?,TEL = ?, ADDRESS = ? WHERE ID=?";
 		PreparedStatement pst = null;
 		Connection con = DBUtil.createConnection();
 		try {
 			pst = con.prepareStatement(sql);
-			pst.setString(1, m.getShopPicUrl());
-			pst.setString(2, m.getTelNum());
-			pst.setString(3, m.getAddress());
-			pst.setInt(4, m.getId());
+			pst.setString(1, m.getShopName());
+			pst.setString(2, m.getShopPicUrl());
+			pst.setString(3, m.getTelNum());
+			pst.setString(4, m.getAddress());
+			pst.setInt(5, m.getId());
 			pst.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
