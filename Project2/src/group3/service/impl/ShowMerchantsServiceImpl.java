@@ -26,10 +26,13 @@ public class ShowMerchantsServiceImpl implements ShowMerchantsService {
 		// TODO Auto-generated method stub
 		List<MerchantInfo> allMerchantInfos = md.findAllMerchantInfo();
 		List<MerchantInfo> acceptedMerchantInfos =new ArrayList<MerchantInfo>();
+		List<MerchantStatus> allStatus = ms.findAllMerchantStatus();
 		for(MerchantInfo m: allMerchantInfos){
-			System.out.println(ms.findMerchantStatus(m.getId()).getStatus());
-			if(ms.findMerchantStatus(m.getId()).getStatus().equals(ProjectConstant.MERCHANT_STATUS_ACCEPTED)){
+		
+			for(MerchantStatus s:allStatus){
+				if((m.getId()==s.getId())&&(s.getStatus().equals(ProjectConstant.MERCHANT_STATUS_ACCEPTED))){
 				acceptedMerchantInfos.add(m);
+				}
 			}
 		}
 		return acceptedMerchantInfos;
