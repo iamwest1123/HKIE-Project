@@ -14,16 +14,18 @@
 </head>
 <body>
 	<table class="table table-striped">
-	<tr><th>ID</th><th>Merchant Name</th><th>Age</th><th>Gender</th><th>Shop Name</th><th>Register Time</th><th>Address</th><th>Shop Picture</th></tr>
+	<tr><th>ID</th><th>Merchant Name</th><th>Age</th><th>Gender</th><th>Shop Name</th><th>Register Time</th><th>Address</th><th>Shop Picture</th><th>My Dishes</th><th>Edit</th></tr>
 		<tr>
 			<td>${m.id }</td>
 			<td>${m.merchantName }</td>
 			<td>${m.age}</td>
 			<td>${m.gender}</td>
 			<td>${m.shopName}</td>
-			<td>${m.registerTime }</td>				
-			<td>${m.address }</td>	
-			<td>${m.shopPicUrl }</td>				
+			<td>${m.registerTime }</td>
+			<td>${m.address }</td>
+			<td>${m.shopPicUrl }</td>
+			<td><a class="btn btn-primary" href="listMyDishes">my dishes</a></td>
+			<td><a class="btn btn-primary" href="updateMerchant">edit</a></td>
 		</tr>	
 	</table>
 </body>
