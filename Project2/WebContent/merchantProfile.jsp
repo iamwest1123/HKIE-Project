@@ -14,7 +14,7 @@
 </head>
 <body>
 	<table class="table table-striped">
-	<tr><th>ID</th><th>Merchant Name</th><th>Age</th><th>Gender</th><th>Shop Name</th><th>Register Time</th><th>Address</th><th>Shop Picture</th><th>My Dishes</th><th>Edit</th></tr>
+	<tr><th>ID</th><th>Merchant Name</th><th>Age</th><th>Gender</th><th>Shop Name</th><th>Register Time</th><th>Address</th><th>Shop Picture</th><th>My Dishes</th><th>Add Dish</th><th>Edit</th></tr>
 		<tr>
 			<td>${m.id }</td>
 			<td>${m.merchantName }</td>
@@ -23,8 +23,9 @@
 			<td>${m.shopName}</td>
 			<td>${m.registerTime }</td>
 			<td>${m.address }</td>
-			<td><img src="${m.shopPicUrl }" style="width: 50px; height: 50px"/></td>
+			<td><img src="${m.shopPicUrl }" style="width: 50px; height: 50px"/></td>			
 			<td><a class="btn btn-primary" href="listMyDishes">my dishes</a></td>
+			<td><a class="btn btn-primary" href="addDish.jsp">add dish</a></td>
 			<td><a class="btn btn-primary" href="EditMerchant">edit</a></td>
 		</tr>	
 	</table>
