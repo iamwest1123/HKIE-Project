@@ -2,14 +2,14 @@ package group3.po;
 
 public class Dish {
 
-	int merchantId;
-	int dishId;
-	String name;
-	String description;
-	double price;
-	String dishPicUrl;
-	String isValid;
-	double qty;
+	private Integer merchantId;
+	private Integer dishId;
+	private String name;
+	private String description;
+	private Double price;
+	private String dishPicUrl;
+	private String isValid;
+	private Double qty;
 	
 	
 	public int getMerchantId() {
