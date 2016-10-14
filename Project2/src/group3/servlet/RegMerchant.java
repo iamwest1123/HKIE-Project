@@ -24,11 +24,11 @@ public class RegMerchant extends HttpServlet {
 		super();
 	}
 
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doPost(req, resp);
-	}
+//	@Override
+//	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//		// TODO Auto-generated method stub
+//		doPost(req, resp);
+//	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -53,7 +53,7 @@ public class RegMerchant extends HttpServlet {
 
 		mm.addMerchant(mi);
 
-		response.sendRedirect("login");// hv to change to Sunny's
+		response.sendRedirect("afterRegister.jsp");// hv to change to Sunny's
 										// page-ViewMerchant
 
 	}
