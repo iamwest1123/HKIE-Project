@@ -19,7 +19,7 @@
 
 	<input type="hidden" name="merchant_id" value="${merchant_id }">
 
-  <div class="form-group">
+  <div class="form-group">	
     <label class="col-sm-2 control-label">Dish Name</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" name="dishName" placeholder="Dish Name">
@@ -36,13 +36,7 @@
     <div class="col-sm-10">
       <input type="text" class="form-control" name="price" placeholder="Price">
     </div>
-  </div> 
-  <div class="form-group">
-    <label class="col-sm-2 control-label">Picture</label>
-    <div class="col-sm-10">
-      <input type="file" class="form-control" name="picture" placeholder="Picture">
-    </div>
-  </div> 
+  </div>
   <div class="form-group">
     <label class="col-sm-2 control-label">Qty</label>
     <div class="col-sm-10">

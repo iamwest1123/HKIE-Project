@@ -8,7 +8,7 @@ public class Dish {
 	String description;
 	double price;
 	String dishPicUrl;
-	boolean isValid;
+	String isValid;
 	double qty;
 	
 	
@@ -48,10 +48,10 @@ public class Dish {
 	public void setDishPicUrl(String dishPicUrl) {
 		this.dishPicUrl = dishPicUrl;
 	}
-	public boolean isValid() {
+	public String isValid() {
 		return isValid;
 	}
-	public void setValid(boolean isValid) {
+	public void setValid(String isValid) {
 		this.isValid = isValid;
 	}
 	public double getQty() {
