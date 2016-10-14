@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import group3.dao.DishDao;
 import group3.dao.impl.DishDaoImpl;
@@ -30,10 +31,16 @@ public class ListMyDishesServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		//int id = Integer.parseInt(request.getParameter("merchantId"));
+		HttpSession sen = request.getSession();
+		
+		int merchantId = -1;
+		
+		if (sen.getAttribute("merchantId")!= null){
+			merchantId = (int)sen.getAttribute("merchantId");
+		}
 		
 		List<Dish> dishes = new ArrayList<Dish>();		
-		dishes = dd.findAllDish();					
+		dishes = dd.findMerchantDish(merchantId);					
 		request.setAttribute("dishes", dishes);
 		request.getRequestDispatcher("myDishes.jsp").forward(request, response);	
 	}
