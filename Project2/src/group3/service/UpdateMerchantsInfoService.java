@@ -6,4 +6,5 @@ public interface UpdateMerchantsInfoService {
 
 	public void updateMerchantsInfo(MerchantInfo merchantInfo);
 	public MerchantInfo findMerchantInfo(int id);
+	
 }

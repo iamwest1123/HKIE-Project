@@ -6,10 +6,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import group3.po.MerchantInfo;
 import group3.service.UpdateMerchantsInfoService;
 import group3.service.impl.UpdateMerchantsInfoServiceImpl;
+import group3.util.ProjectConstant;
 
 /**
  * Servlet implementation class EditMerchantServlet
@@ -29,11 +31,19 @@ public class EditMerchantServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Integer merchantId;
+		Integer merchantId=-1;
+		
+		HttpSession sen = request.getSession();
+		
+		
+		
 		try {
-			merchantId = Integer.parseInt(request.getParameter("merchantId"));
+//			merchantId = Integer.parseInt(request.getParameter("merchantId"));
+			if (sen.getAttribute(ProjectConstant.SESSION_ATTRIBUTE_USERID)!= null){
+				merchantId = (int)sen.getAttribute(ProjectConstant.SESSION_ATTRIBUTE_USERID);
+			}
 		} catch (NumberFormatException e) {
-			merchantId = 4;
+			merchantId = -1;
 		}
 		
 		MerchantInfo u= ums.findMerchantInfo(merchantId);

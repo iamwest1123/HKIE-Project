@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sun.xml.bind.Util;
 
+import group3.mq.MerchantRegisterProducer;
 import group3.po.MerchantInfo;
 import group3.service.UpdateMerchantsInfoService;
 import group3.service.impl.UpdateMerchantsInfoServiceImpl;
@@ -27,6 +28,7 @@ public class UpdateMerchantServlet extends HttpServlet {
     
 	SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
 	UpdateMerchantsInfoService ums=new UpdateMerchantsInfoServiceImpl();
+	MerchantRegisterProducer p = new MerchantRegisterProducer();
 	
     public UpdateMerchantServlet() {
         super();
@@ -43,25 +45,26 @@ public class UpdateMerchantServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		private Integer id;
-//		private String merchantName;
-//		private Integer age;
-//		private String gender;
-//		private Date registerTime;
-//		private String shopName;
-//		private String telNum;
-//		private String address;
-//		private String shopPicUrl;
+		Integer id = -1;
+		String merchantName = null;
+		Integer age =-1;
+		String gender =null;
+		String registerTimeString = null;
+		String shopName =null;
+		String telNum =null;
+		String address = null;
+		String shopPicUrl = null;
 		
-		String merchantName= request.getParameter("merchantName");
-		String gender= request.getParameter("gender");
-		String shopName= request.getParameter("shopName");
-		String telNum= request.getParameter("telNum");
-		String address= request.getParameter("address");
-		String shopPicUrl= request.getParameter("shopPicUrl");
-		int age=Integer.parseInt(request.getParameter("age"));
-		int id= Integer.parseInt(request.getParameter("id"));
-		String registerTimeString= request.getParameter("registerTime");
+		
+		 merchantName= request.getParameter("merchantName");
+		 gender= request.getParameter("gender");
+		shopName= request.getParameter("shopName");
+		 telNum= request.getParameter("telNum");
+		address= request.getParameter("address");
+		shopPicUrl= request.getParameter("shopPicUrl");
+		age=Integer.parseInt(request.getParameter("age"));
+		id= Integer.parseInt(request.getParameter("id"));
+		registerTimeString= request.getParameter("registerTime");
 		java.util.Date d = null;
 		long registTimeLong =0;
 		Date registTime=null;
@@ -69,7 +72,7 @@ public class UpdateMerchantServlet extends HttpServlet {
 			d =  f.parse(registerTimeString);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			d= new java.util.Date(System.currentTimeMillis());
 		}
 		if(d!=null){
 		 registTimeLong= d.getTime();
@@ -89,6 +92,8 @@ public class UpdateMerchantServlet extends HttpServlet {
 		m.setShopPicUrl(shopPicUrl);
 		
 		//add MQ here
+		p.setMerchantInfo(m);
+		p.send();
 		
 		response.sendRedirect("myProfile");
 	}
