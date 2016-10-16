@@ -6,6 +6,7 @@ import group3.dao.MerchantInfoDao;
 import group3.dao.MerchantStatusDao;
 import group3.dao.impl.MerchantInfoDaoImpl;
 import group3.dao.impl.MerchantStatusDaoImpl;
+import group3.mq.MerchantRegisterProducer;
 import group3.po.MerchantInfo;
 import group3.po.MerchantStatus;
 import group3.service.MerchantManager;
@@ -13,11 +14,13 @@ import group3.service.MerchantManager;
 public class MerchantManagerImpl implements MerchantManager {
 
 	private MerchantInfoDao mi = new MerchantInfoDaoImpl();
+	private MerchantRegisterProducer p = new MerchantRegisterProducer();
+	
 	
 	@Override
 	public void addMerchant(MerchantInfo m) {
-		
-		mi.addMerchantInfo(m);
+		p.setMerchantInfo(m);
+		p.send();
 	}
 
 	@Override

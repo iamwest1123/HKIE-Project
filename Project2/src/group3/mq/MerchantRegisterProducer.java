@@ -1,5 +1,7 @@
 package group3.mq;
 
+import java.text.SimpleDateFormat;
+
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.Destination;
@@ -82,7 +84,13 @@ public class MerchantRegisterProducer {
 			merchant.addContent(age);
 		}
 		if (merchantInfo.getRegisterTime()!=null) {
-			// TODO to string then add content
+			try {
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				date.setText(sdf.format(merchantInfo.getRegisterTime()));
+				merchant.addContent(date);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		merchantName.setText(merchantInfo.getMerchantName());
 		gender.setText(merchantInfo.getGender());

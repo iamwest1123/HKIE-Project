@@ -31,7 +31,7 @@
     </div>
     <div class="row">
 	  <div class="col-sm-1"><button type="submit" class="btn btn-primary">Log In</button></div>
-	  <div class="col-sm-1"><a class="btn btn-default" href="#">Register</a></div>
+	  <div class="col-sm-1"><a class="btn btn-default" href="regMerchant.jsp">Register</a></div>
 	</div>
   </form>
 </body>

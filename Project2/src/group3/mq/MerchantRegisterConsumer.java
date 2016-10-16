@@ -4,6 +4,8 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.jms.Connection;
@@ -101,6 +103,7 @@ public class MerchantRegisterConsumer {
 	}
 	
 	public MerchantInfo xmlToMerchantInfo(String s) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		MerchantInfo result = null;
 		InputStream stream = null;
 		Document xmlDocument = null;
@@ -116,6 +119,7 @@ public class MerchantRegisterConsumer {
 				String ageStr = merchent.getChildText("age");
 				Integer age = (ageStr!=null)?Integer.parseInt(ageStr):null;
 				String dateStr = merchent.getChildText("date");
+				java.util.Date date = (dateStr!=null)?sdf.parse(dateStr):null;
 				// TODO
 				String gender = merchent.getChildText("gender");
 				String shopName = merchent.getChildText("shopName");
@@ -127,15 +131,25 @@ public class MerchantRegisterConsumer {
 				mInfo.setId(id);
 				mInfo.setMerchantName(merchantName);
 				mInfo.setAge(age);
+				mInfo.setRegisterTime(new java.sql.Date(date.getTime()));
 				mInfo.setGender(gender);
 				mInfo.setShopName(shopName);
 				mInfo.setTelNum(telNum);
 				mInfo.setAddress(address);
 				mInfo.setShopPicUrl(shopPicUrl);
 				result = mInfo;
+				
+//				System.out.println(result.getId());
+//				System.out.println(result.getMerchantName());
+//				System.out.println(result.getAge());
+//				System.out.println(sdf.format(result.getRegisterTime()));
+//				System.out.println(result.getGender());
+//				System.out.println(result.getShopName());
+//				System.out.println(result.getTelNum());
+//				System.out.println(result.getAddress());
+//				System.out.println(result.getShopPicUrl());
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return result;
