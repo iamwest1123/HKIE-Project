@@ -1,6 +1,8 @@
 package group3.servlet;
 
 import java.io.IOException;
+import java.util.Calendar;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -45,6 +47,7 @@ public class RegMerchant extends HttpServlet {
 		MerchantInfo mi = new MerchantInfo();
 		mi.setMerchantName(mname);
 		mi.setAge(age);
+		mi.setRegisterTime(new java.sql.Date(System.currentTimeMillis()));
 		mi.setGender(gender);
 		mi.setShopName(sname);
 		mi.setShopPicUrl(logo);

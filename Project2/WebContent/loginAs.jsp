@@ -29,9 +29,9 @@
       <label for="password">Password</label>
       <input type="password" class="form-control" id="password" placeholder="password" name="password" style="max-width:200px">
     </div>
-    <div class="row">
-	  <div class="col-sm-1"><button type="submit" class="btn btn-primary">Log In</button></div>
-	  <div class="col-sm-1"><a class="btn btn-default" href="regMerchant.jsp">Register</a></div>
+    <div class="row" style="margin: 1px">
+	  <button type="submit" class="btn btn-primary">Log In</button>
+	  <a class="btn btn-default" href="regMerchant.jsp">Register</a>
 	</div>
   </form>
 </body>

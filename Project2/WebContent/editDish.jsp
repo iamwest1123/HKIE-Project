@@ -23,25 +23,25 @@
   <div class="form-group">	
     <label class="col-sm-2 control-label">Dish Name</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" name="dishName" placeholder="${d.name }">
+      <input type="text" class="form-control" name="dishName" placeholder="${d.name }" value="${d.name }">
     </div>
   </div>
   <div class="form-group">
     <label class="col-sm-2 control-label">Dish Description</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" name="description" placeholder="${d.description }">
+      <input type="text" class="form-control" name="description" placeholder="${d.description }" value="${d.description }">
     </div>
   </div> 
   <div class="form-group">
     <label class="col-sm-2 control-label">Price</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" name="price" placeholder="${d.price }">
+      <input type="text" class="form-control" name="price" placeholder="${d.price }" value="${d.price }">
     </div>
   </div>
   <div class="form-group">
     <label class="col-sm-2 control-label">Qty</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" name="qty" placeholder="${d.qty }">
+      <input type="text" class="form-control" name="qty" placeholder="${d.qty }" value="${d.qty }">
     </div>
   </div> 
 	
