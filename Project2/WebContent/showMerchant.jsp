@@ -12,9 +12,29 @@
 <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
 <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
 <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<title>Insert title here</title>
+<title>Show Merchant</title>
+<style>
+body{
+  background-color: #f6f6f6;
+  font-family: Arial, Helvetica;
+  font-size: 1.5em;
+  padding: 30px 120px 50px 120px;
+  overflow: scroll;
+}
+h1 {
+  margin-bottom: 20px;
+  font-size: 30px;
+  font-weight: 600;
+}
+table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+</style>
 </head>
 <body>
+<div>
 <h1>Merchants List</h1>
 
 <table class="table table-striped">
@@ -33,6 +53,6 @@
 		</tr>
 	</c:forEach>	
 </table>
-
+</div>
 </body>
 </html>

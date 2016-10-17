@@ -8,15 +8,34 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Merchant List</title>
 <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
 <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
 <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<style>
+body{
+  background-color: #f6f6f6;
+  font-family: Arial, Helvetica;
+  font-size: 1.5em;
+  padding: 30px 120px 50px 120px;
+}
+h1 {
+  margin-bottom: 20px;
+  font-size: 30px;
+  font-weight: 600;
+}
+table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+</style>
 </head>
 <body>
-<h1>Pending Approval</h1>
-<table class="table table-condensed" >
+<div>
+<h1>Merchant List</h1>
+<table class="table table-striped" >
 	<tr>
 		<!--  <th>Logo</th>-->
 		<th>Merchant Name</th>
@@ -44,7 +63,7 @@
 			<c:choose>
 				<c:when test="${m.value.status.equals('UnderReview')}">
 					<a class="btn btn-primary btn-sm" href="approve?id=${m.key.id}">Approve</a>
-					<a class="btn btn-secondary btn-sm" href="reject?id=${m.key.id}">Reject</a>
+					<a class="btn btn-warning btn-sm" href="reject?id=${m.key.id}">Reject</a>
 				</c:when>
 				<c:when test="${m.value.status.equals('Accepted')}">
 					<a class="btn btn-primary btn-sm" href="addBlacklist?id=${m.key.id}">blacklist</a>
@@ -65,7 +84,7 @@
 		</tr>
 	</c:forEach>	
 </table>
-
+</div>
 
 </body>
 </html>

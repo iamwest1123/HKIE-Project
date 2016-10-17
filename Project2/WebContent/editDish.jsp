@@ -11,41 +11,64 @@
 <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Edit Dishes</title>
+<style>
+body {
+  background-color: #f6f6f6;
+  font-family: Arial, Helvetica;
+  font-size: 1.5em;
+  overflow: scroll;
+  padding: 0px 0px 50px 0px;
+}
+div {
+  left: 40%;
+  position:relative;
+}
+h1 {
+  margin-bottom: 20px;
+  font-size: 40px;
+  font-weight: 600;
+}
+input {
+  width: 250px;
+  padding: 15px 12px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-bottom: 2px solid #ddd;
+  background: #f2f2f2;
+  color: #555;
+}
+
+</style>
 </head>
 <body>
-<img src="ad3.jpg" alt="ad" style="width:1550px;height:400px;margin-bottom:100px;">
-<form class="form-horizontal" action="updateDish" method="post">
+<div>
+<h1>Edit Dishes</h1>
+<img src="ad3.jpg" alt="ad" style="width:400px;height:200px;margin-bottom:100px;">
+<form  action="updateDish" method="post">
 
 	<input type="hidden" name="merchantId" value="${d.merchantId }">
 	<input type="hidden" name="dishId" value="${d.dishId }">
 
-  <div class="form-group">	
-    <label class="col-sm-2 control-label">Dish Name</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name="dishName" placeholder="${d.name }" value="${d.name }">
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="col-sm-2 control-label">Dish Description</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name="description" placeholder="${d.description }" value="${d.description }">
-    </div>
-  </div> 
-  <div class="form-group">
-    <label class="col-sm-2 control-label">Price</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name="price" placeholder="${d.price }" value="${d.price }">
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="col-sm-2 control-label">Qty</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name="qty" placeholder="${d.qty }" value="${d.qty }">
-    </div>
-  </div> 
+  <p>	
+    <label>Dish Name</label>
+    <input type="text" class="form-control" name="dishName" placeholder="${d.name }" value="${d.name }">
+  </p>
+  <p>
+    <label>Dish Description</label>
+    <input type="text" class="form-control" name="description" placeholder="${d.description }" value="${d.description }">
+  </p> 
+  <p>
+    <label>Price</label>
+    <input type="text" class="form-control" name="price" placeholder="${d.price }" value="${d.price }">
+  </p>
+  <p>
+    <label>Qty</label>
+    <input type="text" class="form-control" name="qty" placeholder="${d.qty }" value="${d.qty }">
+  </p> 
 	
-	<input class="btn btn-primary" type="submit" />
+	<button type="submit" class="btn btn-primary" >Submit</button>
 	</form>
+	</div>
 </body>
 </html>

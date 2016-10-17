@@ -16,11 +16,30 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
+<style>
+body {
+  background-color: #f6f6f6;
+  font-family: Arial, Helvetica;
+  font-size: 1.5em;
+  overflow: scroll;
+  padding: 0px 0px 50px 0px;
+}
+div {
+  left: 40%;
+  position:relative;
+}
+h1 {
+  margin-bottom: 20px;
+  font-size: 40px;
+  font-weight: 600;
+}
+</style>
 </head>
 <body>
+<div>
 <h1>
 Thank you for your registration! Please wait for Admin's approval :)
 </h1>
+</div>
 </body>
 </html>

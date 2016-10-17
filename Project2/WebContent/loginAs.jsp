@@ -15,25 +15,64 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<style>
+body {
+  background-color: #f6f6f6;
+  font-family: Arial, Helvetica;
+  font-size: 1.5em;
+  overflow: scroll;
+  padding:0px 0px 30px 0px;
+}
+div {
+  margin: 0 auto;
+  text-align: center;
+}
+h1 {
+  margin-bottom: 20px;
+  font-size: 30px;
+  font-weight: 600;
+}
+p {
+ position: relative; 
+}
+input {
+  width: 250px;
+  padding: 15px 12px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-bottom: 2px solid #ddd;
+  background: #f2f2f2;
+  color: #555;
+}
+label { 
+  position: absolute;
+  left:-9999px;
+  text-indent: -9999px;
+}
+</style>
+
 </head>
-<body style="margin: 10px">
-	<img src="ad.jpg" alt="ad" style="width:1550px;height:400px;">
+<body>
+<div>
+<img src="ad.jpg" alt="ad" style="width:1550px;height:400px;">
   <h1>Log In as ${userType}</h1>
   <c:if test="${!isSuccess}"><label>${failReason}</label></c:if>
   <form action="login" method="post">
     <input type="hidden"name="userType" value="${userType}">
-    <div class="form-group">
+    <p>
       <label for="username">User Name</label>
-      <input type="text" class="form-control" id="username" placeholder="name" name="username" style="max-width:200px">
-    </div>
-    <div class="form-group">
+      <input type="text" id="username" placeholder="name" name="username" >
+    </p>
+    <p>
       <label for="password">Password</label>
-      <input type="password" class="form-control" id="password" placeholder="password" name="password" style="max-width:200px">
-    </div>
-    <div class="row" style="margin: 1px">
+      <input type="password" id="password" placeholder="password" name="password" >
+    </p>
+    <p>
 	  <button type="submit" class="btn btn-primary">Log In</button>
 	  <a class="btn btn-default" href="regMerchant.jsp">Register</a>
-	</div>
+	<p>
   </form>
+  </div>
 </body>
 </html>

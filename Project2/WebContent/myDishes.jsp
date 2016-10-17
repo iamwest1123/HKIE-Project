@@ -14,11 +14,31 @@
 <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>My Dishes</title>
+<style>
+body{
+  background-color: #f6f6f6;
+  font-family: Arial, Helvetica;
+  font-size: 1.5em;
+  padding: 30px 120px 50px 120px;
+  overflow: scroll;
+}
+h1 {
+  margin-bottom: 20px;
+  font-size: 30px;
+  font-weight: 600;
+}
+table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+</style>
 </head>
 <body>
+<div>
 <img src="ad4.jpg" alt="ad" style="width:1550px;height:400px;">
-<h1>All Dishes</h1>
+<h1>My Dishes</h1>
 <table class="table table-striped">
 	<tr><th>Dish ID</th><th>Dish Name</th><th>Dish Description</th><th>Dish Price</th><th>Dish Qty</th><th>Delete Dish</th><th>Edit Dish</th></tr>
 	<c:forEach var="d" items="${dishes }">
@@ -33,6 +53,6 @@
 		</tr>
 	</c:forEach>	
 </table>
-
+</div>
 </body>
 </html>

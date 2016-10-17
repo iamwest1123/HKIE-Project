@@ -10,9 +10,30 @@
 <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Merchant Profile</title>
+<style>
+body{
+  background-color: #f6f6f6;
+  font-family: Arial, Helvetica;
+  font-size: 1.5em;
+  padding: 30px 120px 50px 120px;
+  overflow: scroll;
+}
+h1 {
+  margin-bottom: 20px;
+  font-size: 30px;
+  font-weight: 600;
+}
+table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+</style>
 </head>
 <body>
+	<div>
+	<h1>Merchant Profile</h1>
 	<table class="table table-striped">
 	<tr><th>ID</th><th>Merchant Name</th><th>Age</th><th>Gender</th><th>Shop Name</th><th>Register Time</th><th>Address</th><th>Shop Picture</th><th>My Dishes</th><th>Add Dish</th><th>Edit</th></tr>
 		<tr>
@@ -29,5 +50,6 @@
 			<td><a class="btn btn-primary" href="EditMerchant">edit</a></td>
 		</tr>	
 	</table>
+	</div>
 </body>
 </html>

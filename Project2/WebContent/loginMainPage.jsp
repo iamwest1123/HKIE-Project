@@ -13,15 +13,48 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<style>
+body {
+  background-color: #f6f6f6;
+  font-family: Arial, Helvetica;
+  font-size: 1.5em;
+  overflow: scroll;
+  padding: 0px 0px 50px 0px;
+}
+div {
+  padding-bottom:30px;
+}
+.loginMain {
+  left: 40%;
+  position:relative;
+}
+h1 {
+  margin-bottom: 20px;
+  font-size: 40px;
+  font-weight: 600;
+}
+input {
+  width: 250px;
+  padding: 15px 12px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-bottom: 2px solid #ddd;
+  background: #f2f2f2;
+  color: #555;
+}
+
+</style>
 </head>
-<body style="margin: 10px">
+<body>
+<div class="loginMain">
 <h1>Log In</h1>
   <div class="btn-group" role="group" aria-label="...">
   	<a class="btn btn-default" href="loginAs?userType=MERCHENT">Merchant</a>
   	<a class="btn btn-default" href="loginAs?userType=CUSTOMER">Customer</a>
   	<a class="btn btn-default" href="loginAs?userType=ADMIN">Administrator</a>
   </div>
+  <br/>
+	<img src="Food.jpg" alt="food" style="width:550px;height:400px;">
 </body>
-<br/>
-<img src="Food.jpg" alt="food" style="width:550px;height:400px;">
+</div>
 </html>
