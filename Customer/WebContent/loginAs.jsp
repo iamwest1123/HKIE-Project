@@ -45,7 +45,7 @@ input {
   background: #f2f2f2;
   color: #555;
 }
-label { 
+form label { 
   position: absolute;
   left:-9999px;
   text-indent: -9999px;
