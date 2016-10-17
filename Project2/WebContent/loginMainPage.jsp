@@ -14,7 +14,7 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
-<body>
+<body style="margin: 10px">
 <h1>Log In</h1>
   <div class="btn-group" role="group" aria-label="...">
   	<a class="btn btn-default" href="loginAs?userType=MERCHENT">Merchant</a>
