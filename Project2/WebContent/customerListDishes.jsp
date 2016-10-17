@@ -17,6 +17,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<img src="ad2.jpg" alt="ad" style="width:1550px;height:400px;">
 <h1>All Dishes</h1>
 <table class="table table-striped">
 	<tr><th>Dish ID</th><th>Dish Name</th><th>Dish Description</th><th>Dish Price</th><th>Dish Qty</th></tr>

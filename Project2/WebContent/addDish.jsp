@@ -14,7 +14,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<img src="ad3.jpg" alt="ad" style="width:1550px;height:400px;margin-bottom:100px;">
 <form class="form-horizontal" action="addDish" method="post">
 	
   <div class="form-group">	

@@ -17,6 +17,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body style="margin: 10px">
+	<img src="ad.jpg" alt="ad" style="width:1550px;height:400px;">
   <h1>Log In as ${userType}</h1>
   <c:if test="${!isSuccess}"><label>${failReason}</label></c:if>
   <form action="login" method="post">
