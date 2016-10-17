@@ -25,7 +25,7 @@ div {
   padding-bottom:30px;
 }
 .loginMain {
-  left: 40%;
+  left: 38%;
   position:relative;
 }
 h1 {
