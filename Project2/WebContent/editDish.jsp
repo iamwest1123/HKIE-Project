@@ -51,20 +51,20 @@ input {
 	<input type="hidden" name="dishId" value="${d.dishId }">
 
   <p>	
-    <label>Dish Name</label>
-    <input type="text" class="form-control" name="dishName" placeholder="${d.name }" value="${d.name }">
+    <label>Dish Name</label><br>
+    <input type="text" name="dishName" placeholder="${d.name }" value="${d.name }">
   </p>
   <p>
-    <label>Dish Description</label>
-    <input type="text" class="form-control" name="description" placeholder="${d.description }" value="${d.description }">
+    <label>Dish Description</label><br>
+    <input type="text" name="description" placeholder="${d.description }" value="${d.description }">
   </p> 
   <p>
-    <label>Price</label>
-    <input type="text" class="form-control" name="price" placeholder="${d.price }" value="${d.price }">
+    <label>Price</label><br>
+    <input type="text" name="price" placeholder="${d.price }" value="${d.price }">
   </p>
   <p>
-    <label>Qty</label>
-    <input type="text" class="form-control" name="qty" placeholder="${d.qty }" value="${d.qty }">
+    <label>Qty</label><br>
+    <input type="text" name="qty" placeholder="${d.qty }" value="${d.qty }">
   </p> 
 	
 	<button type="submit" class="btn btn-primary" >Submit</button>
