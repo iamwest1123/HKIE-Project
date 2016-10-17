@@ -26,7 +26,7 @@ import group3.service.impl.UpdateMerchantsInfoServiceImpl;
 public class UpdateMerchantServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
-	SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+	SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	UpdateMerchantsInfoService ums=new UpdateMerchantsInfoServiceImpl();
 //	MerchantRegisterProducer p = new MerchantRegisterProducer();
 	
