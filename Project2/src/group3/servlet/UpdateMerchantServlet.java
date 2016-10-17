@@ -28,7 +28,7 @@ public class UpdateMerchantServlet extends HttpServlet {
     
 	SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
 	UpdateMerchantsInfoService ums=new UpdateMerchantsInfoServiceImpl();
-	MerchantRegisterProducer p = new MerchantRegisterProducer();
+//	MerchantRegisterProducer p = new MerchantRegisterProducer();
 	
     public UpdateMerchantServlet() {
         super();
@@ -92,8 +92,9 @@ public class UpdateMerchantServlet extends HttpServlet {
 		m.setShopPicUrl(shopPicUrl);
 		
 		//add MQ here
-		p.setMerchantInfo(m);
-		p.send();
+//		p.setMerchantInfo(m);
+//		p.send();
+		ums.updateMerchantsInfo(m);
 		
 		response.sendRedirect("myProfile");
 	}
