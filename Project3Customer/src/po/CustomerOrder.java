@@ -1,15 +1,22 @@
 package po;
 
+import java.util.Date;
+import java.util.List;
+
 public class CustomerOrder {
-	String id;
-	Merchant merchant;
-	List<Dish> dishes;
-	Customer customer;
-	String comment;
-	Date orderDate;
-	Date deliverDate;
-	Date receiveDate;
-	String status;
+	private String id;
+	private String comment;
+	private Date orderDate;
+	private Date deliverDate;
+	private Date receiveDate;
+	private String status;
+	
+	private Merchant merchant;
+	private Customer customer;
+	
+	private List<Dish> dishes;
+	
+	
 	public String getId() {
 		return id;
 	}

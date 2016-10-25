@@ -3,16 +3,16 @@ package po;
 import java.util.List;
 
 public class Customer {
-	String id;
-	String name;
-	List<Address> addressList;
-	Boolean gender;
-	String profilePic;
-	String password;
-	String loginName;
+	private String id;
+	private String name;
+	private Boolean gender;
+	private String profilePic;
+	private String password;
+	private String loginName;
 	private String status;
-
-	List<CustomerOrder> customerOrderList;
+	
+	private List<Address> addressList;
+	private List<CustomerOrder> customerOrderList;
 
 	public String getId() {
 		return id;
