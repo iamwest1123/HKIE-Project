@@ -24,8 +24,9 @@ public class CustomerOrder {
 	@GeneratedValue(generator="commentId")
 	private String id;
 	
-	@Column(name="CUSTOMER_COMMENT", length=1000)
-	private String comment;
+	// TODO
+	@Transient
+	private Comment comment;
 	
 	@Column(name="STATUS", length=30)
 	private String status;
@@ -50,72 +51,95 @@ public class CustomerOrder {
 	// TODO MANY TO MANY
 	@Transient
 	private List<Dish> dishes;
-	
-	
+
 	public String getId() {
 		return id;
 	}
+
 	public void setId(String id) {
 		this.id = id;
 	}
-	public Merchant getMerchant() {
-		return merchant;
-	}
-	public void setMerchant(Merchant merchant) {
-		this.merchant = merchant;
-	}
-	public List<Dish> getDishes() {
-		return dishes;
-	}
-	public void setDishes(List<Dish> dishes) {
-		this.dishes = dishes;
-	}
-	public Customer getCustomer() {
-		return customer;
-	}
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-	public String getComment() {
+
+	public Comment getComment() {
 		return comment;
 	}
-	public void setComment(String comment) {
+
+	public void setComment(Comment comment) {
 		this.comment = comment;
 	}
-	public Date getOrderDate() {
-		return orderDate;
-	}
-	public void setOrderDate(Date orderDate) {
-		this.orderDate = orderDate;
-	}
-	public Date getDeliverDate() {
-		return deliverDate;
-	}
-	public void setDeliverDate(Date deliverDate) {
-		this.deliverDate = deliverDate;
-	}
-	public Date getReceiveDate() {
-		return receiveDate;
-	}
-	public void setReceiveDate(Date receiveDate) {
-		this.receiveDate = receiveDate;
-	}
+
 	public String getStatus() {
 		return status;
 	}
+
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
+	public Date getOrderDate() {
+		return orderDate;
+	}
+
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
+	}
+
+	public Date getDeliverDate() {
+		return deliverDate;
+	}
+
+	public void setDeliverDate(Date deliverDate) {
+		this.deliverDate = deliverDate;
+	}
+
+	public Date getReceiveDate() {
+		return receiveDate;
+	}
+
+	public void setReceiveDate(Date receiveDate) {
+		this.receiveDate = receiveDate;
+	}
+
+	public Merchant getMerchant() {
+		return merchant;
+	}
+
+	public void setMerchant(Merchant merchant) {
+		this.merchant = merchant;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public List<Dish> getDishes() {
+		return dishes;
+	}
+
+	public void setDishes(List<Dish> dishes) {
+		this.dishes = dishes;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((comment == null) ? 0 : comment.hashCode());
 		result = prime * result + ((customer == null) ? 0 : customer.hashCode());
+		result = prime * result + ((deliverDate == null) ? 0 : deliverDate.hashCode());
+		result = prime * result + ((dishes == null) ? 0 : dishes.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((merchant == null) ? 0 : merchant.hashCode());
+		result = prime * result + ((orderDate == null) ? 0 : orderDate.hashCode());
+		result = prime * result + ((receiveDate == null) ? 0 : receiveDate.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -135,10 +159,35 @@ public class CustomerOrder {
 				return false;
 		} else if (!customer.equals(other.customer))
 			return false;
+		if (deliverDate == null) {
+			if (other.deliverDate != null)
+				return false;
+		} else if (!deliverDate.equals(other.deliverDate))
+			return false;
+		if (dishes == null) {
+			if (other.dishes != null)
+				return false;
+		} else if (!dishes.equals(other.dishes))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
+			return false;
+		if (merchant == null) {
+			if (other.merchant != null)
+				return false;
+		} else if (!merchant.equals(other.merchant))
+			return false;
+		if (orderDate == null) {
+			if (other.orderDate != null)
+				return false;
+		} else if (!orderDate.equals(other.orderDate))
+			return false;
+		if (receiveDate == null) {
+			if (other.receiveDate != null)
+				return false;
+		} else if (!receiveDate.equals(other.receiveDate))
 			return false;
 		if (status == null) {
 			if (other.status != null)
@@ -146,5 +195,5 @@ public class CustomerOrder {
 		} else if (!status.equals(other.status))
 			return false;
 		return true;
-	} 
+	}
 }
