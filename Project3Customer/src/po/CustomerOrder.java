@@ -48,9 +48,8 @@ public class CustomerOrder {
 	@JoinColumn(name="CUSTOMER_ID")
 	private Customer customer;
 	
-	// TODO MANY TO MANY
-	@Transient
-	private List<Dish> dishes;
+	@OneToMany(mappedBy="customerOrder")
+	private List<OrderDish> dishes;
 
 	public String getId() {
 		return id;
@@ -116,11 +115,11 @@ public class CustomerOrder {
 		this.customer = customer;
 	}
 
-	public List<Dish> getDishes() {
+	public List<OrderDish> getDishes() {
 		return dishes;
 	}
 
-	public void setDishes(List<Dish> dishes) {
+	public void setDishes(List<OrderDish> dishes) {
 		this.dishes = dishes;
 	}
 

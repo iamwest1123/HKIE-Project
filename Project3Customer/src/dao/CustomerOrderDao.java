@@ -10,6 +10,7 @@ public interface CustomerOrderDao {
 	public boolean addOrder(CustomerOrder o);
 	public boolean updateOrder(CustomerOrder o);
 	public boolean deleteOrder(CustomerOrder o);
+	public List<CustomerOrder> findAll();
 	public List<CustomerOrder> findAllByCustomer(Customer c);
 	public List<CustomerOrder> findAllByMerchant(Merchant m);
 }
