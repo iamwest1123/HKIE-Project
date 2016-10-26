@@ -9,11 +9,11 @@ public class ProjectConstant {
 	public static final String USERTYPE_ADMIN = "Admin";
 	public static final String USERTYPE_CUSTOMER = "Customer";
 
-	public static final String MERCHANT_STATUS_ACCEPTED="Accepted";
-	public static final String MERCHANT_STATUS_REJECTED="Rejected";
-	public static final String MERCHANT_STATUS_FORZEN="Forzen";
-	public static final String MERCHANT_STATUS_UNDERREVIEW="UnderReview";
-	public static final String MERCHANT_STATUS_DELETED="Deleted";
+	public static final String STATUS_ACCEPTED="Accepted";
+	public static final String STATUS_REJECTED="Rejected";
+	public static final String STATUS_FORZEN="Forzen";
+	public static final String STATUS_UNDERREVIEW="UnderReview";
+	public static final String STATUS_DELETED="Deleted";
 
 	public static final String SESSION_ATTRIBUTE_CUSTOMER="Customer";
 	public static final String SESSION_ATTRIBUTE_MERCHANT="Merchant";
