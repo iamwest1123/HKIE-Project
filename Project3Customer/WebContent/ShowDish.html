@@ -35,6 +35,7 @@
 </style>
 </head>
 <body>
+<button id="add" type="button" class="btn btn-success">Add Dish</button>
 <div class="form-group pull-right">
     <input type="text" class="search form-control" placeholder="Search here">
 </div>
@@ -45,7 +46,7 @@
 
 
 <script>
-    
+//    adding table
     $(function(){
         
 //           $("button").click(function(){
@@ -53,10 +54,11 @@
      var table = $('<table></table>').addClass('table table-hover table-bordered results');
              var warningRow=$('<tr></tr>').addClass('warning no-result').append($('<td colspan="5"></td>').append($('<i class="fa fa-warning"></i>')).text("No result"));
            var head=$('<thead></thead>').append($('<tr></tr>').append($('<th></th>').text("#"),
-                                                                      $('<th></th>').addClass('col-md-5 col-xs-5').text("NAME"),
-                                                                      $('<th></th>').addClass('col-md-4 col-xs-4').text("DESCRIPTION"),
-                                                                      $('<th></th>').addClass('col-md-4 col-xs-4').text("CATEGORY"),
-                                                                      $('<th></th>').addClass('col-md-4 col-xs-4').text("PRICE")
+                                                                      $('<th></th>').addClass('col-md-2 col-xs-2').text("NAME"),
+                                                                      $('<th></th>').addClass('col-md-3 col-xs-3').text("DESCRIPTION"),
+                                                                      $('<th></th>').addClass('col-md-2 col-xs-2').text("CATEGORY"),
+                                                                      $('<th></th>').addClass('col-md-2 col-xs-2').text("PRICE"),
+                                                                      $('<th></th>').addClass('col-md-3 col-xs-3').text("REMOVE")
                                                                      ),
                                                warningRow);
 //           var r=$('<th></th>').addClass('col-md-5 col-xs-5').text("NAME");
@@ -84,7 +86,16 @@
                                             $('<td></td>').text(element.name),
                                             $('<td></td>').text(element.description),
                                             $('<td></td>').text(element.category),
-                                            $('<td></td>').text(element.price)
+                                            $('<td></td>').text(element.price),
+                                            $('<td></td>').append('<button></button>').addClass("btn btn-danger").text("REMOVE")
+                                                                                .on("click",function(e){  
+                                                                                        $.ajax({
+                                                                                                type:'POST',
+                                                                                                url:'dish/delDishes',
+                                                                                                data:{id:element.id}
+                                                                                            }).done(function(msg){
+                                                                                              row.remove();
+                                                                                            });})
                                             
                                             
                                            
@@ -98,12 +109,25 @@
            table.append(body);
            $('body').append(table);
 });
-//    });
-        
-        
+
         
     })
     
+    
+    
+    </script>
+    
+    
+    <script>
+     $(function(){
+       
+         $("#add").on("click",function(e){
+             alert("hi");
+         });
+         
+         
+         
+     })
     
     
     </script>

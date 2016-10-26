@@ -33,6 +33,12 @@ public class DishController {
 		return list;
 	}
 	
+	@RequestMapping(value="/delDishes")
+	@ResponseBody
+	public void delDishes(String id){
+		dm.deleteDish(id);
+	}
+	
 	
 	
 	

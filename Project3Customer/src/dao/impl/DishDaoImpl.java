@@ -29,8 +29,9 @@ public class DishDaoImpl implements DishDao {
 	@Override
 	@Transactional
 	public List<Dish> findAll() {
-		String jpql="from Dish";
-		return em.createQuery(jpql).getResultList();
+		String jpql="select d from Dish d where d.status=:st";
+		List<Dish> dishes=em.createQuery(jpql).setParameter("st", ProjectConstant.STATUS_ACCEPTED).getResultList();
+		return dishes;
 	}
 
 	@Override
