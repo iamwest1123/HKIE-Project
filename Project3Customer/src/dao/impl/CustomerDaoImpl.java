@@ -20,7 +20,6 @@ public class CustomerDaoImpl implements CustomerDao {
 	
 	
 	@Override
-	@Transactional
 	public void addCustomer(Customer c) {
 		em.persist(c);
 		
@@ -33,7 +32,6 @@ public class CustomerDaoImpl implements CustomerDao {
 	}
 
 	@Override
-	@Transactional
 	public void updateCustomer(Customer c) {
 		Customer customer=this.loadCustomer(c.getId());
 		customer.setAddressList(c.getAddressList());
@@ -48,7 +46,6 @@ public class CustomerDaoImpl implements CustomerDao {
 	}
 
 	@Override
-	@Transactional
 	public void deleteCustomer(String id) {
 		Customer c=this.loadCustomer(id);
 		c.setStatus(ProjectConstant.STATUS_DELETED);
