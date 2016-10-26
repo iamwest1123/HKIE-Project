@@ -21,7 +21,7 @@ public class Comment {
 	@GeneratedValue(generator="commentId")
 	String id;
 	
-	@Column(length=5000)
+	@Column(name="comment_body", length=1000)
 	String comment;
 	
 	@Column(scale=0)
