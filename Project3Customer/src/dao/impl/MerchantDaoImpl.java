@@ -68,6 +68,11 @@ public class MerchantDaoImpl implements MerchantDao{
 		em.remove(m);
 	}
 
+	@Override
+	public Merchant loadMerchant(String id) {
+		return em.getReference(Merchant.class, id);
+	}
+
 
 
 	

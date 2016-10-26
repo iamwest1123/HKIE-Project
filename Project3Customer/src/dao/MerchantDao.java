@@ -11,4 +11,5 @@ public interface MerchantDao {
 	public void updateMerchantInfo(Merchant m);
 	public void updateMerchantStatus(Merchant m);
 	public void deleteMerchant(String id);
+	public Merchant loadMerchant(String id);
 }
