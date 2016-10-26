@@ -25,7 +25,7 @@ ID,Modual,PIC,Page,Required Tech : ID ,next possible page,Remarks
 24,,,show dish + remove dish + (search dish),,,
 25,,,add dish,,,
 26,,,order handling page,,,
-27,,,request for ads,,,
+27,,,request for ads,Q:48,,
 28,,,[WS] get merchant data for admin system,WS,,
 29,,,comment page,,,
 30,,,,,,
