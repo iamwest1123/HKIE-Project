@@ -5,11 +5,18 @@ import javax.jms.ConnectionFactory;
 import javax.jms.Destination;
 import javax.jms.JMSException;
 import javax.jms.MessageProducer;
+import javax.jms.Queue;
 import javax.jms.Session;
 import javax.jms.TextMessage;
+import javax.persistence.PersistenceContext;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.command.ActiveMQQueue;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.ApplicationContext;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -18,44 +25,24 @@ import dto.MerchantRegisterRequestDto;
 import util.ProjectConstant;
 import mq.QueueProducer;
 
+@Component("merchantRegisterProducer")
 public class MerchantRegisterProducer implements QueueProducer {
-	private ConnectionFactory factory = new ActiveMQConnectionFactory(ProjectConstant.JMS_URL);
-	private Destination queue = new ActiveMQQueue(ProjectConstant.JMS_QUEUE_NEW_MERCHENT);
+	
+	@Autowired
+	@Qualifier("newMerchentQueue")
+	private Queue destination;
+	private final JmsTemplate jmsTemplate;
+	
+	public MerchantRegisterProducer(final JmsTemplate jmsTemplate) {
+        this.jmsTemplate = jmsTemplate;
+    }
 	
 	@Override
 	public boolean send(Object obj) {
-		boolean isSuccess = false;
-		Connection con = null;
-		Session sen = null;
-		MessageProducer producer = null;
 		if (!(obj instanceof MerchantRegisterRequestDto))
 			return false;
-		try {
-			con = factory.createConnection();
-			con.start();
-			// message acknowledge mode
-			sen = con.createSession(false, Session.AUTO_ACKNOWLEDGE); // true is transaction
-			
-			producer = sen.createProducer(queue);
-			
-			TextMessage msg = sen.createTextMessage(convertObjectToString(obj));
-			producer.send(msg);
-			isSuccess = true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			isSuccess = false;
-		} finally {
-			try {
-				producer.close();
-			} catch (JMSException e) { }
-			try {
-				sen.close();
-			} catch (JMSException e) { }
-			try {
-				con.close();
-			} catch (JMSException e) { }
-		}
-		return isSuccess;
+		jmsTemplate.convertAndSend(destination, convertObjectToString(obj));
+		return true;
 	}
 
 	@Override
@@ -72,5 +59,4 @@ public class MerchantRegisterProducer implements QueueProducer {
 		}
 		return result;
 	}
-
 }

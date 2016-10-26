@@ -16,9 +16,8 @@
         http://www.springframework.org/schema/tx/spring-tx.xsd">
         
         
-        
     <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
-    <context:component-scan base-package="service,dao"></context:component-scan>
+    <context:component-scan base-package="service,dao,mq"></context:component-scan>
 	
 	<context:component-scan base-package="service"></context:component-scan>
 	<context:component-scan base-package="dao"></context:component-scan>
@@ -78,6 +77,67 @@
 	<tx:annotation-driven transaction-manager="transactionManager"
 		proxy-target-class="true" />
 	
-	
+	<!-- Spring Data Jpa配置 -->
+	<!-- <jpa:repositories base-package="dao.impl" transaction-manager-ref="transactionManager" 
+		entity-manager-factory-ref="entityManagerFactory"/> -->
 
+	<!-- 对使用@Transactional的方法启用AOP proxy-target-class:表示是否对“目标类”启用代理。true:表示使用cglib方式(类)，false:表示使用Proxy方式（接口） -->
+	<tx:annotation-driven transaction-manager="transactionManager"
+		proxy-target-class="false" />
+
+
+	<!-- JMS配置 -->
+	<!-- 真正可以产生Connection的ConnectionFactory，由对应的 JMS服务厂商提供 -->
+	<bean id="targetConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+		<property name="brokerURL" value="failover://tcp://zha-ita076-w7:61616" />
+	</bean>
+
+	<bean id="pooledConnectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory">
+		<property name="connectionFactory" ref="targetConnectionFactory" />
+		<property name="maxConnections" value="10" />
+	</bean>
+
+	<!-- Spring用于管理真正的ConnectionFactory的ConnectionFactory -->
+	<bean id="connectionFactory"
+		class="org.springframework.jms.connection.SingleConnectionFactory">
+		<property name="targetConnectionFactory" ref="pooledConnectionFactory" />
+	</bean>
+	<!-- Spring提供的JMS工具类，它可以进行消息发送、接收等 -->
+	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<!-- 这个connectionFactory对应的是我们定义的Spring提供的那个ConnectionFactory对象 -->
+		<property name="connectionFactory" ref="connectionFactory" />
+	</bean>
+	<!--这个是队列目的地，点对点的 -->
+	<bean id="newMerchentQueue" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg>
+			<value>Q_NEW_MERCHENT</value>
+		</constructor-arg>
+	</bean>
+	<bean id="newAdRequestQueue" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg>
+			<value>Q_NEW_AD_REQUEST</value>
+		</constructor-arg>
+	</bean>
+	<bean id="complainQueue" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg>
+			<value>Q_COMPLAIN</value>
+		</constructor-arg>
+	</bean>
+	 
+	<bean id="newMerchantConsumer" class="mq.impl.MerchantRegisterConsumer" />
+	<bean id="jmsContainerNM"
+		class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="destination" ref="newMerchentQueue" />
+		<property name="messageListener" ref="newMerchantConsumer" />
+	</bean>
+	<!-- 
+	<bean id="newAdRequestConsumer" class="listener.ConsumerMessageListener" />
+	<bean id="jmsContainerNA"
+		class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="destination" ref="newAdRequestQueue" />
+		<property name="messageListener" ref="newAdRequestConsumer" />
+	</bean>
+	 -->
 </beans>
