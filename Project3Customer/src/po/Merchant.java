@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -64,11 +65,11 @@ public class Merchant {
 	@Column(name="REGISTER_TIME")
 	private Date registerTime;
 	
-	@OneToOne(cascade={CascadeType.PERSIST,CascadeType.REMOVE})
+	@OneToOne(cascade={CascadeType.PERSIST},fetch=FetchType.EAGER)
 	@JoinColumn(name="ADDRESS_ID")
 	private Address address;
 	
-	@OneToMany(mappedBy="merchant")
+	@OneToMany(mappedBy="merchant",fetch=FetchType.EAGER)
 	private List<Dish> dishList = new ArrayList<Dish>();
 	
 	@OneToMany(mappedBy="merchant")

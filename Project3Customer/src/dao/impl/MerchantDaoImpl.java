@@ -30,10 +30,12 @@ public class MerchantDaoImpl implements MerchantDao{
 	}
 
 	@Override
+	@Transactional
 	public void updateMerchantInfo(Merchant m) {
+		System.out.println(m.getId());
 		
-		Merchant m2 = em.getReference(Merchant.class, m.getId());
-		
+		Merchant m2 = em.find(Merchant.class, m.getId());
+			
 		m2.setMerchantName(m.getMerchantName());
 		m2.setShopName(m.getShopName());
 		m2.setTelNum(m.getTelNum());
@@ -46,12 +48,14 @@ public class MerchantDaoImpl implements MerchantDao{
 		m2.setGender(m.getGender());
 		m2.setCanPreOrder(m.getCanPreOrder());
 		m2.setRegisterTime(m.getRegisterTime());
-//		m2.setAddress(m.getAddress()); //hv to think about embedded or not 
+		m2.setAddress(m.getAddress()); //hv to think about embedded or not 
 
+		
 		em.persist(m2);
 	}
 
 	@Override
+	@Transactional
 	public void updateMerchantStatus(Merchant m) {
 
 		Merchant m2 = em.getReference(Merchant.class, m.getId());
@@ -62,15 +66,18 @@ public class MerchantDaoImpl implements MerchantDao{
 	}
 	
 	@Override
+	@Transactional
 	public void deleteMerchant(String id) {
 		
-		Merchant m = em.getReference(Merchant.class, id);
+		Merchant m = em.find(Merchant.class, id);
 		em.remove(m);
 	}
 
 	@Override
+	@Transactional
 	public Merchant loadMerchant(String id) {
-		return em.getReference(Merchant.class, id);
+		System.out.println(em.find(Merchant.class, id).getLoginName());
+		return em.find(Merchant.class, id);
 	}
 
 
