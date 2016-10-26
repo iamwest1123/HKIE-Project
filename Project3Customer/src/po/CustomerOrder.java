@@ -1,5 +1,6 @@
 package po;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -12,20 +13,18 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name="CUSTOMER_ORDER")
+@Table(name="CUSTOMER_ORDERS")
 public class CustomerOrder {
 	@Id
 	@GenericGenerator(name="commentId", strategy="uuid")
 	@GeneratedValue(generator="commentId")
 	private String id;
 	
-	// TODO
-	@Transient
+	@OneToOne
 	private Comment comment;
 	
 	@Column(name="STATUS", length=30)
@@ -49,7 +48,7 @@ public class CustomerOrder {
 	private Customer customer;
 	
 	@OneToMany(mappedBy="customerOrder")
-	private List<OrderDish> dishes;
+	private List<OrderDish> dishes = new ArrayList<OrderDish>();
 
 	public String getId() {
 		return id;
