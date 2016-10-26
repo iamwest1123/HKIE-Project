@@ -10,6 +10,9 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name="DISHES")
 public class Dish {
@@ -38,6 +41,7 @@ public class Dish {
 	
 	@ManyToOne
 	@JoinColumn(name="MERCHANT_ID",nullable=false)
+	@JsonBackReference
 	private Merchant merchant;
 	
 	@Override

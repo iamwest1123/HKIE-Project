@@ -18,6 +18,8 @@ import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name="MERCHANTS")
 public class Merchant {
@@ -70,6 +72,7 @@ public class Merchant {
 	private Address address;
 	
 	@OneToMany(mappedBy="merchant",fetch=FetchType.EAGER)
+	@JsonManagedReference
 	private List<Dish> dishList = new ArrayList<Dish>();
 	
 	@OneToMany(mappedBy="merchant")

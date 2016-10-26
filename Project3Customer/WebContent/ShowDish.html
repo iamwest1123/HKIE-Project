@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- 新 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+
+<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<style>
+    body{
+  padding:20px 20px;
+}
+
+.results tr[visible='false'],
+.no-result{
+  display:none;
+}
+
+.results tr[visible='true']{
+  display:table-row;
+}
+
+.counter{
+  padding:8px; 
+  color:#ccc;
+}
+</style>
+</head>
+<body>
+<div class="form-group pull-right">
+    <input type="text" class="search form-control" placeholder="What you looking for?">
+</div>
+<span class="counter pull-right"></span>
+<table class="table table-hover table-bordered results">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th class="col-md-5 col-xs-5">Name / Surname</th>
+      <th class="col-md-4 col-xs-4">Job</th>
+      <th class="col-md-3 col-xs-3">City</th>
+    </tr>
+    <tr class="warning no-result">
+      <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Vatanay Özbeyli</td>
+      <td>UI & UX</td>
+      <td>Istanbul</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Burak Özkan</td>
+      <td>Software Developer</td>
+      <td>Istanbul</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Egemen Özbeyli</td>
+      <td>Purchasing</td>
+      <td>Kocaeli</td>
+    </tr>
+    <tr>
+      <th scope="row">4</th>
+      <td>Engin Kızıl</td>
+      <td>Sales</td>
+      <td>Bozuyük</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<button></button>
+<!--
+<script type=text/javascript>
+    
+    
+    
+		var xhr=new XMLHttpRequest();
+		var url="dish/showDishes"
+		
+		//callback
+		xhr.onreadystatechange=function(){
+			 var table=document.createElement("table");
+            table.className="table table-hover table-bordered results";
+			 var th = document.createElement("tr");
+			 var td11 = document.createElement("th");
+			 var td12 = document.createElement("th");
+			 var td13 = document.createElement("th");
+             var td14 = document.createElement("th");
+             var td15 = document.createElement("th");
+            td11.className="col-md-3 col-xs-3";
+            td12.className="col-md-3 col-xs-3";
+            td13.className="col-md-2 col-xs-2";
+            td14.className="col-md-2 col-xs-2";
+            td15.className="col-md-2 col-xs-2";
+            
+			 td11.innerHTML="ID";
+			 td12.innerHTML="Name";
+			 td13.innerHTML="Age";
+            td14.innerHTML="Edit";
+			 td15.innerHTML="Delete";
+			  th.appendChild(td11);
+			  th.appendChild(td12);
+			  th.appendChild(td13);
+             th.appendChild(td14);
+			  th.appendChild(td15);
+			  table.appendChild(th);
+			
+			  
+			if(xhr.readyState==4 && xhr.status==200){
+			 var u =JSON.parse(xhr.responseText);
+			var rs= document.getElementById("rs");
+			for (var i=0; i<u.length;i++){
+				 var tr = document.createElement("tr");
+                 var td1 = document.createElement("td");
+                 td1.innerHTML=u[i].id;
+                 var td2 = document.createElement("td");
+                 td2.innerHTML = u[i].name;
+                 var td3 = document.createElement("td");
+                 td3.innerHTML=u[i].status;
+                 var td4 = document.createElement("td");
+                 var td5 = document.createElement("td");
+                 var td6 = document.createElement("td");
+                 var del = document.createElement("button");
+                 del.innerHTML = "delete";
+                 var edit = document.createElement("button");
+                 edit.innerHTML = "edit";
+                 
+                 edit.onclick = function(){
+                     var uid = document.getElementById("uid");
+                     var nameText = document.getElementById("uuname");
+                     var ageText = document.getElementById("uage");
+                 	var ctr = this.parentNode.parentNode;
+                 	uid.value = ctr.cells[0].innerText;
+                 	console.log(uid.value);
+                 	nameText.value = ctr.cells[1].innerText;
+                 	ageText.value = ctr.cells[2].innerText;
+                     show(this,"editUserDiv");
+                 }
+                 
+                 del.onclick = function() {
+                	 var row = this.parentNode.parentNode;
+                	 console.log(td1.innerText);
+                	
+                		xhr.open("POST","user/deleteUsers",true);
+                		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            			xhr.send("id="+row.cells[0].innerText);
+            			  row.parentNode.removeChild(row);
+
+                 }
+                 
+                 td4.appendChild(del);
+                 tr.appendChild(td1);
+                 tr.appendChild(td2);
+                 tr.appendChild(td3);
+                 tr.appendChild(td4);
+                 tr.appendChild(td5);
+                 tr.appendChild(td6);
+                 td5.appendChild(edit);
+                 table.appendChild(tr);
+				
+			}
+//				rs.innerHTML+="<tr><td>id"+u[i].id+"</td><td> name:"+u[i].uname+"<td></tr>"";
+			document.getElementById("rs").appendChild(table);
+			}
+
+			};
+
+			xhr.open("GET",url,true);
+			xhr.send(null);
+    
+    </script>
+-->
+
+
+<script>
+    
+    $(function(){
+        
+//           $("button").click(function(){
+       $.getJSON('dish/showDishes', { get_param: 'value' }, function(data) {
+     var table = $('<table></table>').addClass('table table-hover table-bordered results');
+           var r=$('<th></th>').addClass('col-md-5 col-xs-5').text("NAME");
+           var r2=$('<th></th>').addClass('col-md-4 col-xs-4').text("DESCRIPTION");
+           table.append(r);
+           table.append(r2);
+    $.each(data, function(index, element) {
+//        $('body').append($('<div>', {
+//            text: element.name
+//        }));
+       //create table
+       
+    
+            var row = $('<tr></tr>').append($('<td></td>').text(element.name),
+            $('<td></td>').text(element.description));
+            table.append(row);
+         
+
+
+        
+    });
+           $('body').append(table);
+});
+//    });
+        
+        
+        
+    })
+    
+    
+    
+    </script>
+
+<script>
+
+    $(document).ready(function() {
+  $(".search").keyup(function () {
+    var searchTerm = $(".search").val();
+    var listItem = $('.results tbody').children('tr');
+    var searchSplit = searchTerm.replace(/ /g, "'):containsi('")
+    
+  $.extend($.expr[':'], {'containsi': function(elem, i, match, array){
+        return (elem.textContent || elem.innerText || '').toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
+    }
+  });
+    
+  $(".results tbody tr").not(":containsi('" + searchSplit + "')").each(function(e){
+    $(this).attr('visible','false');
+  });
+
+  $(".results tbody tr:containsi('" + searchSplit + "')").each(function(e){
+    $(this).attr('visible','true');
+  });
+
+  var jobCount = $('.results tbody tr[visible="true"]').length;
+    $('.counter').text(jobCount + ' item');
+
+  if(jobCount == '0') {$('.no-result').show();}
+    else {$('.no-result').hide();}
+		  });
+});
+    
+    
+    
+</script>
+</body>
+</html>
