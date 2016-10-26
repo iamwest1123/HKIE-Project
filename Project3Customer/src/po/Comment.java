@@ -33,6 +33,10 @@ public class Comment {
 	@ManyToOne
 	@JoinColumn(name="CUSTOMER_ID")
 	Customer customer;
+	
+	@ManyToOne
+	@JoinColumn(name="MERCHANT_ID")
+	Customer merchant;
 	// advance
 	
 	@Column(length=5000)
