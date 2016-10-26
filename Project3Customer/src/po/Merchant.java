@@ -70,8 +70,7 @@ public class Merchant {
 	@OneToMany(mappedBy="merchant")
 	private List<Dish> dishList;
 	
-	//TODO
-	@Transient
+	@OneToMany(mappedBy="merchant")
 	private List<Comment> commentList;
 	
 	@OneToMany(mappedBy="merchant")
