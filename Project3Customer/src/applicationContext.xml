@@ -29,7 +29,7 @@
 		<property name="driverClassName" value="oracle.jdbc.OracleDriver"></property>
 		<property name="url" value="jdbc:oracle:thin:@ITA-031-W7.corp.oocl.com:1521:xe"></property>
 		<property name="password" value="123"></property>
-		<property name="username" value="kevin"></property>
+		<property name="username" value="mama4"></property>
 	</bean>
 
 		<!--
@@ -56,7 +56,7 @@
 			<props>
 				<prop key="hibernate.ejb.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop>
 				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
 			</props>
 		</property>
 	</bean>

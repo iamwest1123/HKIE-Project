@@ -1,18 +1,49 @@
 package po;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.hibernate.annotations.GenericGenerator;
+
+@Entity
+@Table(name="CUSTOMERS")
 public class Customer {
+	@Id
+	@GenericGenerator(name="customerId", strategy="uuid")
+	@GeneratedValue(generator="customerId")
 	private String id;
+	
+	@Column(length=50)
 	private String name;
+	
+	@Column(columnDefinition="char(1)")
 	private Boolean gender;
+
+	@Column(name="PROFILE_PIC")
 	private String profilePic;
+
+	@Column(length=30)
 	private String password;
+	
+	@Column(name="LOGIN_NAME", length=30)
 	private String loginName;
+
+	@Column(length=30)
 	private String status;
 	
-	private List<Address> addressList;
-	private List<CustomerOrder> customerOrderList;
+	@OneToMany(mappedBy="customer")
+	private List<Address> addressList = new ArrayList<Address>();
+	
+	@OneToMany(mappedBy="customer")
+	private List<CustomerOrder> customerOrderList = new ArrayList<CustomerOrder>();
 
 	public String getId() {
 		return id;

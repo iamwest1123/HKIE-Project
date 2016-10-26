@@ -1,9 +1,34 @@
 package po;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.hibernate.annotations.GenericGenerator;
+
+@Entity
+@Table(name="addresses")
 public class Address {
+	@Id
+	@GenericGenerator(name="addressId", strategy="uuid")
+	@GeneratedValue(generator="addressId")
 	private String id;
+	
+	@Column
 	private String address;
+	
+	@Column(length=50)
 	private String region;
+	
+	@ManyToOne
+	@JoinColumn(name="CUSTOMER_ID")
+	private Customer customer;
+	
 	public String getId() {
 		return id;
 	}

@@ -1,13 +1,43 @@
 package po;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
+@Entity
+@Table(name="DISHES")
 public class Dish {
+	@Id
+	@GenericGenerator(name="dishId", strategy="uuid")
+	@GeneratedValue(generator="dishId")
 	private String id;
+	
+	@Column(name="NAME", length=50)
 	private String name;
+	
+	@Column
 	private String description;
-	private Double price;
+	
+	@Column(name="DISH_PIC")
 	private String dishPic;
+	
+	@Column(name="STATUS", length=30)
 	private String status;
+	
+	@Column(name="CATEGORY", length=30)
 	private String category;
+
+	@Column(nullable=false)
+	private Double price;
+	
+	@ManyToOne
+	@JoinColumn(name="MERCHANT_ID",nullable=false)
 	private Merchant merchant;
 	
 	@Override

@@ -3,17 +3,52 @@ package po;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.hibernate.annotations.GenericGenerator;
+
+@Entity
+@Table(name="CUSTOMER_ORDER")
 public class CustomerOrder {
+	@Id
+	@GenericGenerator(name="commentId", strategy="uuid")
+	@GeneratedValue(generator="commentId")
 	private String id;
+	
+	@Column(name="CUSTOMER_COMMENT", length=1000)
 	private String comment;
-	private Date orderDate;
-	private Date deliverDate;
-	private Date receiveDate;
+	
+	@Column(name="STATUS", length=30)
 	private String status;
 	
+	@Column(name="ORDER_DATE")
+	private Date orderDate;
+	
+	@Column(name="DELIVER_DATE")
+	private Date deliverDate;
+	
+	@Column(name="RECEIVE_DATE")
+	private Date receiveDate;
+	
+	@ManyToOne
+	@JoinColumn(name="MERCHANT_ID")
 	private Merchant merchant;
+
+	@ManyToOne
+	@JoinColumn(name="CUSTOMER_ID")
 	private Customer customer;
 	
+	// TODO MANY TO MANY
+	@Transient
 	private List<Dish> dishes;
 	
 	
