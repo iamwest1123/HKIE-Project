@@ -1,5 +1,6 @@
 package po;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -68,13 +69,13 @@ public class Merchant {
 	private Address address;
 	
 	@OneToMany(mappedBy="merchant")
-	private List<Dish> dishList;
+	private List<Dish> dishList = new ArrayList<Dish>();
 	
 	@OneToMany(mappedBy="merchant")
-	private List<Comment> commentList;
+	private List<Comment> commentList = new ArrayList<Comment>();
 	
 	@OneToMany(mappedBy="merchant")
-	private List<CustomerOrder> customerOrderList;
+	private List<CustomerOrder> customerOrderList = new ArrayList<CustomerOrder>();
 
 	@Override
 	public int hashCode() {
