@@ -25,4 +25,10 @@ public class ProjectConstant {
 	public static final String SESSION_ATTRIBUTE_ADMIN="Admin";
 	public static final String SESSION_ATTRIBUTE_SHOPPING_CART="ShoppingCart";
 
+	public static final String CATEGORY_WESTERN="Western";
+	public static final String CATEGORY_CHINESE="Chinese";
+	public static final String CATEGORY_JAPANESE="Japanese";
+	public static final String CATEGORY_KOREAN="Korean";
+	public static final String CATEGORY_ASIAN="Asian";
+	
 }
