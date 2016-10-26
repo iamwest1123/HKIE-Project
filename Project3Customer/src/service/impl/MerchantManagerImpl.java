@@ -42,4 +42,10 @@ public class MerchantManagerImpl implements MerchantManager{
 		
 	}
 
+	@Override
+	public Merchant loadMerchant(String id) {
+		md.loadMerchant(id);
+		return null;
+	}
+
 }
