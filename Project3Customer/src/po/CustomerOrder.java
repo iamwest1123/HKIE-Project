@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +25,7 @@ public class CustomerOrder {
 	@GeneratedValue(generator="commentId")
 	private String id;
 	
-	@OneToOne
+	@OneToOne(cascade={CascadeType.PERSIST,CascadeType.REMOVE})
 	private Comment comment;
 	
 	@Column(name="STATUS", length=30)

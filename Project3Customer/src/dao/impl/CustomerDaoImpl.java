@@ -20,6 +20,7 @@ public class CustomerDaoImpl implements CustomerDao {
 	
 	
 	@Override
+	@Transactional
 	public void addCustomer(Customer c) {
 		em.persist(c);
 		
