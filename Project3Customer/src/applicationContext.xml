@@ -108,12 +108,12 @@
 		<property name="connectionFactory" ref="connectionFactory" />
 	</bean>
 	<!--这个是队列目的地，点对点的 -->
-	<bean id="newMerchentQueue" class="org.apache.activemq.command.ActiveMQQueue">
+	<bean id="merchentRegisterQueue" class="org.apache.activemq.command.ActiveMQQueue">
 		<constructor-arg>
 			<value>Q_NEW_MERCHENT</value>
 		</constructor-arg>
 	</bean>
-	<bean id="newAdRequestQueue" class="org.apache.activemq.command.ActiveMQQueue">
+	<bean id="advertApplicationQueue" class="org.apache.activemq.command.ActiveMQQueue">
 		<constructor-arg>
 			<value>Q_NEW_AD_REQUEST</value>
 		</constructor-arg>
@@ -124,20 +124,20 @@
 		</constructor-arg>
 	</bean>
 	 
-	<bean id="newMerchantConsumer" class="mq.impl.MerchantRegisterConsumer" />
+	<bean id="merchantRegisterConsumer" class="mq.impl.MerchantRegisterConsumer" />
 	<bean id="jmsContainerNM"
 		class="org.springframework.jms.listener.DefaultMessageListenerContainer">
 		<property name="connectionFactory" ref="connectionFactory" />
-		<property name="destination" ref="newMerchentQueue" />
-		<property name="messageListener" ref="newMerchantConsumer" />
+		<property name="destination" ref="merchentRegisterQueue" />
+		<property name="messageListener" ref="merchantRegisterConsumer" />
 	</bean>
-	<!-- 
-	<bean id="newAdRequestConsumer" class="listener.ConsumerMessageListener" />
+	
+	<bean id="advertApplicationConsumer" class="mq.impl.AdvertApplicationConsumer" />
 	<bean id="jmsContainerNA"
 		class="org.springframework.jms.listener.DefaultMessageListenerContainer">
 		<property name="connectionFactory" ref="connectionFactory" />
-		<property name="destination" ref="newAdRequestQueue" />
-		<property name="messageListener" ref="newAdRequestConsumer" />
+		<property name="destination" ref="advertApplicationQueue" />
+		<property name="messageListener" ref="advertApplicationConsumer" />
 	</bean>
-	 -->
+	
 </beans>
