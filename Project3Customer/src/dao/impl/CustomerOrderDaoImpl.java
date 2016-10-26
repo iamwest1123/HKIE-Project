@@ -52,24 +52,23 @@ public class CustomerOrderDaoImpl implements CustomerOrderDao{
 	@Override
 	public List<CustomerOrder> findAll() {
 		return em.createQuery("select o from CustomerOrder o")
-//				.setParameter(arg0, arg1)
-				.setMaxResults(50)
+				.setMaxResults(100)
 				.getResultList();
 	}
 
 	@Override
 	public List<CustomerOrder> findAllByCustomer(Customer c) {
-		return em.createQuery("select o from CustomerOrder o")
-//				.setParameter(arg0, arg1)
-				.setMaxResults(50)
+		return em.createQuery("select o from CustomerOrder o where o.customer = :cid")
+				.setParameter("cid", c.getId())
+				.setMaxResults(100)
 				.getResultList();
 	}
 
 	@Override
 	public List<CustomerOrder> findAllByMerchant(Merchant m) {
-		return em.createQuery("select o from CustomerOrder o")
-//				.setParameter(arg0, arg1)
-				.setMaxResults(50)
+		return em.createQuery("select o from CustomerOrder o where o.merchant = :mid")
+				.setParameter("mid", m.getId())
+				.setMaxResults(100)
 				.getResultList();
 	}
 	
