@@ -27,29 +27,34 @@ public class DishDaoImpl implements DishDao {
 	}
 
 	@Override
+	@Transactional
 	public List<Dish> findAll() {
 		String jpql="from Dish";
 		return em.createQuery(jpql).getResultList();
 	}
 
 	@Override
+	@Transactional
 	public void deleteDish(String id) {
 		Dish d=this.loadDish(id);
-		d.setStatus(ProjectConstant.STATUS_ACCEPTED);
+		d.setStatus(ProjectConstant.STATUS_DELETED);
 
 	}
 
 	@Override
+	@Transactional
 	public Dish loadDish(String id) {
 		Dish d=em.find(Dish.class, id);
 		return d;
 	}
 
 	@Override
+	@Transactional
 	public List<Dish> findDishByMerchants(Merchant m) {
-		String jpql="select d from Dish d where d.merchant=:mid";
+		String jpql="select d from Dish d where d.merchant=:m and d.status=:st";
 		List<Dish> dishes=em.createQuery(jpql)
-				.setParameter("mid", m.getId())
+				.setParameter("m", m)
+				.setParameter("st", ProjectConstant.STATUS_ACCEPTED)
 				.getResultList();
 		return dishes;
 	}
