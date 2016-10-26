@@ -1,9 +1,28 @@
 package po;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
+@Entity
+@Table(name="ADMIN_INFO")
 public class Admin {
+	
+	@Column(length=30)
 	String password;
+	
+	@Column(name="LOGIN_NAME", length=30)
 	String loginName;
+	
+	@Id
+	@GenericGenerator(name="adminId", strategy="uuid")
+	@GeneratedValue(generator="adminId")
 	String id;
+	
 	public String getPassword() {
 		return password;
 	}

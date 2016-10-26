@@ -1,9 +1,28 @@
 package po;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
+@Entity
+@Table(name="ADMIN_STATUS")
 public class AdminStatus {
+	
+	@Column(length=8)
 	String type; //(Customer/ Merchant)
+	
+	@Id
+	@GenericGenerator(name="statusId", strategy="uuid")
+	@GeneratedValue(generator="statusId")
 	String id;
+	
+	@Column(length=7)
 	String status; //(active/pending/frozen)
+	
 	public String getType() {
 		return type;
 	}
