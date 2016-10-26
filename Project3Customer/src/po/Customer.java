@@ -3,6 +3,7 @@ package po;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -39,7 +40,7 @@ public class Customer {
 	@Column(length=30)
 	private String status;
 	
-	@OneToMany(mappedBy="customer")
+	@OneToMany(mappedBy="customer", cascade={CascadeType.PERSIST,CascadeType.REMOVE})
 	private List<Address> addressList = new ArrayList<Address>();
 	
 	@OneToMany(mappedBy="customer")
