@@ -22,7 +22,7 @@ ID,Modual,PIC,Page,Required Tech : ID ,next possible page,Remarks
 21,Merchant,,login,WS:45,,
 22,,,register,Q:47,,
 23,,,update info,,,
-24,,,show dish + remove dish + (search dish),,,
+24,,Sunny,show dish + remove dish + (search dish),,,
 25,,,add dish,,,
 26,,,order handling page,,,
 27,,,request for ads,Q:48,,
