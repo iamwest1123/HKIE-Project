@@ -11,5 +11,7 @@ public interface AdminDao {
 	public void updateAdmin(Admin u);
 	public void deleteAdmin(String id);
 	public Admin loadAdmin(String id);
+	public Admin findAdminByUsernameAndPassword(Admin a);
+	public boolean isExist(Admin a);
 	
 }

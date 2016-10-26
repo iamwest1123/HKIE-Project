@@ -45,5 +45,17 @@ public class AdminManagerImpl implements AdminManager {
 	public Admin loadAdmin(String id) {
 		return ad.loadAdmin(id);
 	}
+	
+	@Override
+	@Transactional
+	public boolean isExist(Admin a) {
+		return ad.isExist(a);
+	}
+	
+	@Override
+	@Transactional
+	public Admin findAdminByUsernameAndPassword(Admin a) {
+		return ad.findAdminByUsernameAndPassword(a);
+	}
 
 }

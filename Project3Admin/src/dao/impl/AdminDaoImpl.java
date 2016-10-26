@@ -46,4 +46,21 @@ public class AdminDaoImpl implements AdminDao {
 		return a;
 	}
 
+	@Override
+	public boolean isExist(Admin a) {
+		String jpql = "from Admin WHERE loginName = ?";
+		List<Admin> list = em.createQuery(jpql).setParameter(1, a.getLoginName()).getResultList();
+		if(list.isEmpty())
+			return false;
+		else {
+			return true;
+		}
+	}
+	
+	@Override
+	public Admin findAdminByUsernameAndPassword(Admin a) {
+		String jpql = "from Admin WHERE loginName = ? and password = ?";
+		return (Admin)em.createQuery(jpql).setParameter(1, a.getLoginName()).setParameter(2, a.getPassword()).getSingleResult();
+	}
+	
 }

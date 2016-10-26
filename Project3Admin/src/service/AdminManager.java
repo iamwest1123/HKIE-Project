@@ -11,5 +11,6 @@ public interface AdminManager {
 	public void updateAdmin(Admin u);
 	public void deleteAdmin(String id);
 	public Admin loadAdmin(String id);
-	
+	public boolean isExist(Admin a);
+	public Admin findAdminByUsernameAndPassword(Admin a);
 }

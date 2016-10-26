@@ -16,14 +16,6 @@ import service.AdminStatusManager;
 
 public class TestAdminStatus {
 
-	/**
-	public void addAdminAdv(AdminAdvert a);
-	public List<AdminAdvert> findAllAdv();
-	public void updateAdminAdv(AdminAdvert u);
-	public void deleteAdminAdv(String id);
-	public AdminAdvert loadAdminAdv(String id);
-	 */
-	
 	@Test
 	public void testAdd() {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");

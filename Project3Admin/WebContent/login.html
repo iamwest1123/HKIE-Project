@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script>
+<link href="css/signin.css" rel="stylesheet">
+
+<style>
+#loginForm {
+	width:500px;
+	color:white;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -150px; /* half of the width */
+	margin-top: -150px; /* half of the height */
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited
+	{
+	background-image: -webkit-linear-gradient(top, #17A100 0, #17B350 100%);
+	background-color: #17B350 !important;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<form action="loginAdmin" method="post" id="loginForm" class="form-signin">
+			<h2 class="form-signin-heading">Please sign in</h2>
+			<label for="inputUsername" class="sr-only">Username</label> 
+				<input type="text" id="inputUsername" class="form-control"
+				placeholder="Username" name="loginName" required autofocus> <label
+				for="inputPassword" class="sr-only">Password</label> <input
+				type="password" id="inputPassword" name="password" class="form-control"
+				placeholder="Password" required>
+			<div class="checkbox">
+				<label> <input type="checkbox" value="remember-me">
+					Remember me
+				</label> <a href="#" style="float: right">Register</a>
+			</div>
+			<input class="btn btn-primary btn-block" type="submit" value="Sign
+				in"/>
+			<div id ="error"></div>
+		</form>
+
+	</div>
+	<!-- /container -->
+
+</body>
+</html>
