@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import dao.CustomerOrderDao;
 import po.Customer;
@@ -20,6 +21,7 @@ public class CustomerOrderDaoImpl implements CustomerOrderDao{
 	private EntityManager em;
 
 	@Override
+	@Transactional
 	public boolean addOrder(CustomerOrder o) {
 		em.persist(o);
 		return false;
@@ -45,6 +47,14 @@ public class CustomerOrderDaoImpl implements CustomerOrderDao{
 		o2.setStatus(ProjectConstant.DELIVERY_STATUS_CANCELED);
 		em.persist(o2);
 		return false;
+	}
+	
+	@Override
+	public List<CustomerOrder> findAll() {
+		return em.createQuery("select o from CustomerOrder o")
+//				.setParameter(arg0, arg1)
+				.setMaxResults(50)
+				.getResultList();
 	}
 
 	@Override
