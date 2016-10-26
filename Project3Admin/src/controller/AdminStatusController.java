@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import po.AdminStatus;
 import service.AdminStatusManager;
 
 @Controller
@@ -18,7 +19,7 @@ public class AdminStatusController {
 	
 	@RequestMapping(value="checkMerchantStatus")
 	@ResponseBody
-	public int checkMerchantStatus(String merchantId){		
+	public AdminStatus checkMerchantStatus(String merchantId){		
 		return asm.checkStatus(merchantId);
 	}	
 }

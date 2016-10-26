@@ -1,5 +1,7 @@
 package service;
 
+import po.AdminStatus;
+
 public interface AdminStatusManager {
-	public int checkStatus(String merchantId);
+	public AdminStatus checkStatus(String merchantId);
 }
