@@ -5,17 +5,21 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import dao.MerchantDao;
 import po.Merchant;
 
+@Repository
 public class MerchantDaoImpl implements MerchantDao{
 
 	@PersistenceContext(name="em")
 	private EntityManager em;
 	
 	@Override
-	public void addMerchant(Merchant m) {
-		
+	@Transactional
+	public void addMerchant(Merchant m) {		
 		em.persist(m);
 	}
 
