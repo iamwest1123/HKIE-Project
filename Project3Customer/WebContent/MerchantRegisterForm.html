@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Merchant Register Form</title>
+
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+
+	<p>Merchant Register Form</p>
+	<hr/>
+	
+	<form action="merchant/addMerchant" method="post">
+		Merchant Name:<br>
+		<input id="merchantName" name="merchantName" /><br />
+		Shop Name:<br>
+		<input id="shopName" name="shopName"><br />
+		Tel. Number:<br>
+		<input id="telNum" name="telNum"><br />
+		Shop Picture URL:<br>
+		<input id="shopPic" name="shopPic"><br />
+		Password:<br>
+		<input id="password" name="password"><br />
+		Login Name:<br>
+		<input id="loginName" name="loginName"><br />
+		Category:<br>
+		<input id="category" name="category"><br />
+		Opening Hour(Integer):<br>
+		<input id="openingHour" name="openingHour"><br />
+		Closing Hour(Integer):<br>
+		<input id="closingHour" name="closingHour"><br />
+		Gender(Boolean):<br>
+		<input id="gender" name="gender"><br />
+		Can Pre Order(Boolean):<br>
+		<input id="canPreOrder" name="canPreOrder"><br />
+		Address:<br>
+		<input id="address" name="address"><br />
+		Region:<br>
+		<input id="region" name="region"><br />
+		
+	</form>
+	
+	<button id="submit">Submit</button>
+	
+	<div id="result"></div>
+	
+	<script>
+        //onload
+        $(function(){
+            $("#submit").on("click", function(e){
+                $.ajax({
+                    type:'POST',
+                    url:'merchant/addMerchant',
+                    data: {
+                    	merchantName: $('#merchantName').val(),                        
+                    	shopName: $('#shopName').val(),
+                    	telNum: $('#telNum').val(),
+                    	shopPic: $('#shopPic').val(),
+                    	password: $('#password').val(),
+                    	loginName: $('#loginName').val(),
+                    	category: $('#category').val(),
+                    	openingHour: $('#openingHour').val(),
+                    	closingHour: $('#closingHour').val(),
+                    	gender: $('#gender').val(),
+                    	canPreOrder: $('#canPreOrder').val(),
+
+
+                    	
+                    	status: 'UnderReview',
+                    	registerTime: new Date($.now()),
+                    }
+                }).done(function(msg){
+                    $('#result').append("<p>" + msg.merchantName + "   " + msg.shopName + "</p>");
+                });
+            });
+        });
+    </script>
+	
+	
+</body>
+</html>
