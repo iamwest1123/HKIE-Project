@@ -49,9 +49,9 @@ public class MerchantRegisterConsumer implements QueueConsumer {
 						String jsonInString = ((TextMessage)arg0).getText();
 						MerchantRegisterRequestDto dto = (MerchantRegisterRequestDto) convertStringToObject(jsonInString);
 						if (dto!=null) {
-							// persist data to admin db
+							// TODO: persist data to admin db
+							System.out.println(dto.getMerchantId() +"..."+ dto.getMerchantStatus());
 						}
-						
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
