@@ -5,12 +5,15 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.stereotype.Repository;
+
 import dao.CustomerOrderDao;
 import po.Customer;
 import po.CustomerOrder;
 import po.Merchant;
 import util.ProjectConstant;
 
+@Repository
 public class CustomerOrderDaoImpl implements CustomerOrderDao{
 
 	@PersistenceContext(name="em")
