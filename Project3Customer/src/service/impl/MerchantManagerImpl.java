@@ -107,4 +107,9 @@ public class MerchantManagerImpl implements MerchantManager{
 		return mvo;
 	}
 
+	@Override
+	@Transactional
+	public Merchant loadMerchant1(String id) {
+		return md.loadMerchant(id);
+	}
 }
