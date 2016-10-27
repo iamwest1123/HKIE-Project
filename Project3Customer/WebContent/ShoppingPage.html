@@ -26,7 +26,7 @@
 						<tr>
 							<th></th>
 							<th>Name</th>
-							<th>Catagory</th>
+							<th>Category</th>
 							<th>Price</th>
 						</tr>
 					</table>
@@ -60,11 +60,17 @@
 	
 	<script>
 		$(function() {
+			var merchantId;
+			if (location.search)
+				merchantId = location.search.substring(1);
+			else
+				merchantId = '4028b88157fffa970157fffa9b510000'
+			console.log('merchantId:' + merchantId);
 			$.ajax({
 				type:'POST',
 				url:'shop/getShopInfo',
 				data: {
-					merchantId: "4028b88157fffa970157fffa9b510000"
+					merchantId: merchantId
 				}
 			})
 			.done(function(msg){
@@ -77,7 +83,7 @@
 				type:'POST',
 				url:'shop/getShopComment',
 				data: {
-					merchantId: "4028b88157fffa970157fffa9b510000"
+					merchantId: merchantId
 				}
 			})
 			.done(function(msg){
@@ -98,7 +104,7 @@
 				type:'POST',
 				url:'shop/getShoppingCart',
 				data: {
-					merchantId: "4028b88157fffa970157fffa9b510000"
+					merchantId: merchantId
 				}
 			})
 			.done(function(msg){
@@ -109,7 +115,7 @@
 				}
 			})
 		})
-		
+
 		var allDish;
 		var shoppingCart = {};
 		var customerAddrs = [];
