@@ -26,6 +26,7 @@ import po.Merchant;
 import po.MessageStatus;
 import service.MerchantManager;
 import service.MessageStatusManager;
+import util.ProjectConstant;
 import vo.MerchantVo;
 
 @Controller
