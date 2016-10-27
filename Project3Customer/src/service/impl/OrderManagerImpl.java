@@ -46,4 +46,10 @@ public class OrderManagerImpl implements OrderManager {
 		
 	}
 
+	@Override
+	public void delOrder(String id) {
+		cd.delOrder(id);
+		
+	}
+
 }
