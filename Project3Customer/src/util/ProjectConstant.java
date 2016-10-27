@@ -21,7 +21,9 @@ public class ProjectConstant {
 	public static final String DELIVERY_STATUS_CANCELED="Canceled";
 
 	public static final String SESSION_ATTRIBUTE_CUSTOMER="Customer";
+	public static final String SESSION_ATTRIBUTE_CUSTOMER_ID="CustomerID";
 	public static final String SESSION_ATTRIBUTE_MERCHANT="Merchant";
+	public static final String SESSION_ATTRIBUTE_MERCHANT_ID="CustomerID";
 	public static final String SESSION_ATTRIBUTE_ADMIN="Admin";
 	public static final String SESSION_ATTRIBUTE_SHOPPING_CART="ShoppingCart";
 

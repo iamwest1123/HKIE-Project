@@ -123,21 +123,5 @@
 			<value>Q_COMPLAIN</value>
 		</constructor-arg>
 	</bean>
-	 
-	<bean id="merchantRegisterConsumer" class="mq.impl.MerchantRegisterConsumer" />
-	<bean id="jmsContainerNM"
-		class="org.springframework.jms.listener.DefaultMessageListenerContainer">
-		<property name="connectionFactory" ref="connectionFactory" />
-		<property name="destination" ref="merchentRegisterQueue" />
-		<property name="messageListener" ref="merchantRegisterConsumer" />
-	</bean>
-	
-	<bean id="advertApplicationConsumer" class="mq.impl.AdvertApplicationConsumer" />
-	<bean id="jmsContainerNA"
-		class="org.springframework.jms.listener.DefaultMessageListenerContainer">
-		<property name="connectionFactory" ref="connectionFactory" />
-		<property name="destination" ref="advertApplicationQueue" />
-		<property name="messageListener" ref="advertApplicationConsumer" />
-	</bean>
 	
 </beans>
