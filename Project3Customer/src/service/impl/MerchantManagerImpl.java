@@ -1,14 +1,18 @@
 package service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import dao.MerchantDao;
+import po.Comment;
 import po.Merchant;
 import service.MerchantManager;
+import vo.MerchantVo;
 
 @Service
 public class MerchantManagerImpl implements MerchantManager{
@@ -18,9 +22,37 @@ public class MerchantManagerImpl implements MerchantManager{
 	
 	@Override
 	@Transactional
-	public List<Merchant> findAll() {
+	public List<MerchantVo> findAll() {
 		
-		return md.findAllMerchant();
+		List<Merchant> ms =  md.findAllMerchant();		
+		List<MerchantVo> ms1= new ArrayList<MerchantVo>();
+			
+		for(Merchant m:ms){
+			
+			Merchant m1=new Merchant();
+			
+			try {
+				BeanUtils.getProperty(m, "commentList");					
+				
+				for (Comment cm : m.getCommentList()){					
+					BeanUtils.getProperty(cm.getCustomer(), "addressList");			
+					BeanUtils.getProperty(cm.getCustomer(), "customerOrderList");					
+				}
+				
+				BeanUtils.getProperty(m, "dishList");
+				BeanUtils.getProperty(m, "customerOrderList");
+				
+				BeanUtils.copyProperties(m1, m);
+				
+				MerchantVo mvo = new MerchantVo(m1);
+				ms1.add(mvo);
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();							
+			}				
+		}
+		return ms1;
 	}
 
 	@Override

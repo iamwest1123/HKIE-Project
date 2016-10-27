@@ -3,10 +3,11 @@ package service;
 import java.util.List;
 
 import po.Merchant;
+import vo.MerchantVo;
 
 public interface MerchantManager {
 
-	public List<Merchant> findAll();
+	public List<MerchantVo> findAll();
 	public void registMerchant(Merchant m);
 	public void updateMerchant(Merchant m);
 	public Merchant loadMerchant(String id);
