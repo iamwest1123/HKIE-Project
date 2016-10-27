@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- æ° Bootstrap æ ¸å¿ CSS æä»¶ -->
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+
+<!-- å¯éçBootstrapä¸»é¢æä»¶ï¼ä¸è¬ä¸ç¨å¼å¥ï¼ -->
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+
+<!-- jQueryæä»¶ãå¡å¿å¨bootstrap.min.js ä¹åå¼å¥ -->
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+<!-- ææ°ç Bootstrap æ ¸å¿ JavaScript æä»¶ -->
+<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
 <meta charset="UTF-8">
 <title>Merchant Register Form</title>
 
@@ -35,9 +47,9 @@
 		Can Pre Order(Boolean):<br>
 		<input id="canPreOrder" name="canPreOrder"><br />
 		Address:<br>
-		<input id="address" name="address"><br />
+		<input type="text" id="address1" name="address1"><br />
 		Region:<br>
-		<input id="region" name="region"><br />
+		<input type="text" id="region1" name="region1"><br />
 		
 	</form>
 	
@@ -50,6 +62,7 @@
         $(function(){
             $("#submit").on("click", function(e){
                 $.ajax({
+                	
                     type:'POST',
                     url:'merchant/addMerchant',
                     data: {
@@ -65,13 +78,15 @@
                     	gender: $('#gender').val(),
                     	canPreOrder: $('#canPreOrder').val(),
 
+                    	address1: $("#address1").val(),
+                    	region1: $("#region1").val(),
 
                     	
                     	status: 'UnderReview',
                     	registerTime: new Date($.now()),
                     }
                 }).done(function(msg){
-                    $('#result').append("<p>" + msg.merchantName + "   " + msg.shopName + "</p>");
+                    $('#result').append("<p>" +"Welcome "+ msg.merchantName + "! Your registration is under reviewed. Please wait for admin further process. Thanks!" + "</p>");
                 });
             });
         });

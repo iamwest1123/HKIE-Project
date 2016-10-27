@@ -59,7 +59,7 @@ public class CustomerOrderDaoImpl implements CustomerOrderDao{
 	@Override
 	public List<CustomerOrder> findAllByCustomer(Customer c) {
 		return em.createQuery("select o from CustomerOrder o where o.customer = :cid")
-				.setParameter("cid", c.getId())
+				.setParameter("cid", c)
 				.setMaxResults(100)
 				.getResultList();
 	}
@@ -67,7 +67,7 @@ public class CustomerOrderDaoImpl implements CustomerOrderDao{
 	@Override
 	public List<CustomerOrder> findAllByMerchant(Merchant m) {
 		return em.createQuery("select o from CustomerOrder o where o.merchant = :mid")
-				.setParameter("mid", m.getId())
+				.setParameter("mid", m)
 				.setMaxResults(100)
 				.getResultList();
 	}
