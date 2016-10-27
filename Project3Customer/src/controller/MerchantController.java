@@ -4,6 +4,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 
@@ -78,13 +80,18 @@ public class MerchantController {
 
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	@ResponseBody
-	public MessageStatus login(Merchant m) throws Exception {
+	public MessageStatus login(Merchant m, HttpServletRequest request) throws Exception {
 		System.out.println(m.getLoginName());
+		
 		if (mm.isExist(m)) {
 			System.out.println(m.getLoginName() + m.getPassword());
 			Merchant merchant = mm.findAdminByUsernameAndPassword(m);
 			if (merchant != null) {
 				String result = getMerchantStatus(merchant.getId());
+				
+				HttpSession ses = request.getSession();
+				ses.setAttribute("mid", merchant.getId());				
+				
 				return msm.createMessageStatus("success", result);
 			} else
 				return msm.createMessageStatus("fail", "Incorrect Password");

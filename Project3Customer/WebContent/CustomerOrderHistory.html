@@ -135,14 +135,8 @@
             if (element.status != "Delivered"){
                 receivebutton = $('<td></td>').text(" ");
             }
-            
-    
-            var row = $('<tr></tr>').append($('<td></td>').text(i),
-                                            $('<td></td>').text(element.merchant.shopName),
-                                            $('<td></td>').text(element.status),
-                                            $('<td></td>').text(dstr),                                            
-                                            receivebutton,                                            
-                                            $('<td></td>').append('<button></button>').addClass("btn btn-primary").text("COMMENT")
+        
+            var commentbuttom = $('<td></td>').append('<button></button>').addClass("btn btn-primary").text("COMMENT")
                                                                                 .on("click",function(e){  
                                                                                         $.ajax({
                                                                                                 type:'POST',
@@ -150,7 +144,19 @@
                                                                                                 data:{id:element.id}
                                                                                             }).done(function(msg){
                                                                                               row.remove();
-                                                                                            });})
+                                                                                            });});
+        
+            if (element.status != "Received"){
+                commentbuttom = $('<td></td>').text(" ");
+            }
+            
+    
+            var row = $('<tr></tr>').append($('<td></td>').text(i),
+                                            $('<td></td>').text(element.merchant.shopName),
+                                            $('<td></td>').text(element.status),
+                                            $('<td></td>').text(dstr),                                            
+                                            receivebutton,                                            
+                                            commentbuttom
                                            );
             body.append(row);
          

@@ -4,8 +4,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -41,7 +45,11 @@ public class OrderController {
 	
 	@RequestMapping(value="/showOrderByCustomer")
 	@ResponseBody
-	public List<CustomerOrder> showOrderByCustomer(String customerId){
+	public List<CustomerOrder> showOrderByCustomer(String customerId, HttpServletRequest request){
+		
+		HttpSession ses = request.getSession();
+		ses.setAttribute("test", "abc");
+		
 		
 		Customer c = cm.load(customerId);		
 		List<CustomerOrder> list=om.findOrderByCustomer(c);
@@ -68,8 +76,13 @@ public class OrderController {
 	
 	@RequestMapping(value="/updateStatus",method = RequestMethod.POST)
 	@ResponseBody
-	public void updateOrders(String id, String status, Date deliveryDate){
-	 	om.updateCustomerStatus( id, status, deliveryDate);
+	public void updateOrders(String id, String status, Date deliveryDate, HttpServletRequest request){
+		
+		HttpSession ses = request.getSession();
+		System.out.println("sss");
+		System.out.println(ses.getAttribute("test"));
+		System.out.println(ses.getAttribute("mid"));		
+	 	//om.updateCustomerStatus( id, status, deliveryDate);
 	}
 	
 	@RequestMapping(value="/showTest")
