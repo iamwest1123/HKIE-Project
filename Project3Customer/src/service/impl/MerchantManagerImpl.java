@@ -112,4 +112,16 @@ public class MerchantManagerImpl implements MerchantManager{
 	public Merchant loadMerchant1(String id) {
 		return md.loadMerchant(id);
 	}
+
+	@Override
+	@Transactional
+	public boolean isExist(Merchant m) {
+		return md.isExist(m);
+	}
+
+	@Override
+	@Transactional
+	public Merchant findAdminByUsernameAndPassword(Merchant m) {
+		return md.findAdminByUsernameAndPassword(m);
+	}
 }

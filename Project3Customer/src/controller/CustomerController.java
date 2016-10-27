@@ -1,33 +1,30 @@
 package controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import po.Admin;
+import po.Customer;
 import po.MessageStatus;
-import service.AdminManager;
+import service.CustomerManager;
 import service.MessageStatusManager;
-import service.impl.MessageStatusManagerImpl;
 
 @Controller
-public class AdminController {
+public class CustomerController {
 
 	@Autowired
-	private AdminManager am;
+	private CustomerManager cm;
 	@Autowired
 	private MessageStatusManager msm;
-
+	
 	@RequestMapping(value = "loginAdmin", method = RequestMethod.POST)
 	@ResponseBody
-	public MessageStatus login(Admin a) throws Exception {
-		if (am.isExist(a)) {
-			Admin admin = am.findAdminByUsernameAndPassword(a);
-			if (admin != null)
+	public MessageStatus login(Customer c) throws Exception {
+		if (cm.isExist(c)) {
+			Customer customer = cm.findAdminByUsernameAndPassword(c);
+			if (customer != null)
 				return msm.createMessageStatus("success");
 			else
 				return msm.createMessageStatus("fail", "Incorrect Password");
@@ -39,20 +36,5 @@ public class AdminController {
 	public String logout() {
 		return "redirect:login.html";
 	}
-
-	@RequestMapping(value = "showAll", method = RequestMethod.GET)
-	@ResponseBody
-	public List<Admin> showAllAdmin() {
-		System.out.println("in....");
-		return am.findAllAdmin();
-	}
-
-	@RequestMapping(value = "create", method = RequestMethod.POST)
-	@ResponseBody
-	public String createAdmin(Admin a) {
-		System.out.println("in create....");
-		am.addAdmin(a);
-		return "Success";
-	}
-
+	
 }
