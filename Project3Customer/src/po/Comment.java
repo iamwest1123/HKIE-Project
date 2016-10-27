@@ -36,10 +36,10 @@ public class Comment {
 	
 	@ManyToOne
 	@JoinColumn(name="MERCHANT_ID")
-	Customer merchant;
+	Merchant merchant;
 	// advance
 	
-	@Column(length=5000)
+	@Column(length=1000)
 	String reply;
 	
 	@Column(name="REPLY_DATE")
