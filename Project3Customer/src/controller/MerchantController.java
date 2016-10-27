@@ -4,12 +4,20 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.MultivaluedMap;
+
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.WebResource;
+import com.sun.jersey.core.util.MultivaluedMapImpl;
 
 import po.Address;
 import po.Merchant;
@@ -68,22 +76,41 @@ public class MerchantController {
 		return "true";	
 	}
 
-	@RequestMapping(value = "loginMerchant", method = RequestMethod.POST)
+	@RequestMapping(value = "login", method = RequestMethod.POST)
 	@ResponseBody
 	public MessageStatus login(Merchant m) throws Exception {
+		System.out.println(m.getLoginName());
 		if (mm.isExist(m)) {
+			System.out.println(m.getLoginName() + m.getPassword());
 			Merchant merchant = mm.findAdminByUsernameAndPassword(m);
-			if (merchant != null)
-				return msm.createMessageStatus("success");
+			if (merchant != null) {
+				String result = getMerchant(merchant.getId());
+				return msm.createMessageStatus("success", result);
+			}
 			else
 				return msm.createMessageStatus("fail", "Incorrect Password");
-		} else
-			return msm.createMessageStatus("fail", "Username not found! Please make sure that username is correct!");
+		} else {
+			MessageStatus messageStatus = msm.createMessageStatus("fail", "Username not found! Please make sure that username is correct!");
+			System.out.println(messageStatus.getStatus());
+			return messageStatus;
+		}
 	}
 
 	@RequestMapping(value = "logout")
 	public String logout() {
 		return "redirect:login.html";
 	}
+	
+	private String getMerchant(String id) throws Exception{
+		// like this?
+		Client client = Client.create();
+		client.setReadTimeout(1000);
+		MultivaluedMap<String, String> params=new MultivaluedMapImpl();
+		params.add("id", id);
+		WebResource wr = client.resource("http://localhost:8080/Project3Admin/test");
+		String result = wr.queryParams(params).accept(MediaType.APPLICATION_JSON_TYPE).get(String.class);
+		System.out.println(result);
+		return result;
+	}	
 	
 }
