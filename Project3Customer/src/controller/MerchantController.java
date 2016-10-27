@@ -75,6 +75,13 @@ public class MerchantController {
 		mm.updateMerchant(m);
 		return "true";	
 	}
+	
+	@RequestMapping(value="updateMerchantStatus")
+	@ResponseBody
+	public String updateMerchantStatus(Merchant m){
+		mm.updateMerchantStatus(m);
+		return "true";	
+	}
 
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	@ResponseBody

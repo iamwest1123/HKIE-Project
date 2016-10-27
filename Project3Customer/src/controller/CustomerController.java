@@ -10,6 +10,7 @@ import po.Customer;
 import po.MessageStatus;
 import service.CustomerManager;
 import service.MessageStatusManager;
+import vo.CustomerVo;
 import vo.MerchantVo;
 
 @Controller
@@ -47,10 +48,10 @@ public class CustomerController {
 		return c;
 	}
 	
-//	@RequestMapping(value="loadCustomer")
-//	@ResponseBody
-//	public MerchantVo loadCustomer(String merchantId){
-//		MerchantVo mvo = mm.loadMerchant(merchantId);
-//		return mvo;
-//	}
+	@RequestMapping(value="loadCustomer")
+	@ResponseBody
+	public CustomerVo loadCustomer(String customerId){
+		CustomerVo cvo = cm.loadCustomer(customerId);
+		return cvo;
+	}
 }
