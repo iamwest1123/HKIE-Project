@@ -1,82 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="../../favicon.ico">
 
-    <title>ComeBuyFood</title>
+<title>ComeBuyFood</title>
 
-    <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
-    <link rel="stylesheet"
-        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-        crossorigin="anonymous">
-    <link rel="stylesheet"
-        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
-        crossorigin="anonymous">
-    <script
-        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-        
-    <link href="css/cover.css" rel="stylesheet">
-  </head>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script>
 
-  <body>
-    <div class ="bg-img"></div>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
- 	  
-	 
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" >COMEBUYFOOD</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right">
-            <div class="form-group">
-              <input type="text" placeholder="Username" name="loginName" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" name="password" class="form-control">
-            </div>
-            <input type="submit" class="btn btn-success" value="Sign in">
-          </form>
-        </div>
-        <!--/.navbar-collapse -->
-      </div>
-    </nav>
-    <div id="dialog" title="Warning"></div>
-    <div class="site-wrapper">
-      <div class="site-wrapper-inner">
-        <div class="cover-container">
-          <div class="inner cover">
-            <h1 class="cover-heading">Wanna sell food more easy?</h1>
-            <p class="lead">Do you feel that the number of client is not enough? Don't worry! <b>COMEBUYFOOD</b> can save your life!!!More than <b>100000+</b> customers are preparing for buying your dishes!</p>
-            <p class="lead">
-              <a href="#" class="btn btn-lg btn-default">Sign up now!</a>
-            </p>
-          </div>
-          <div class="mastfoot">
-            <div class="inner">
-              <p>&copy; 2016 HKIE GROUP3</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>    
-    <script>
+<link href="css/cover.css" rel="stylesheet">
+<style>
+.modal-header {
+	background-color:#23272D;
+}
+.modal-body label{
+	text-shadow:none;
+	color:black;
+}
+</style>
+</head>
+
+<body>
+	<div class="bg-img"></div>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+
+
+		<div class="container">
+
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand">COMEBUYFOOD</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<form class="navbar-form navbar-right">
+					<div class="form-group">
+						<input type="text" placeholder="Username" name="loginName"
+							class="form-control">
+					</div>
+					<div class="form-group">
+						<input type="password" placeholder="Password" name="password"
+							class="form-control">
+					</div>
+					<input type="submit" class="btn btn-success" value="Sign in">
+				</form>
+			</div>
+			<!--/.navbar-collapse -->
+		</div>
+	</nav>
+	<div class="alert alert-success" id="succeddMsg" style="display:none;">
+    	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    	<strong>Welcome</strong>, <span id="successMsg"></span>
+  	</div>
+	<div id="dialog" title="Warning"></div>
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">Ready to Join? Create a New Account</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="merchantName">Merchant Name</label> <input type="text"
+									class="form-control" id="merchantName" name="merchantName">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="shopName">Shop Name</label> <input
+									type="text" class="form-control" 
+									name="shopName" id="shopName"> 
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="telNum">Tel. Number</label> <input type="text"
+									class="form-control" id="telNum" name="telNum">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="password">Password</label> <input
+									type="text" class="form-control" 
+									name="password" id="password">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="loginName">Login Name</label> <input type="text"
+									class="form-control" id="loginName" name="loginName">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="category">Category</label> <input
+									type="text" class="form-control" 
+									name="category" id="category"> 
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="openingHour">Opening Hour(Integer)</label> <input type="text"
+									class="form-control" id="openingHour" name="openingHour">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="closingHour">Closing Hour(Integer)</label> <input
+									type="text" class="form-control" 
+									name="closingHour" id="closingHour"> 
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="gender">Gender(Boolean)</label> <input type="text"
+									class="form-control" id="gender" name="gender">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="canPreOrder">Can Pre Order(Boolean)</label> <input
+									type="text" class="form-control" 
+									name="canPreOrder" id="canPreOrder">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="address1">Address</label> <input type="text"
+									class="form-control" id="address1" name="address1">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="region1">Region</label> <input
+									type="text" class="form-control" 
+									name="region1" id="region1">
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="shopPic">Shop Picture URL:</label>
+						<input id="shopPic" class="form-control" type="file" name="shopPic">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal" id="submit">Register</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="site-wrapper">
+		<div class="site-wrapper-inner">
+			<div class="cover-container">
+				<div class="inner cover">
+					<h1 class="cover-heading">Wanna sell food more easy?</h1>
+					<p class="lead">
+						Do you feel that the number of client is not enough? Don't worry!
+						<b>COMEBUYFOOD</b> can save your life!!!More than <b>100000+</b>
+						customers are preparing for buying your dishes!
+					</p>
+					<p class="lead">
+						<a href="#" class="btn btn-lg btn-default" data-toggle="modal"
+							data-target="#myModal">Sign up now!</a>
+					</p>
+				</div>
+				<div class="mastfoot">
+					<div class="inner">
+						<p>&copy; 2016 HKIE GROUP3</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      
+    </div>
+  </div>
+</div>
+	</div>
+	<script>
 	$(function(){
 		 $("form").submit(function(e) {
 			 e.preventDefault();
@@ -105,7 +249,39 @@
         $("#dialog").dialog();
 		$("form")[0].reset();
 	}
+
+    $("#submit").on("click", function(e){
+        $.ajax({
+        	
+            type:'POST',
+            url:'merchant/addMerchant',
+            data: {
+            	merchantName: $('#merchantName').val(),                        
+            	shopName: $('#shopName').val(),
+            	telNum: $('#telNum').val(),
+            	shopPic: $('#shopPic').val(),
+            	password: $('#password').val(),
+            	loginName: $('#loginName').val(),
+            	category: $('#category').val(),
+            	openingHour: $('#openingHour').val(),
+            	closingHour: $('#closingHour').val(),
+            	gender: $('#gender').val(),
+            	canPreOrder: $('#canPreOrder').val(),
+
+            	address1: $("#address1").val(),
+            	region1: $("#region1").val(),
+
+            	
+            	status: 'UnderReview',
+            	registerTime: new Date($.now()),
+            }
+        }).done(function(msg){
+            $("#successMsg").text(msg.merchantName + "! Your registration is under reviewed. Please wait for admin further process. Thanks!");
+            $("#succeddMsg").show();
+           // $('#result').append("<p>" +"Welcome "+ msg.merchantName + "! Your registration is under reviewed. Please wait for admin further process. Thanks!" + "</p>");
+        });
+    });
 	</script>
-    
-  </body>
+
+</body>
 </html>
