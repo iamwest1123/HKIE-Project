@@ -2,7 +2,9 @@ package controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -19,6 +21,7 @@ import po.Customer;
 import po.Dish;
 import po.Merchant;
 import service.ShoppingManager;
+import util.ProjectConstant;
 import vo.CommentVo;
 import vo.MerchantVo;
 import vo.ShoppingCart;
@@ -34,7 +37,11 @@ public class ShoppingController {
 	@RequestMapping(value="getShoppingCart")
 	@ResponseBody
 	public ShoppingCart getShoppingCart(String merchantId, HttpSession session) {
-		return sm.getShoppingCart(merchantId, session);
+		Object obj = session.getAttribute(ProjectConstant.SESSION_ATTRIBUTE_SHOPPING_CART);
+		if (obj==null)
+			return new ShoppingCart();
+		Map<String,ShoppingCart> cartMap = (HashMap<String,ShoppingCart>) obj;
+		return cartMap.get(merchantId);
 	}
 	
 	@RequestMapping(value="setShoppingCart")
@@ -47,7 +54,15 @@ public class ShoppingController {
 			e.printStackTrace();
 			return false;
 		}
-		return sm.setShoppingCart(merchantId, cart, session);
+		Object obj = session.getAttribute(ProjectConstant.SESSION_ATTRIBUTE_SHOPPING_CART);
+		Map<String,ShoppingCart> cartMap = null;
+		if (obj==null)
+			cartMap = new HashMap<String,ShoppingCart>();
+		else
+			cartMap = (HashMap<String,ShoppingCart>) obj;
+		cartMap.put(merchantId, cart);
+		session.setAttribute(ProjectConstant.SESSION_ATTRIBUTE_SHOPPING_CART, cartMap);
+		return true;
 	}
 	
 	@RequestMapping(value="makeOrder")
