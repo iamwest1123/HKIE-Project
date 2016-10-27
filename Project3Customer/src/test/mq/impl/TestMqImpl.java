@@ -6,12 +6,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.transaction.annotation.Transactional;
 
 import dto.MerchantRegisterRequestDto;
-import mq.impl.MerchantRegisterConsumer;
 import mq.impl.MerchantRegisterProducer;
 import util.ProjectConstant;
 
 public class TestMqImpl {
-	MerchantRegisterConsumer mrc = new MerchantRegisterConsumer();
 		
 	@Test
 	@Transactional
