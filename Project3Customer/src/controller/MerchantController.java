@@ -57,6 +57,16 @@ public class MerchantController {
 		return mvo;
 	}
 	
+	@RequestMapping(value="updateMerchant")
+	@ResponseBody
+	public String updateMerchant(Merchant m,String address1,String region1){	
+		Address add = new Address();
+		add.setAddress(address1);
+		add.setRegion(region1);
+		m.setAddress(add);
+		mm.updateMerchant(m);
+		return "true";	
+	}
 
 	@RequestMapping(value = "loginMerchant", method = RequestMethod.POST)
 	@ResponseBody

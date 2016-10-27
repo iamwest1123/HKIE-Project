@@ -120,7 +120,7 @@
     $(function(){
         
 //           $("button").click(function(){
-       $.getJSON('dish/showDishes', { get_param: 'value' }, function(data) {
+       $.getJSON('order/showOrder', { get_param: 'value' }, function(data) {
      var table = $('<table></table>').addClass('table table-hover table-bordered results');
              var warningRow=$('<tr></tr>').addClass('warning no-result').append($('<td colspan="5"></td>').append($('<i class="fa fa-warning"></i>')).text("No result"));
            var head=$('<thead></thead>').append($('<tr></tr>').append($('<th></th>').text("#"),
@@ -153,19 +153,19 @@
             ++i;
     
             var row = $('<tr></tr>').append($('<td></td>').text(i),
-                                            $('<td></td>').text(element.name),
-                                            $('<td></td>').text(element.description),
-                                            $('<td></td>').text(element.category),
-                                            $('<td></td>').text(element.price),
-                                            $('<td></td>').append('<button></button>').addClass("btn btn-danger").text("REMOVE")
-                                                                                .on("click",function(e){  
-                                                                                        $.ajax({
-                                                                                                type:'POST',
-                                                                                                url:'dish/delDishes',
-                                                                                                data:{id:element.id}
-                                                                                            }).done(function(msg){
-                                                                                              row.remove();
-                                                                                            });})
+                                            $('<td></td>').text(element.customer.loginName)
+//                                            $('<td></td>').text(element.dishes[5].dish.name),
+//                                            $('<td></td>').text(element.dishes[5].dish.price),
+//                                            $('<td></td>').text(element.dishes[5].quantity)
+//                                            $('<td></td>').append('<button></button>').addClass("btn btn-danger").text("REMOVE")
+//                                                                                .on("click",function(e){  
+//                                                                                        $.ajax({
+//                                                                                                type:'POST',
+//                                                                                                url:'dish/delDishes',
+//                                                                                                data:{id:element.id}
+//                                                                                            }).done(function(msg){
+//                                                                                              row.remove();
+//                                                                                            });})
                                             
                                             
                                            

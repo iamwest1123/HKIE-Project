@@ -41,7 +41,7 @@ public class Dish {
 	
 	@ManyToOne
 	@JoinColumn(name="MERCHANT_ID",nullable=false)
-	@JsonBackReference
+	@JsonManagedReference
 	private Merchant merchant;
 	
 	@Override

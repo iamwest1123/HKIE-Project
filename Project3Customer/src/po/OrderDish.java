@@ -12,6 +12,9 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name="ORDER_DISHES")
 public class OrderDish {
@@ -29,6 +32,7 @@ public class OrderDish {
 	
 	@ManyToOne
 	@JoinColumn(name="CUSTOMER_ORDER_ID", nullable=false)
+	@JsonBackReference
 	private CustomerOrder customerOrder;
 
 	public String getId() {

@@ -15,6 +15,7 @@ import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -47,7 +48,7 @@ public class Customer {
 	private List<Address> addressList = new ArrayList<Address>();
 	
 	@OneToMany(mappedBy="customer",fetch=FetchType.EAGER)
-	@JsonManagedReference
+	@JsonBackReference
 	private List<CustomerOrder> customerOrderList = new ArrayList<CustomerOrder>();
 
 	public String getId() {

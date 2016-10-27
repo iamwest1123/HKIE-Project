@@ -19,6 +19,14 @@ public class MerchantVo {
 	private Integer openingHour;
 	private Integer closingHour;
 	private Boolean canPreOrder;
+	private Boolean gender;
+	
+	public Boolean getGender() {
+		return gender;
+	}
+	public void setGender(Boolean gender) {
+		this.gender = gender;
+	}
 	private Address address;
 	private List<Dish> dishList = new ArrayList<Dish>();
 	
@@ -36,6 +44,7 @@ public class MerchantVo {
 		this.setOpeningHour(m.getOpeningHour());
 		this.setClosingHour(m.getClosingHour());
 		this.setCanPreOrder(m.getCanPreOrder());
+		this.setGender(m.getGender());
 		this.setAddress(m.getAddress());
 		this.setDishList(m.getDishList());
 	}
@@ -119,6 +128,7 @@ public class MerchantVo {
 		int result = 1;
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
 		result = prime * result + ((canPreOrder == null) ? 0 : canPreOrder.hashCode());
+		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
 		result = prime * result + ((category == null) ? 0 : category.hashCode());
 		result = prime * result + ((closingHour == null) ? 0 : closingHour.hashCode());
 		result = prime * result + ((dishList == null) ? 0 : dishList.hashCode());
@@ -149,6 +159,11 @@ public class MerchantVo {
 			if (other.canPreOrder != null)
 				return false;
 		} else if (!canPreOrder.equals(other.canPreOrder))
+			return false;
+		if (gender == null) {
+			if (other.gender != null)
+				return false;
+		} else if (!gender.equals(other.gender))
 			return false;
 		if (category == null) {
 			if (other.category != null)

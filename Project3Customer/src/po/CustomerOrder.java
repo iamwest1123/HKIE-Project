@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -18,6 +19,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name="CUSTOMER_ORDERS")
@@ -28,6 +30,7 @@ public class CustomerOrder {
 	private String id;
 	
 	@OneToOne(cascade={CascadeType.PERSIST,CascadeType.REMOVE})
+	@JsonManagedReference
 	private Comment comment;
 	
 	@Column(name="STATUS", length=30)
@@ -44,15 +47,16 @@ public class CustomerOrder {
 	
 	@ManyToOne
 	@JoinColumn(name="MERCHANT_ID")
-	@JsonBackReference
+	@JsonManagedReference
 	private Merchant merchant;
 
 	@ManyToOne
 	@JoinColumn(name="CUSTOMER_ID")
-	@JsonBackReference
+	@JsonManagedReference
 	private Customer customer;
 	
-	@OneToMany(mappedBy="customerOrder")
+	@OneToMany(mappedBy="customerOrder",cascade={CascadeType.PERSIST},fetch=FetchType.EAGER)
+	@JsonManagedReference
 	private List<OrderDish> dishes = new ArrayList<OrderDish>();
 
 	public String getId() {

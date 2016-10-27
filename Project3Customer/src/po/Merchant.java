@@ -18,6 +18,7 @@ import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -72,14 +73,15 @@ public class Merchant {
 	private Address address;
 	
 	@OneToMany(mappedBy="merchant",fetch=FetchType.EAGER)
-	@JsonManagedReference
+	@JsonBackReference
 	private List<Dish> dishList = new ArrayList<Dish>();
 	
-	@OneToMany(mappedBy="merchant")
+	@OneToMany(mappedBy="merchant",fetch=FetchType.EAGER)
+	@JsonManagedReference
 	private List<Comment> commentList = new ArrayList<Comment>();
 	
-	@OneToMany(mappedBy="merchant")
-	@JsonManagedReference
+	@OneToMany(mappedBy="merchant",fetch=FetchType.EAGER)
+	@JsonBackReference
 	private List<CustomerOrder> customerOrderList = new ArrayList<CustomerOrder>();
 
 	@Override
