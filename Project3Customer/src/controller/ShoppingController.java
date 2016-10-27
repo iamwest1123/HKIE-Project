@@ -81,7 +81,7 @@ public class ShoppingController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return "redirect:CustomerOrderHistory.html";
+		return "redirect:../CustomerOrderHistory.html";
 	}
 
 	@RequestMapping(value="getShopDishes")
@@ -107,10 +107,13 @@ public class ShoppingController {
 	public List<Address> getCustomerAddress(HttpSession session) {
 		String customerId = null;
 		Object obj = session.getAttribute(ProjectConstant.SESSION_ATTRIBUTE_CUSTOMER_ID);
-		if (obj!=null) {
+//		if (obj!=null) {
+//			customerId = (String) obj;
+//			return sm.getCustomerAddress(customerId);
+//		} else
+//			return null;
+		if (obj!=null) 
 			customerId = (String) obj;
-			return sm.getCustomerAddress(customerId);
-		} else
-			return null;
+		return sm.getCustomerAddress(customerId);
 	}
 }

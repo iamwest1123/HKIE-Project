@@ -52,7 +52,7 @@ public class ShoppingManagerImpl implements ShoppingManager {
 	public boolean makeOrder(String merchantId, String customerId, ShoppingCart cart, HttpSession session) {
 		CustomerOrder co = new CustomerOrder();
 		if (customerId==null) 
-			co.setCustomer(cdao.loadCustomer("4028b88157fffa970157fffa9b9e0002"));
+			co.setCustomer(cdao.loadCustomer("8a5e9d1c580536da01580537a6720000"));
 		else 
 			co.setCustomer(cdao.loadCustomer(customerId));
 		co.setMerchant(mdao.loadMerchant(merchantId));
@@ -100,6 +100,8 @@ public class ShoppingManagerImpl implements ShoppingManager {
 
 	@Override
 	public List<Address> getCustomerAddress(String customerId) {
+		if (customerId==null)
+			customerId = "8a5e9d1c580536da01580537a6720000";
 		Customer c = cdao.loadCustomer(customerId);
 		List<Address> result = new ArrayList<Address>();
 		List<Address> tmpList = c.getAddressList();
