@@ -10,8 +10,10 @@ import po.Customer;
 import po.MessageStatus;
 import service.CustomerManager;
 import service.MessageStatusManager;
+import vo.MerchantVo;
 
 @Controller
+@RequestMapping(value="customer")
 public class CustomerController {
 
 	@Autowired
@@ -37,4 +39,18 @@ public class CustomerController {
 		return "redirect:login.html";
 	}
 	
+	@RequestMapping(value="addCustomer")
+	@ResponseBody
+	public Customer addCustomer(Customer c){
+		
+		cm.registCustomer(c);
+		return c;
+	}
+	
+//	@RequestMapping(value="loadCustomer")
+//	@ResponseBody
+//	public MerchantVo loadCustomer(String merchantId){
+//		MerchantVo mvo = mm.loadMerchant(merchantId);
+//		return mvo;
+//	}
 }
