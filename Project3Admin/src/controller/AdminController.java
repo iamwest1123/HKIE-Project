@@ -12,18 +12,20 @@ import po.Admin;
 import po.MessageStatus;
 import service.AdminManager;
 import service.MessageStatusManager;
+import service.impl.MessageStatusManagerImpl;
 
 @Controller
-public class LoginController {
+public class AdminController {
 
 	@Autowired
 	private AdminManager am;
-	@Autowired
+
 	private MessageStatusManager msm;
 
 	@RequestMapping(value = "loginAdmin", method = RequestMethod.POST)
 	@ResponseBody
 	public MessageStatus login(Admin a) throws Exception {
+		msm = new MessageStatusManagerImpl();
 		if (am.isExist(a)) {
 			Admin admin = am.findAdminByUsernameAndPassword(a);
 			if (admin != null)

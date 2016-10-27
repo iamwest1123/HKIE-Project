@@ -1,5 +1,8 @@
 package po;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
 public class MessageStatus {
 
 	String status;

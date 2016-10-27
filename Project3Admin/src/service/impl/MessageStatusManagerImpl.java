@@ -1,5 +1,7 @@
 package service.impl;
 
+import org.springframework.stereotype.Service;
+
 import po.MessageStatus;
 import service.MessageStatusManager;
 
