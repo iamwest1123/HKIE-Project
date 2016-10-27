@@ -1,6 +1,7 @@
 package service.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -66,9 +67,13 @@ public class ShoppingManagerImpl implements ShoppingManager {
 	}
 
 	@Override
-	public CommentVo getShopComment(String merchantId) {
+	@Transactional
+	public List<CommentVo> getShopComment(String merchantId) {
 		Merchant m = mdao.loadMerchant(merchantId);
-		
-		return null;
+		List<CommentVo> voList = new ArrayList<CommentVo>();
+		for (Comment c : m.getCommentList()) {
+			voList.add(new CommentVo(c));
+		}
+		return voList;
 	}
 }

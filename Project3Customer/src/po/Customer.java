@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -13,6 +14,8 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name="CUSTOMERS")
@@ -40,10 +43,11 @@ public class Customer {
 	@Column(length=30)
 	private String status;
 	
-	@OneToMany(mappedBy="customer", cascade={CascadeType.PERSIST,CascadeType.REMOVE})
+	@OneToMany(mappedBy="customer", cascade={CascadeType.PERSIST,CascadeType.REMOVE},fetch=FetchType.EAGER)
 	private List<Address> addressList = new ArrayList<Address>();
 	
-	@OneToMany(mappedBy="customer")
+	@OneToMany(mappedBy="customer",fetch=FetchType.EAGER)
+	@JsonManagedReference
 	private List<CustomerOrder> customerOrderList = new ArrayList<CustomerOrder>();
 
 	public String getId() {
