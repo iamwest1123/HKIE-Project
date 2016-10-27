@@ -77,13 +77,20 @@ public class MerchantController {
 	public String updateMerchant(HttpServletRequest request,Merchant m, String address1, String region1) {
 		HttpSession ses = request.getSession();
 		String id = (String)ses.getAttribute(ProjectConstant.SESSION_ATTRIBUTE_MERCHANT_ID);
-	
-		m.setId(id);
+		System.out.println(id);
+		Merchant m1=mm.loadMerchant1(id);
+		m1.setShopName(m.getShopName());
+		m1.setMerchantName(m.getMerchantName());
+		m1.setTelNum(m.getTelNum());
+		m1.setCategory(m.getCategory());
+		m1.setOpeningHour(m.getOpeningHour());
+		m1.setClosingHour(m.getClosingHour());
+		m1.setCanPreOrder(m.getCanPreOrder());
 		Address add = new Address();
 		add.setAddress(address1);
 		add.setRegion(region1);
-		m.setAddress(add);
-		mm.updateMerchant(m);
+		m1.setAddress(add);
+		mm.updateMerchant(m1);
 		return "true";
 	}
 
