@@ -45,7 +45,7 @@ public class DishTest {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		DishDao cd = context.getBean(DishDaoImpl.class);
 		MerchantDao md= context.getBean(MerchantDaoImpl.class);
-		Merchant m1=md.loadMerchant("8a5eb82657ff6c7f0157ff6c91b30000");
+		Merchant m1=md.loadMerchant("4028b88157fffa970157fffa9b510000");
 		List<Dish> ds=cd.findDishByMerchants(m1);
 		for(Dish d:ds){
 			System.out.println(d.getName()+"..."+d.getDescription());

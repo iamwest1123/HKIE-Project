@@ -74,7 +74,7 @@ public class MerchantDaoImpl implements MerchantDao{
 	}
 
 	@Override
-	@Transactional
+//	@Transactional
 	public Merchant loadMerchant(String id) {
 		System.out.println(em.find(Merchant.class, id).getLoginName());
 		return em.find(Merchant.class, id);

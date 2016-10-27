@@ -59,5 +59,14 @@ public class DishDaoImpl implements DishDao {
 				.getResultList();
 		return dishes;
 	}
+	
+	public List<Dish> findDishByMerchantId(String merchantId) {
+		String jpql="select d from Dish d where d.merchant.id=:mid and d.status=:st";
+		List<Dish> dishes=em.createQuery(jpql)
+				.setParameter("mid", merchantId)
+				.setParameter("st", ProjectConstant.STATUS_ACCEPTED)
+				.getResultList();
+		return dishes;
+	}
 
 }
