@@ -70,7 +70,7 @@
 <section id="banner">
 				<div class="inner split">
 					<section>
-						<h2>Customer Edit Profile</h2>
+						<h2>Customer Order History</h2>
 					</section>
 					<section>
 						<p>Do you feel that the number of client is not enough? Don't worry! COMEBUYFOOD can save your life!!!More than 100000+ customers are preparing for buying your dishes!</p>
@@ -139,7 +139,7 @@
         
         
             var receiveTd = $('<td></td>');
-            var receivebutton = $('<button></button>').addClass("btn btn-primary").text("RECEIVED")
+            var receivebutton = $('<button></button>').addClass("button special").text("RECEIVED")
                                                                                 .on("click",function(e){  
                                                                                         $.ajax({
                                                                                                 type:'POST',
@@ -168,7 +168,7 @@
         
             commentTd.append(commentBoxes);
             
-            var commentButton = $('<button></button>').addClass("btn btn-primary").text("COMMENT")
+            var commentButton = $('<button></button>').addClass("button special").text("COMMENT")
                                                                                 .on("click",function(e){  
                                                                                     $.ajax({
                                                                                                 type:'POST',
