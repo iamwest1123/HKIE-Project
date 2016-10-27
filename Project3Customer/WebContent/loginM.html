@@ -88,8 +88,8 @@
                     if(result.status==="success") {
                         var data = result.reason;
                         var object = JSON.parse(data);
-                        if(object.reason==="Accepted") {
-                            window.location.assign("http://www.oocl.com");
+                        if(object.status==="Accepted") {
+                            window.location.assign("http://localhost:8080/Project3Customer/ShowOrder.html");
                         } else {
 							showError("You are not allowed to login. Please contact us for more information.");
                         }

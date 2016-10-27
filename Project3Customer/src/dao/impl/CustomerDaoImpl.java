@@ -33,6 +33,7 @@ public class CustomerDaoImpl implements CustomerDao {
 	}
 
 	@Override
+	@Transactional
 	public void updateCustomer(Customer c) {
 		Customer customer=this.loadCustomer(c.getId());
 		customer.setAddressList(c.getAddressList());
@@ -42,8 +43,8 @@ public class CustomerDaoImpl implements CustomerDao {
 		customer.setName(c.getName());
 		customer.setPassword(c.getPassword());
 		customer.setProfilePic(c.getProfilePic());
-		customer.setStatus(c.getStatus());
 
+		em.persist(customer);
 	}
 
 	@Override
@@ -54,6 +55,7 @@ public class CustomerDaoImpl implements CustomerDao {
 	}
 
 	@Override
+	@Transactional
 	public Customer loadCustomer(String id) {
 		Customer c=em.find(Customer.class, id);
 		return c;

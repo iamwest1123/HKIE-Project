@@ -58,4 +58,9 @@ public class OrderManagerImpl implements OrderManager {
 		
 	}
 
+	@Override
+	public void updateComment(String comment, double rating, String orderId) {
+		cd.updateComment(comment, rating, orderId);
+	}
+
 }

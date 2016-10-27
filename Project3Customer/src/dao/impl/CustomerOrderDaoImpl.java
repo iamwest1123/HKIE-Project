@@ -5,11 +5,13 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import dao.CustomerOrderDao;
+import po.Comment;
 import po.Customer;
 import po.CustomerOrder;
 import po.Dish;
@@ -99,6 +101,18 @@ public class CustomerOrderDaoImpl implements CustomerOrderDao{
 	public void delOrder(String id) {
 		CustomerOrder d=this.loadOrder(id);
 		d.setStatus(ProjectConstant.STATUS_DELETED);
+	}
+
+	@Override
+	@Transactional
+	public boolean updateComment(String comment, double rating, String orderID) {
+		CustomerOrder co = this.loadOrder(orderID);
+		Comment cm = new Comment();
+		cm.setComment(comment);
+		cm.setRating(rating);
+		co.setComment(cm);
+		em.persist(co);
+		return true;
 	}
 	
 

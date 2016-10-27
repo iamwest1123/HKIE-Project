@@ -94,21 +94,24 @@
 				customerAddrs = msg;
 				listAddressUI();
 			})
-//			$.ajax({
-//				type:'POST',
-//				url:'shop/getShoppingCart',
-//				data: {
-//					merchantId: "4028b88157fffa970157fffa9b510000"
-//				}
-//			})
-//			.done(function(msg){
-//				$("#shopInfo").text(msg.shopName);
-//				listDishUI(msg.dishList)
-//			})
+			$.ajax({
+				type:'POST',
+				url:'shop/getShoppingCart',
+				data: {
+					merchantId: "4028b88157fffa970157fffa9b510000"
+				}
+			})
+			.done(function(msg){
+//				console.log(msg);
+				if (msg) {
+					shoppingCart = msg;
+					listCartUI();
+				}
+			})
 		})
 		
 		var allDish;
-		var shoppingCart = [];
+		var shoppingCart = {};
 		var customerAddrs = [];
 		var shoppingItem;
 		
@@ -142,8 +145,8 @@
 		
 		function listCartUI() {
 			$("#cart tbody tr").remove();
-			for (index in shoppingCart) {
-				let cart = shoppingCart[index];
+			for (index in shoppingCart.shoppingItems) {
+				let cart = shoppingCart.shoppingItems[index];
 				let row = '<tr>'+
 					'<td style="width:50%">'+cart.dishName+'</td>'+
 					'<td style="width:20%">$'+cart.dishPrice*cart.quantity+'</td>'+
@@ -154,8 +157,8 @@
 				$("#cart").append(row);
 			}
 			let totalPrice=0;
-			for (index in shoppingCart) {
-				let cart = shoppingCart[index];
+			for (index in shoppingCart.shoppingItems) {
+				let cart = shoppingCart.shoppingItems[index];
 				totalPrice += (cart.dishPrice*cart.quantity);
 			}
 			$("#totalPrice").text("Total Price:"+totalPrice);
@@ -166,7 +169,7 @@
 				addr = customerAddrs[index];
 				let row =
 					'<option value="'+addr.id+'">('+addr.region+')'+addr.address+'</option>';
-				console.log(row);
+//				console.log(row);
 				$("#addressList").append(row);
 			}
 		}
@@ -175,8 +178,8 @@
 			targetId = event.target.nextSibling.value;
 			dishToAdd = findDishWithId(targetId);
 			found = false;
-			for (index in shoppingCart) {
-				let item = shoppingCart[index];
+			for (index in shoppingCart.shoppingItems) {
+				let item = shoppingCart.shoppingItems[index];
 				if (item.dishId === targetId) {
 					item.quantity++;
 					found = true;
@@ -184,31 +187,31 @@
 				}
 			}
 			if (!found) {
-				shoppingCart.push({
+				shoppingCart.shoppingItems.push({
 					dishId:dishToAdd.id, 
 					dishName:dishToAdd.name,
 					dishPrice:dishToAdd.price,
 					quantity:1
 				});
 			}
-			console.log(shoppingCart);
+//			console.log(shoppingCart);
 			listCartUI();
 		}
 		
 		function removeDishOnClickListener(event){
 			targetId = event.target.nextSibling.value;
-			for (i=0; i<shoppingCart.length; i++) {
-				let item = shoppingCart[i];
+			for (i=0; i<shoppingCart.shoppingItems.length; i++) {
+				let item = shoppingCart.shoppingItems[i];
 //				console.log('i'+i+'; id'+item.dish.id+';targetId'+targetId);
 				if (item.dishId === targetId) {
 					item.quantity--;
 					if (item.quantity<=0) {
-						shoppingCart.splice(i,1);
+						shoppingCart.shoppingItems.splice(i,1);
 					}
 					break;
 				}
 			}
-			console.log(shoppingCart);
+//			console.log(shoppingCart);
 			listCartUI();
 		}
 		
@@ -216,34 +219,30 @@
 			console.log('saveButtonOnClickListener');
 //			console.log({shoppingItems:shoppingCart});
 //			console.log(JSON.stringify({shoppingItems:shoppingCart}));
+			shoppingCart.addressId = $("#addressList").val();
 			$.ajax({
 				type:'POST',
 				url:'shop/setShoppingCart',
 				data: {
 					merchantId: '4028b88157fffa970157fffa9b510000',
-					cartStr: JSON.stringify({
-						shoppingItems:shoppingCart,
-						addressId:$("#addressList").val()
-					})
+					cartStr: JSON.stringify(shoppingCart)
 				}
 			})
 			.done(function(msg){
 				alert("Shopping cart saved");
 			})
-			console.log($("#addressList").val());
+//			console.log($("#addressList").val());
 		}
 		
 		function orderButtonOnClickListener(event) {
 			console.log('orderButtonOnClickListener');
+			shoppingCart.addressId = $("#addressList").val();
 			$.ajax({
 				type:'POST',
 				url:'shop/makeOrder',
 				data: {
 					merchantId: '4028b88157fffa970157fffa9b510000',
-					cartStr: JSON.stringify({
-						shoppingItems:shoppingCart,
-						addressId:$("#addressList").val()
-					})
+					cartStr: JSON.stringify(shoppingCart)
 				}
 			})
 			.done(function(msg){
