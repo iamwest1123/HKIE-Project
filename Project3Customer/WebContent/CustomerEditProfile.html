@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- æ° Bootstrap æ ¸å¿ CSS æä»¶ -->
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+
+<!-- å¯éçBootstrapä¸»é¢æä»¶ï¼ä¸è¬ä¸ç¨å¼å¥ï¼ -->
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+<!-- 
+<link rel="stylesheet" href="css/style.css">
+ -->
+<!-- jQueryæä»¶ãå¡å¿å¨bootstrap.min.js ä¹åå¼å¥ -->
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+<!-- ææ°ç Bootstrap æ ¸å¿ JavaScript æä»¶ -->
+<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+<meta charset="UTF-8">
+<title>Customer Edit Profile</title>
+<style>
+    body{
+  padding:20px 20px;
+}
+
+.results tr[visible='false'],
+.no-result{
+  display:none;
+}
+
+.results tr[visible='true']{
+  display:table-row;
+}
+
+.counter{
+  padding:8px; 
+  color:#ccc;
+}
+
+    #addDish{
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+    
+</style>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-default">
+ <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Menu</a>
+      
+       <ul class="nav navbar-nav">
+        <li class="active"><a href="CustomerEditProfile.html">Edit Profile <span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="CustomerHomePage.html">Customer Homepage <span class="sr-only">(current)</span></a></li>
+         <li class="active"><a href="#">View Customer Order <span class="sr-only">(current)</span></a></li>
+          <li><a href="#">You have successfully login as a Merchant!</a></li>
+     </ul>
+    </div>
+</nav>
+	<div><h2>Customer Edit Profile</h2></div>
+	<hr/>
+	
+	<form action="customer/loadCustomer" method="post">
+		Name:<br>
+		<input id="name" name="name" /><br />
+		Gender(Boolean):<br>
+		<input id="gender" name="name" /><br />
+		Profile Picture:<br>
+		<input id="profilePic" name="profilePic" /><br />
+		
+		Login Name:<br>
+		<input id="loginName" name="loginName" /><br />
+		Status:<br>
+		<input id="status" name="status" readonly/><br />
+		
+		Address1:<br>
+		<input id="Address1" name="Address1"/><br />
+		Region1:<br>
+		<input id="Region1" name="Region1"/><br />
+		
+		Address2:<br>
+		<input id="Address2" name="Address2"/><br />
+		Region2:<br>
+		<input id="Region2" name="Region2"/><br />
+	
+		Address3:<br>
+		<input id="Address3" name="Address3"/><br />
+		Region3:<br>
+		<input id="Region3" name="Region3"/><br />
+	
+	</form>
+	
+	<button id="update">Update</button>	
+	<div id="result"></div>
+	
+	<script>
+		$(function() {
+			$.ajax({
+				type:'POST',
+				url:'customer/loadCustomer',
+				data: {
+					customerId: "8a5e9d1c580536da01580537a6720000"
+				}
+			})
+			.done(function(msg){
+				$("#name").val(msg.name);
+				$("#gender").val(msg.gender);
+				$("#profilePic").val(msg.profilePic);
+				$("#loginName").val(msg.loginName);
+				$("#status").val(msg.status);
+			});
+			
+			$("#update").on("click", function(e){
+                $.ajax({
+                	
+                    type:'POST',
+                    url:'customer/updateCustomer',
+                    data: {
+                    	id: "8a5e9d1c580536da01580537a6720000",
+                    	name: $('#name').val(),                        
+                    	profilePic: $('#profilePic').val(),
+                    	loginName: $('#loginName').val(),
+                    	gender: $('#gender').val()  === 'true',
+                    	
+                    	Address1: $('#Address1').val(),
+                    	Address2: $('#Address2').val(),
+                    	Address3: $('#Address3').val(),
+                    }
+                }).done(function(msg){
+                    $('#result').append("<p>" +"Updated successfully" + "</p>");
+                });
+            });
+		});
+	</script>
+</body>
+</html>

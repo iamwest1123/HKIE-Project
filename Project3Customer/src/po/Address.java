@@ -29,6 +29,12 @@ public class Address {
 	@JoinColumn(name="CUSTOMER_ID")
 	private Customer customer;
 	
+	public Customer getCustomer() {
+		return customer;
+	}
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
 	public String getId() {
 		return id;
 	}
