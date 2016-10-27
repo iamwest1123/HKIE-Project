@@ -16,5 +16,6 @@ public interface MerchantManager {
 	public void deleteMerchant(String id);	//shd be not used as joined with other class
 	public boolean isExist(Merchant a);
 	public Merchant findAdminByUsernameAndPassword(Merchant a);
+	public void applyAdv(String id);
 	
 }

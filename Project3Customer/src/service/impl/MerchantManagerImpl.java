@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import dao.MerchantDao;
+import dto.AdvertApplicationDto;
+import mq.impl.AdvertApplicationProducer;
 import po.Comment;
 import po.Merchant;
 import service.MerchantManager;
@@ -19,6 +21,9 @@ public class MerchantManagerImpl implements MerchantManager{
 
 	@Autowired
 	private MerchantDao md;
+	
+	@Autowired
+	private AdvertApplicationProducer ap;
 	
 	@Override
 	@Transactional
@@ -130,6 +135,14 @@ public class MerchantManagerImpl implements MerchantManager{
 	@Transactional
 	public Merchant findAdminByUsernameAndPassword(Merchant m) {
 		return md.findAdminByUsernameAndPassword(m);
+	}
+
+	@Override
+	public void applyAdv(String id) {
+		AdvertApplicationDto aDto = new AdvertApplicationDto();
+		aDto.setMerchantId(id);
+		ap.send(aDto);
+		
 	}
 
 

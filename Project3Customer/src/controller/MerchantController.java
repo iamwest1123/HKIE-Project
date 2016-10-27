@@ -145,5 +145,17 @@ public class MerchantController {
 		mm.updateMerchantStatus(m);
 		return "true";	
 	}
+		
+		
+		@RequestMapping(value="applyAds")
+		@ResponseBody
+		public String applyAds(String id,HttpServletRequest request){
+
+			HttpSession ses = request.getSession();
+			ses.setAttribute("mid", merchant.getId());		
+			mm.applyAdv(id);
+			
+		}
+		
 	
 }
