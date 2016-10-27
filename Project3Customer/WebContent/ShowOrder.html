@@ -52,14 +52,15 @@
       <a class="navbar-brand" href="#">Menu</a>
       
        <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Edit Profile <span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="MerchantEditProfile.html">Edit Profile <span class="sr-only">(current)</span></a></li>
         <li class="active"><a href="ShowDish.html">Dishes Management <span class="sr-only">(current)</span></a></li>
          <li class="active"><a href="ShowOrder.html">View Customer Order <span class="sr-only">(current)</span></a></li>
+         <li class="active"><a href="#">Apply Ads <span class="sr-only">(current)</span></a></li>
           <li><a href="#">You have successfully login as a Merchant!</a></li>
      </ul>
     </div>
 </nav>
-<button id="add" type="button" class="btn btn-success">Add Dish</button>
+
 
 <div class="form-group pull-right">
     <input type="text" class="search form-control" placeholder="Search here">
@@ -122,7 +123,7 @@
 //           $("button").click(function(){
        $.getJSON('order/showOrder', { get_param: 'value' }, function(data) {
      var table = $('<table></table>').addClass('table table-hover table-bordered results');
-             var warningRow=$('<tr></tr>').addClass('warning no-result').append($('<td colspan="5"></td>').append($('<i class="fa fa-warning"></i>')).text("No result"));
+             var warningRow=$('<tr></tr>').addClass('warning no-result').append($('<td colspan="7"></td>').append($('<i class="fa fa-warning"></i>')).text("No result"));
            var head=$('<thead></thead>').append($('<tr></tr>').append($('<th></th>').text("#"),
                                                                       $('<th></th>').addClass('col-md-2 col-xs-2').text("CUSTOMER NAME"),
                                                                       $('<th></th>').addClass('col-md-3 col-xs-3').text("DISH ORDER"),
@@ -154,7 +155,7 @@
             ++i;
     
             var row = $('<tr></tr>').append($('<td></td>').text(i),
-                                            $('<td></td>').text(element.customer.loginName)
+                                            $('<td></td>').text(element.customer.name)
 //                                             $('<td id="td1">Hi<br/>Bye</td>')
 //                                            $('<td></td>').text(element.dishes[0].dish.name),
 //                                            $('<td></td>').text(element.dishes[0].dish.price),
@@ -191,7 +192,7 @@
            
             row.append(dish);
             row.append(quantity); 
-            row.append($('<td></td>').text('element.customer.address'));
+            row.append($('<td></td>').text(element.deliveryAddr.address));
             row.append($('<td></td>').text(element.status));
             if(element.status=="Delivery"){
                 

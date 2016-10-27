@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import po.Address;
+import po.Customer;
 import po.Dish;
 import po.Merchant;
 import service.ShoppingManager;
@@ -77,5 +79,11 @@ public class ShoppingController {
 	@ResponseBody
 	public List<CommentVo> getShopComment(String merchantId) {
 		return sm.getShopComment(merchantId);
+	}
+	
+	@RequestMapping(value="getCustomerAddress")
+	@ResponseBody
+	public List<Address> getCustomerAddress(String customerId) {
+		return sm.getCustomerAddress(customerId);
 	}
 }

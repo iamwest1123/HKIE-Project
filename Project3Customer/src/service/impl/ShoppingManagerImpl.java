@@ -14,11 +14,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import dao.AddressDao;
 import dao.CustomerDao;
 import dao.CustomerOrderDao;
 import dao.DishDao;
 import dao.MerchantDao;
+import po.Address;
 import po.Comment;
+import po.Customer;
 import po.CustomerOrder;
 import po.Dish;
 import po.Merchant;
@@ -42,6 +45,8 @@ public class ShoppingManagerImpl implements ShoppingManager {
 	private CustomerOrderDao odao;
 	@Autowired
 	private DishDao ddao;
+	@Autowired
+	private AddressDao adao;
 
 	@Override
 	public ShoppingCart getShoppingCart(String merchantId, HttpSession session) {
@@ -72,6 +77,7 @@ public class ShoppingManagerImpl implements ShoppingManager {
 		co.setMerchant(mdao.loadMerchant(merchantId));
 		co.setOrderDate(new Date());
 		co.setStatus(ProjectConstant.DELIVERY_STATUS_ORDERED);
+		co.setDeliveryAddr(adao.loadAddress(cart.getAddressId()));
 		List<OrderDish> orderDishLi = new ArrayList<OrderDish>();
 		OrderDish orderDish;
 		for (ShoppingItem i : cart.getShoppingItems()) {
@@ -109,5 +115,11 @@ public class ShoppingManagerImpl implements ShoppingManager {
 			voList.add(new CommentVo(c));
 		}
 		return voList;
+	}
+
+	@Override
+	public List<Address> getCustomerAddress(String customerId) {
+		Customer c = cdao.loadCustomer(customerId);
+		return c.getAddressList();
 	}
 }
