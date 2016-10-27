@@ -100,12 +100,11 @@
 		$(function() {
 			$.ajax({
 				type:'POST',
-				url:'merchant/loadMerchant',
-				data: {
-					merchantId: "4028b88157fffa970157fffa9b510000"
-				}
+				url:'merchant/loadMerchant'
+				
 			})
 			.done(function(msg){
+				console.log(msg);
 				$("#merchantName").val(msg.merchantName);
 				$("#shopName").val(msg.shopName);
 				$("#telNum").val(msg.telNum);
@@ -125,7 +124,7 @@
                     type:'POST',
                     url:'merchant/updateMerchant',
                     data: {
-                    	id: "4028b88157fffa970157fffa9b510000",
+                    	
                     	merchantName: $('#merchantName').val(),                        
                     	shopName: $('#shopName').val(),
                     	telNum: $('#telNum').val(),
