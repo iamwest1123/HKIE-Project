@@ -15,6 +15,11 @@
 <!-- ææ°ç Bootstrap æ ¸å¿ JavaScript æä»¶ -->
 <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!--[if lte IE 8]><script src="js/ie/html5shiv.js"></script><![endif]-->
+<link rel="stylesheet" href="css/main.css" />
+<!--[if lte IE 9]><link rel="stylesheet" href="css/ie9.css" /><![endif]-->
+
 <meta charset="UTF-8">
 <title>Merchant Edit Profile</title>
 <style>
@@ -59,13 +64,22 @@
         <li class="active"><a href="MerchantEditProfile.html">Edit Profile <span class="sr-only">(current)</span></a></li>
         <li class="active"><a href="ShowDish.html">Dishes Management <span class="sr-only">(current)</span></a></li>
          <li class="active"><a href="ShowOrder.html">View Customer Order <span class="sr-only">(current)</span></a></li>
-         <li class="active"><a href="#">Apply Ads <span class="sr-only">(current)</span></a></li>
-          <li><a href="#">You have successfully login as a Merchant!</a></li>
+         <li class="active"><a href="merchant/applyAds">Apply Ads <span class="sr-only">(current)</span></a></li>
      </ul>
     </div>
 </nav>
 
-	<div><h2>Merchant Edit Profile</h2></div>
+<section id="banner">
+				<div class="inner split">
+					<section>
+						<h2>Merchant Edit Profile</h2>
+					</section>
+					<section>
+						<p>Do you feel that the number of client is not enough? Don't worry! COMEBUYFOOD can save your life!!!More than 100000+ customers are preparing for buying your dishes!</p>
+					</section>
+				</div>
+			</section>
+
 	<hr/>
 	
 	<form action="merchant/loadMerchant" method="post">
@@ -87,13 +101,13 @@
 		Can Pre Order(Boolean):<br>
 		<input id="canPreOrder" name="canPreOrder"><br />
 		Address:<br>
-		<input type="text" id="address1" name="address1"><br />
+		<input id="address1" name="address1"><br />
 		Region:<br>
-		<input type="text" id="region1" name="region1"><br />
+		<input id="region1" name="region1"><br />
 		
 	</form>
 	
-	<button id="update">Update</button>	
+	<button id="update" class="button special">Update</button>	
 	<div id="result"></div>
 	
 	<script>
