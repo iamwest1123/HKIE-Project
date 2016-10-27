@@ -112,10 +112,10 @@ public class MerchantController {
 		}
 	}
 
-	@RequestMapping(value = "logout")
-	public String logout() {
-		return "redirect:login.html";
-	}
+//	@RequestMapping(value = "logout")
+//	public String logout() {
+//		return "redirect:login.html";
+//	}
 
 	@RequestMapping(value = "getAll")
 	@ResponseBody
@@ -166,5 +166,12 @@ public class MerchantController {
 			
 		}
 		
+		
+		@RequestMapping(value = "logout")
+		public String logout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.invalidate();
+		return "redirect:../loginM.html";
+		}
 	
 }
