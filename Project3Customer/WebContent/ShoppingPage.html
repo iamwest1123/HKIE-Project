@@ -43,7 +43,11 @@
 						<th></th>
 					</tr>
 				</table>
-				<div> 
+				<div style="col-sm-12">
+					<select id="addressList" style="col-sm-12">
+					</select>
+				</div>
+				<div>
 					<label id="totalPrice" class="col-sm-6">Total Price:0</label>
 					<button id="saveButton" class="btn btn-default col-sm-3" onclick="saveButtonOnClickListener(event)">Save</button>
 					<button id="orderButton" class="btn btn-primary col-sm-3" onclick="orderButtonOnClickListener(event)">Order!</button>
@@ -79,6 +83,17 @@
 			.done(function(msg){
 				listCommentUI(msg);
 			})
+			$.ajax({
+				type:'POST',
+				url:'shop/getCustomerAddress',
+				data: {
+					customerId : '4028b88157fffa970157fffa9b9e0002'
+				}
+			})
+			.done(function(msg){
+				customerAddrs = msg;
+				listAddressUI();
+			})
 //			$.ajax({
 //				type:'POST',
 //				url:'shop/getShoppingCart',
@@ -94,7 +109,7 @@
 		
 		var allDish;
 		var shoppingCart = [];
-		
+		var customerAddrs = [];
 		var shoppingItem;
 		
 		function listDishUI() {
@@ -146,11 +161,19 @@
 			$("#totalPrice").text("Total Price:"+totalPrice);
 		}
 		
+		function listAddressUI() {
+			for (index in customerAddrs) {
+				addr = customerAddrs[index];
+				let row =
+					'<option value="'+addr.id+'">('+addr.region+')'+addr.address+'</option>';
+				console.log(row);
+				$("#addressList").append(row);
+			}
+		}
+		
 		function addDishOnClickListener(event) {
 			targetId = event.target.nextSibling.value;
 			dishToAdd = findDishWithId(targetId);
-//			console.log(targetId);
-//			console.log(dishToAdd);
 			found = false;
 			for (index in shoppingCart) {
 				let item = shoppingCart[index];
@@ -198,12 +221,16 @@
 				url:'shop/setShoppingCart',
 				data: {
 					merchantId: '4028b88157fffa970157fffa9b510000',
-					cartStr: JSON.stringify({shoppingItems:shoppingCart})
+					cartStr: JSON.stringify({
+						shoppingItems:shoppingCart,
+						addressId:$("#addressList").val()
+					})
 				}
 			})
 			.done(function(msg){
 				alert("Shopping cart saved");
 			})
+			console.log($("#addressList").val());
 		}
 		
 		function orderButtonOnClickListener(event) {
@@ -213,7 +240,10 @@
 				url:'shop/makeOrder',
 				data: {
 					merchantId: '4028b88157fffa970157fffa9b510000',
-					cartStr: JSON.stringify({shoppingItems:shoppingCart})
+					cartStr: JSON.stringify({
+						shoppingItems:shoppingCart,
+						addressId:$("#addressList").val()
+					})
 				}
 			})
 			.done(function(msg){

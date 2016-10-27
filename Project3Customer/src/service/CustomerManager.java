@@ -8,6 +8,7 @@ public interface CustomerManager {
 	public boolean isExist(Customer c);
 	public Customer findAdminByUsernameAndPassword(Customer c);
 	public void registCustomer(Customer c);
+	public Customer load(String customerId);
 	public void updateCustomer(Customer c);
 	public CustomerVo loadCustomer(String id);
 }

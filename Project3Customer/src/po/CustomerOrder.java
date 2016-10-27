@@ -45,6 +45,13 @@ public class CustomerOrder {
 	@Column(name="RECEIVE_DATE")
 	private Date receiveDate;
 	
+	@OneToOne
+	@JoinColumn(name="DELIVERY_ADDR")
+	@JsonManagedReference
+	private Address deliveryAddr;
+	
+	
+
 	@ManyToOne
 	@JoinColumn(name="MERCHANT_ID")
 	@JsonManagedReference
@@ -130,6 +137,14 @@ public class CustomerOrder {
 	public void setDishes(List<OrderDish> dishes) {
 		this.dishes = dishes;
 	}
+	
+	public Address getDeliveryAddr() {
+		return deliveryAddr;
+	}
+
+	public void setDeliveryAddr(Address deliveryAddr) {
+		this.deliveryAddr = deliveryAddr;
+	}
 
 	@Override
 	public int hashCode() {
@@ -138,6 +153,7 @@ public class CustomerOrder {
 		result = prime * result + ((comment == null) ? 0 : comment.hashCode());
 		result = prime * result + ((customer == null) ? 0 : customer.hashCode());
 		result = prime * result + ((deliverDate == null) ? 0 : deliverDate.hashCode());
+		result = prime * result + ((deliveryAddr == null) ? 0 : deliveryAddr.hashCode());
 		result = prime * result + ((dishes == null) ? 0 : dishes.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((merchant == null) ? 0 : merchant.hashCode());
@@ -170,6 +186,11 @@ public class CustomerOrder {
 			if (other.deliverDate != null)
 				return false;
 		} else if (!deliverDate.equals(other.deliverDate))
+			return false;
+		if (deliveryAddr == null) {
+			if (other.deliveryAddr != null)
+				return false;
+		} else if (!deliveryAddr.equals(other.deliveryAddr))
 			return false;
 		if (dishes == null) {
 			if (other.dishes != null)

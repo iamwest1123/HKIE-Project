@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import po.Customer;
 import po.CustomerOrder;
 import po.Dish;
+import service.CustomerManager;
 import service.OrderManager;
 
 @Controller
@@ -21,6 +23,8 @@ public class OrderController {
 
 	@Autowired
 	OrderManager om;
+	@Autowired
+	CustomerManager cm;
 	
 	@RequestMapping(value="/showOrder")
 	@ResponseBody
@@ -33,8 +37,22 @@ public class OrderController {
 		ds.add(d1);
 		}
 		return list;
-	}
+	}	
 	
+	@RequestMapping(value="/showOrderByCustomer")
+	@ResponseBody
+	public List<CustomerOrder> showOrderByCustomer(String customerId){
+		
+		Customer c = cm.load(customerId);		
+		List<CustomerOrder> list=om.findOrderByCustomer(c);
+		List<CustomerOrder> ds=new ArrayList<CustomerOrder>();
+		for(CustomerOrder d:ds){
+			CustomerOrder d1=new CustomerOrder();
+			BeanUtils.copyProperties(d1, d);
+		ds.add(d1);
+		}
+		return list;
+	}	
 	
 	@RequestMapping(value="/updateOrder",method = RequestMethod.POST)
 	@ResponseBody
