@@ -8,7 +8,6 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
 import dao.AdminDao;
-import oracle.net.aso.i;
 import po.Admin;
 
 @Repository

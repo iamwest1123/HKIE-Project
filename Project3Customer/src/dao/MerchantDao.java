@@ -12,4 +12,7 @@ public interface MerchantDao {
 	public void updateMerchantStatus(Merchant m);
 	public void deleteMerchant(String id);
 	public Merchant loadMerchant(String id);
+	//Login
+	public Merchant findAdminByUsernameAndPassword(Merchant m);
+	public boolean isExist(Merchant m);
 }

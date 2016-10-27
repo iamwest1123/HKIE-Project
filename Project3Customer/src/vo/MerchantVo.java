@@ -32,6 +32,7 @@ public class MerchantVo {
 		this.setTelNum(m.getTelNum());
 		this.setShopPic(m.getShopPic());
 		this.setStatus(m.getStatus());
+		this.setCategory(m.getCategory());
 		this.setOpeningHour(m.getOpeningHour());
 		this.setClosingHour(m.getClosingHour());
 		this.setCanPreOrder(m.getCanPreOrder());

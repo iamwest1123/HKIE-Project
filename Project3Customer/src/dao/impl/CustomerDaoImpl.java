@@ -59,4 +59,18 @@ public class CustomerDaoImpl implements CustomerDao {
 		return c;
 	}
 
+	@Override
+	public Customer findAdminByUsernameAndPassword(Customer c) {
+		String jpql = "from Customer WHERE loginName = ? and password = ?";
+		List<Customer> list = em.createQuery(jpql).setParameter(1, c.getLoginName()).setParameter(2, c.getPassword()).getResultList();
+		return (list.isEmpty()) ? null : list.get(0);
+	}
+
+	@Override
+	public boolean isExist(Customer c) {
+		String jpql = "from Customer WHERE loginName = ?";
+		List<Customer> list = em.createQuery(jpql).setParameter(1, c.getLoginName()).getResultList();
+		return (list.isEmpty()) ? false : true;
+	}
+	
 }

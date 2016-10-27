@@ -16,8 +16,6 @@ public class AdminStatus {
 	String type; //(Customer/ Merchant)
 	
 	@Id
-	@GenericGenerator(name="statusId", strategy="uuid")
-	@GeneratedValue(generator="statusId")
 	String id;
 	
 	@Column(length=7)

@@ -3,14 +3,29 @@ package controller;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.core.util.MultivaluedMapImpl;
 
+import po.AdminStatus;
+import service.AdminStatusManager;
+
+@Controller
 public class WebServiceController {
 
+	@Autowired
+	private AdminStatusManager am;
 	
-	public String getMerchant() {
+	@RequestMapping(value="test",method=RequestMethod.GET)
+	@ResponseBody
+	public String getMerchant(String id) throws Exception{
 //		Client client = Client.create();
 //		client.setReadTimeout(1000);
 //		WebResource wr = client.resource("http://localhost:8080/...");
@@ -20,7 +35,9 @@ public class WebServiceController {
 //				.get(String.class);
 //		
 //		return result;
-		return "{\"merchantName\":\"Test\",\"shopName\":\"Test\",\"status\":\"UnderReview\"}";
+		ObjectMapper om = new ObjectMapper();
+		AdminStatus as = am.checkStatus(id);
+		return om.writeValueAsString(as);
 	}
 	
 }

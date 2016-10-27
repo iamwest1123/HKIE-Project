@@ -80,6 +80,20 @@ public class MerchantDaoImpl implements MerchantDao{
 		return em.find(Merchant.class, id);
 	}
 
+	@Override
+	public Merchant findAdminByUsernameAndPassword(Merchant m) {
+		String jpql = "from Merchant WHERE loginName = ? and password = ?";
+		List<Merchant> list = em.createQuery(jpql).setParameter(1, m.getLoginName()).setParameter(2, m.getPassword()).getResultList();
+		return (list.isEmpty()) ? null : list.get(0);
+	}
+
+	@Override
+	public boolean isExist(Merchant m) {
+		String jpql = "from Merchant WHERE loginName = ?";
+		List<Merchant> list = em.createQuery(jpql).setParameter(1, m.getLoginName()).getResultList();
+		return (list.isEmpty()) ? false : true;
+	}
+
 
 
 	

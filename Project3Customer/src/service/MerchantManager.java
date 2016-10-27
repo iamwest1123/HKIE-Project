@@ -10,6 +10,10 @@ public interface MerchantManager {
 	public List<MerchantVo> findAll();
 	public void registMerchant(Merchant m);
 	public void updateMerchant(Merchant m);
-	public Merchant loadMerchant(String id);
+	public MerchantVo loadMerchant(String id);
+	public Merchant loadMerchant1(String id);
 	public void deleteMerchant(String id);	//shd be not used as joined with other class
+	public boolean isExist(Merchant a);
+	public Merchant findAdminByUsernameAndPassword(Merchant a);
+	
 }

@@ -50,7 +50,7 @@ public class DishController {
 	@RequestMapping(value="/addDishes",method={RequestMethod.POST})
 	@ResponseBody
 	public void addDishes(Dish dish){
-		Merchant m=mm.loadMerchant("4028b88157fffa970157fffa9b510000");
+		Merchant m=mm.loadMerchant1("4028b88157fffa970157fffa9b510000");
 		dish.setStatus(ProjectConstant.STATUS_ACCEPTED);
 		dish.setMerchant(m);
 		dm.addDish(dish);
