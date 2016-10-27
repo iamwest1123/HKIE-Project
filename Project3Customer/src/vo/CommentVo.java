@@ -2,6 +2,7 @@ package vo;
 
 import java.util.Date;
 
+import po.Comment;
 import po.Customer;
 
 public class CommentVo {
@@ -11,6 +12,19 @@ public class CommentVo {
 	private Date commentDate;
 	private CustomerVo customer;
 	private MerchantVo merchant;
+	
+	public CommentVo() {
+		
+	}
+	public CommentVo(Comment c) {
+		id = c.getId();
+		comment = c.getComment();
+		rating = c.getRating();
+		commentDate = c.getCommentDate();
+		customer = new CustomerVo(c.getCustomer());
+		merchant = new MerchantVo(c.getMerchant());
+	}
+	
 	public String getId() {
 		return id;
 	}

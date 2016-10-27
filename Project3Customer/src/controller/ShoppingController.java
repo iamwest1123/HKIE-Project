@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import po.Dish;
 import po.Merchant;
 import service.ShoppingManager;
+import vo.CommentVo;
 import vo.MerchantVo;
 import vo.ShoppingCart;
 
@@ -43,5 +44,11 @@ public class ShoppingController {
 	@ResponseBody
 	public MerchantVo getShopInfo(String merchantId) {
 		return sm.getShopInfo(merchantId);
+	}
+	
+	@RequestMapping(value="getShopComment")
+	@ResponseBody
+	public List<CommentVo> getShopComment(String merchantId) {
+		return sm.getShopComment(merchantId);
 	}
 }

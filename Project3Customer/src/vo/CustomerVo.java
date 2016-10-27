@@ -1,11 +1,24 @@
 package vo;
 
+import po.Customer;
+
 public class CustomerVo {
 	private String id;
 	private Boolean gender;
 	private String profilePic;
 	private String loginName;
 	private String status;
+	
+	public CustomerVo() {
+		
+	}
+	public CustomerVo(Customer c) {
+		id = c.getId();
+		gender = c.getGender();
+		profilePic = c.getProfilePic();
+		loginName = c.getLoginName();
+		status = c.getStatus();
+	}
 	public String getId() {
 		return id;
 	}
