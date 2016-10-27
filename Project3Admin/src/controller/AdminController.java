@@ -38,8 +38,7 @@ public class AdminController {
 		if (am.isExist(a)) {
 			Admin admin = am.findAdminByUsernameAndPassword(a);
 			if (admin != null) {
-				HttpSession ses = request.getSession();
-				ses.setAttribute("id", admin.getId());
+				setAdminId(admin.getId(),request.getSession());
 				return msm.createMessageStatus("success");
 			}	else
 				return msm.createMessageStatus("fail", "Incorrect Password");
@@ -63,17 +62,50 @@ public class AdminController {
 
 	@RequestMapping(value = "create", method = RequestMethod.POST)
 	@ResponseBody
-	public String createAdmin(Admin a) {
+	public Admin createAdmin(Admin a) {
 		System.out.println("in create....");
 		am.addAdmin(a);
-		return "Success";
+		return a;
 	}
 
+	@RequestMapping(value = "edit", method = RequestMethod.POST)
+	@ResponseBody
+	public Admin editAdmin(Admin a,HttpSession session) {
+		a.setId(getAdminId(session));
+		am.updateAdmin(a);
+		return a;
+	}
+	
 	@RequestMapping(value="updateStatus")
 	@ResponseBody
 	public MessageStatus updateStatus(AdminStatus as) {
 		asm.updateStatus(as);
 		return msm.createMessageStatus("success");
+	}
+	
+	@RequestMapping(value="getAdminId")
+	@ResponseBody
+	public String getAdminId(HttpSession session) {
+		Object obj = session.getAttribute("id");
+		if (obj==null)
+			return "";
+		else
+			return (String) obj;
+	}
+	
+	@RequestMapping(value="setAdminId")
+	@ResponseBody
+	public boolean setAdminId(String adminId, HttpSession session) {
+		session.setAttribute("id", adminId);
+		return true;
+	}
+	
+	@RequestMapping(value="getName")
+	@ResponseBody
+	public String getAdminName(HttpSession session) {
+		String id = getAdminId(session);
+		System.out.println(id);
+		return am.loadAdmin(id).getLoginName();
 	}
 	
 }
