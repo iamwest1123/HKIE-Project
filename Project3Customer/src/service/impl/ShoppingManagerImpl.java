@@ -23,6 +23,7 @@ import util.ProjectConstant;
 import vo.CommentVo;
 import vo.MerchantVo;
 import vo.ShoppingCart;
+import vo.ShoppingItem;
 
 @Service
 public class ShoppingManagerImpl implements ShoppingManager {
@@ -50,6 +51,12 @@ public class ShoppingManagerImpl implements ShoppingManager {
 			cartMap = (HashMap<String,ShoppingCart>) obj;
 		cartMap.put(merchantId, cart);
 		session.setAttribute(ProjectConstant.SESSION_ATTRIBUTE_SHOPPING_CART, cartMap);
+		return true;
+	}
+
+	@Override
+	public boolean makeOrder(String merchantId, ShoppingCart cart, HttpSession session) {
+		
 		return false;
 	}
 

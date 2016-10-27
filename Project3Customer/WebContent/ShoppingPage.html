@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Shopping with Us</title>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+	<style>
+		div[class^='col'] {
+			border: 1px solid green;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="row"> 
+			<div id="shopInfo" class="col-sm-12">SHOP INFO</div>
+		</div>
+		<div class="row"> 
+			<div class="col-sm-9">
+				<div class="row"> 
+					<table id="dishes" class="table">
+						<tr>
+							<th></th>
+							<th>Name</th>
+							<th>Catagory</th>
+							<th>Price</th>
+						</tr>
+					</table>
+					<table id="comments" class="table"></table>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<table id="cart" class="table">
+					<tr>
+						<th>Name</th>
+						<th>Price</th>
+						<th></th>
+						<th>Quantity</th>
+						<th></th>
+					</tr>
+				</table>
+				<div> 
+					<label id="totalPrice" class="col-sm-6">Total Price:0</label>
+					<button id="saveButton" class="btn btn-default col-sm-3" onclick="saveButtonOnClickListener(event)">Save</button>
+					<button id="orderButton" class="btn btn-primary col-sm-3" onclick="orderButtonOnClickListener(event)">Order!</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<input value="" type="hidden">
+	
+	
+	<script>
+		$(function() {
+			$.ajax({
+				type:'POST',
+				url:'shop/getShopInfo',
+				data: {
+					merchantId: "4028b88157fffa970157fffa9b510000"
+				}
+			})
+			.done(function(msg){
+				$("#shopInfo").text(msg.shopName);
+				allDish = msg.dishList;
+//				console.log(allDish);
+				listDishUI();
+			})
+			$.ajax({
+				type:'POST',
+				url:'shop/getShopComment',
+				data: {
+					merchantId: "4028b88157fffa970157fffa9b510000"
+				}
+			})
+			.done(function(msg){
+				listCommentUI(msg);
+			})
+//			$.ajax({
+//				type:'POST',
+//				url:'shop/getShoppingCart',
+//				data: {
+//					merchantId: "4028b88157fffa970157fffa9b510000"
+//				}
+//			})
+//			.done(function(msg){
+//				$("#shopInfo").text(msg.shopName);
+//				listDishUI(msg.dishList)
+//			})
+		})
+		
+		var allDish;
+		var shoppingCart = [];
+		
+		var shoppingItem;
+		
+		function listDishUI() {
+			for (index in allDish) {
+				let dish = allDish[index];
+				let row = '<tr>'+
+					'<td style="width:10%">'+'pic here'+'</td>'+
+					'<td style="width:40%">'+dish.name+'</td>'+
+					'<td style="width:30%">'+dish.category+'</td>'+
+					'<td style="width:10%">$'+dish.price+'</td>'+
+					'<td style="width:10%"><button class="btn btn-default" onclick="addDishOnClickListener(event)">Add to cart</button><input value="'+dish.id+'" type="hidden"></td>'+
+					'<tr>';
+				$("#dishes").append(row);
+			}
+		}
+		
+		function listCommentUI(comments) {
+			for (index in comments) {
+				let comt = comments[index];
+				let row = '<tr>'+
+					'<td style="width:10%">'+'pic here'+'</td>'+
+					'<td style="width:10%">'+comt.customer.loginName+'</td>'+
+					'<td style="width:5%">'+comt.rating+'</td>'+
+					'<td style="width:65%">'+comt.comment+'</td>'+
+					'<td style="width:10%">'+comt.commentDate+'</td>'+
+					'<tr>';
+				$("#comments").append(row);
+			}
+		}
+		
+		function listCartUI() {
+			$("#cart tbody tr").remove();
+			for (index in shoppingCart) {
+				let cart = shoppingCart[index];
+				let row = '<tr>'+
+					'<td style="width:50%">'+cart.dishName+'</td>'+
+					'<td style="width:20%">$'+cart.dishPrice*cart.quantity+'</td>'+
+					'<td style="width:2%"><button class="btn btn-default" onclick="addDishOnClickListener(event)">+</button><input value="'+cart.dishId+'" type="hidden"></td>'+
+					'<td style="width:10%">'+cart.quantity+'</td>'+
+					'<td style="width:2%"><button class="btn btn-default" onclick="removeDishOnClickListener(event)">-</button><input value="'+cart.dishId+'" type="hidden"></td>'+
+					'<tr>';
+				$("#cart").append(row);
+			}
+			let totalPrice=0;
+			for (index in shoppingCart) {
+				let cart = shoppingCart[index];
+				totalPrice += (cart.dishPrice*cart.quantity);
+			}
+			$("#totalPrice").text("Total Price:"+totalPrice);
+		}
+		
+		function addDishOnClickListener(event) {
+			targetId = event.target.nextSibling.value;
+			dishToAdd = findDishWithId(targetId);
+//			console.log(targetId);
+//			console.log(dishToAdd);
+			found = false;
+			for (index in shoppingCart) {
+				let item = shoppingCart[index];
+				if (item.dishId === targetId) {
+					item.quantity++;
+					found = true;
+					break;
+				}
+			}
+			if (!found) {
+				shoppingCart.push({
+					dishId:dishToAdd.id, 
+					dishName:dishToAdd.name,
+					dishPrice:dishToAdd.price,
+					quantity:1
+				});
+			}
+			console.log(shoppingCart);
+			listCartUI();
+		}
+		
+		function removeDishOnClickListener(event){
+			targetId = event.target.nextSibling.value;
+			for (i=0; i<shoppingCart.length; i++) {
+				let item = shoppingCart[i];
+//				console.log('i'+i+'; id'+item.dish.id+';targetId'+targetId);
+				if (item.dishId === targetId) {
+					item.quantity--;
+					if (item.quantity<=0) {
+						shoppingCart.splice(i,1);
+					}
+					break;
+				}
+			}
+			console.log(shoppingCart);
+			listCartUI();
+		}
+		
+		function saveButtonOnClickListener(event) {
+			console.log('saveButtonOnClickListener');
+			console.log({shoppingItems:shoppingCart});
+			console.log(JSON.stringify({shoppingItems:shoppingCart}));
+			$.ajax({
+				type:'POST',
+				url:'shop/setShoppingCart',
+				data: {
+					merchantId: '4028b88157fffa970157fffa9b510000',
+					cartStr: JSON.stringify({shoppingItems:shoppingCart})
+				}
+			})
+			.done(function(msg){
+				alert("Shopping cart saved");
+			})
+		}
+		
+		function orderButtonOnClickListener(event) {
+			console.log('orderButtonOnClickListener');
+			$.ajax({
+				type:'POST',
+				url:'shop/setShoppingCart',
+				data: {
+					merchantId: '4028b88157fffa970157fffa9b510000',
+					cart: shoppingCart
+				}
+			})
+			.done(function(msg){
+				alert("Shopping cart saved");
+			})
+		}
+		
+		function findDishWithId(target) {
+			for (index in allDish) {
+				let dish = allDish[index];
+				if (dish.id === target)
+					return dish;
+			}
+		}
+	</script>
+</body>
+</html>

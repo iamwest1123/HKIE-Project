@@ -124,11 +124,11 @@
      var table = $('<table></table>').addClass('table table-hover table-bordered results');
              var warningRow=$('<tr></tr>').addClass('warning no-result').append($('<td colspan="5"></td>').append($('<i class="fa fa-warning"></i>')).text("No result"));
            var head=$('<thead></thead>').append($('<tr></tr>').append($('<th></th>').text("#"),
-                                                                      $('<th></th>').addClass('col-md-2 col-xs-2').text("NAME"),
-                                                                      $('<th></th>').addClass('col-md-3 col-xs-3').text("DESCRIPTION"),
-                                                                      $('<th></th>').addClass('col-md-2 col-xs-2').text("CATEGORY"),
-                                                                      $('<th></th>').addClass('col-md-2 col-xs-2').text("PRICE"),
-                                                                      $('<th></th>').addClass('col-md-3 col-xs-3').text("REMOVE")
+                                                                      $('<th></th>').addClass('col-md-2 col-xs-2').text("CUSTOMER NAME"),
+                                                                      $('<th></th>').addClass('col-md-3 col-xs-3').text("DISH ORDER"),
+                                                                      $('<th></th>').addClass('col-md-1 col-xs-1').text("QUANTITY"),
+                                                                      $('<th></th>').addClass('col-md-2 col-xs-3').text("ADDRESS"),
+                                                                      $('<th></th>').addClass('col-md-3 col-xs-3').text("STATUS")
                                                                      ),
                                                warningRow);
 //           var r=$('<th></th>').addClass('col-md-5 col-xs-5').text("NAME");
@@ -154,9 +154,10 @@
     
             var row = $('<tr></tr>').append($('<td></td>').text(i),
                                             $('<td></td>').text(element.customer.loginName)
-//                                            $('<td></td>').text(element.dishes[5].dish.name),
-//                                            $('<td></td>').text(element.dishes[5].dish.price),
-//                                            $('<td></td>').text(element.dishes[5].quantity)
+//                                             $('<td id="td1">Hi<br/>Bye</td>')
+//                                            $('<td></td>').text(element.dishes[0].dish.name),
+//                                            $('<td></td>').text(element.dishes[0].dish.price),
+//                                            $('<td></td>').text(element.dishes[0].quantity)
 //                                            $('<td></td>').append('<button></button>').addClass("btn btn-danger").text("REMOVE")
 //                                                                                .on("click",function(e){  
 //                                                                                        $.ajax({
@@ -170,9 +171,61 @@
                                             
                                            
                                            );
+        
+         var dish= $('<td></td>');
+        var quantity=$('<td></td>');
+       
+        var dishStr="";
+         var qtyStr="";
+        $.each(element.dishes, function(index,value){
+              console.log(value.dish.name);
+            dishStr+=value.dish.name+"<hr/>";
+            dish.html(dishStr);
+            
+            qtyStr+=value.quantity+"<hr/>";
+            quantity.html(qtyStr);
+          
+              });
+        
+           
+            row.append(dish);
+            row.append(quantity); 
+            row.append($('<td></td>').text('element.customer.address'));
+            row.append($('<td></td>').text(element.status));
+            
+            row.append($('<td></td>').append('<button></button>').addClass("btn btn-danger").text("DELIVER")
+                                                                                .on("click",function(e){  
+                console.log({id:element.id,                        
+                                                                                                      comment:element.comment,
+                                                                                                      orderDate:element.orderDate,
+                                                                                                      deliverDate:element.deliverDate,
+                                                                                                      receiveDate:element.receiveDate,
+                                                                                                      merchant:element.merchant,
+                                                                                                      customer:element.customer,
+                                                                                                      dishes:element.dishes,
+                                                                                                      status:"Delivery"
+                                                                                                     });
+                                                                                        $.ajax({
+                                                                                                type:'POST',
+                                                                                                url:'order/updateStatus',
+                                                                                                data:{id:element.id,                        
+                                                                                                      //comment:element.comment,
+                                                                                                      //orderDate:element.orderDate,
+                                                                                                      deliverDate:element.deliverDate,
+                                                                                                      //receiveDate:element.receiveDate,
+                                                                                                      //merchant:element.merchant,
+                                                                                                      //customer:element.customer,
+                                                                                                      //dishes:element.dishes,
+                                                                                                      status:"Delivery"
+                                                                                                     }
+                                                                                            }).done(function(msg){
+//                                                                                              row.remove();
+                                                                                            });}));
+        
+        
             body.append(row);
          
-
+        
 
         
     });

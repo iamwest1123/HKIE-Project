@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>ComeBuyFood</title>
+
+    <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
+    <script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+        
+    <link href="css/cover.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class ="bg-img"></div>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+ 	  
+	 
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" >COMEBUYFOOD</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <form class="navbar-form navbar-right">
+            <div class="form-group">
+              <input type="text" placeholder="Username" name="loginName" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="Password" name="password" class="form-control">
+            </div>
+            <input type="submit" class="btn btn-success" value="Sign in">
+          </form>
+        </div>
+        <!--/.navbar-collapse -->
+      </div>
+    </nav>
+    <div id="dialog" title="Warning"></div>
+    <div class="site-wrapper">
+      <div class="site-wrapper-inner">
+        <div class="cover-container">
+          <div class="inner cover">
+            <h1 class="cover-heading">Wanna sell food more easy?</h1>
+            <p class="lead">Do you feel that the number of client is not enough? Don't worry! <b>COMEBUYFOOD</b> can save your life!!!More than <b>100000+</b> customers are preparing for buying your dishes!</p>
+            <p class="lead">
+              <a href="#" class="btn btn-lg btn-default">Sign up now!</a>
+            </p>
+          </div>
+          <div class="mastfoot">
+            <div class="inner">
+              <p>&copy; 2016 HKIE GROUP3</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>    
+    <script>
+	$(function(){
+		 $("form").submit(function(e) {
+			 e.preventDefault();
+		        $.ajax({
+		            type:'POST',
+		            url:'merchant/login',
+		            data:{loginName:$("[name=loginName]").val(),password:$("[name=password]").val()}
+		        }).done(function(result){
+                    if(result.status==="success") {
+                        var data = result.reason;
+                        var object = JSON.parse(data);
+                        if(object.reason==="Accepted") {
+                            window.location.assign("http://www.oocl.com");
+                        } else {
+							showError("You are not allowed to login. Please contact us for more information.");
+                        }
+                    } else {  
+                        showError(result.reason);          
+                    }
+		        }); 
+		});
+	});   
+
+	function showError(reason) {
+		$("#dialog").text(reason);
+        $("#dialog").dialog();
+		$("form")[0].reset();
+	}
+	</script>
+    
+  </body>
+</html>
