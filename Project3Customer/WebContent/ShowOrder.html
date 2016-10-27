@@ -155,7 +155,7 @@
             ++i;
     
             var row = $('<tr></tr>').append($('<td></td>').text(i),
-                                            $('<td></td>').text(element.customer.loginName)
+                                            $('<td></td>').text(element.customer.name)
 //                                             $('<td id="td1">Hi<br/>Bye</td>')
 //                                            $('<td></td>').text(element.dishes[0].dish.name),
 //                                            $('<td></td>').text(element.dishes[0].dish.price),
@@ -192,7 +192,7 @@
            
             row.append(dish);
             row.append(quantity); 
-            row.append($('<td></td>').text('element.customer.address'));
+            row.append($('<td></td>').text(element.deliveryAddr.address));
             row.append($('<td></td>').text(element.status));
             if(element.status=="Delivery"){
                 
