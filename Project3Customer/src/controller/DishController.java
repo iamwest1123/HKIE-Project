@@ -3,6 +3,9 @@ package controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,8 +32,13 @@ public class DishController {
 	
 	@RequestMapping(value="/showDishes")
 	@ResponseBody
-	public List<Dish> showAllDishes(){
-		List<Dish> list=dm.findAll();
+	public List<Dish> showAllDishes(HttpServletRequest request){		
+		
+		HttpSession ses = request.getSession();
+		String id = (String)ses.getAttribute("mid");
+		
+//		List<Dish> list=dm.findAll();
+		List<Dish> list=dm.findDishByMerchants(mm.loadMerchant1(id));
 		List<Dish> ds=new ArrayList<Dish>();
 		for(Dish d:ds){
 			Dish d1=new Dish();
@@ -50,6 +58,7 @@ public class DishController {
 	@RequestMapping(value="/addDishes",method={RequestMethod.POST})
 	@ResponseBody
 	public void addDishes(Dish dish){
+		
 		Merchant m=mm.loadMerchant1("4028b88157fffa970157fffa9b510000");
 		dish.setStatus(ProjectConstant.STATUS_ACCEPTED);
 		dish.setMerchant(m);
