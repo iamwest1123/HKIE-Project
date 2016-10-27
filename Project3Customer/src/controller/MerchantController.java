@@ -27,18 +27,18 @@ import service.MessageStatusManager;
 import vo.MerchantVo;
 
 @Controller
-@RequestMapping(value="merchant")
+@RequestMapping(value = "merchant")
 public class MerchantController {
 
 	@Autowired
 	private MerchantManager mm;
 	@Autowired
 	private MessageStatusManager msm;
-	
-	@RequestMapping(value="addMerchant")
+
+	@RequestMapping(value = "addMerchant")
 	@ResponseBody
-	public Merchant addMerchart(Merchant m,String address1,String region1){
-	
+	public Merchant addMerchart(Merchant m, String address1, String region1) {
+
 		System.out.println("........");
 		System.out.println(address1);
 		System.out.println("........");
@@ -51,36 +51,29 @@ public class MerchantController {
 		mm.registMerchant(m);
 		return m;
 	}
-	
-	@RequestMapping(value="showMerchant")
+
+	@RequestMapping(value = "showMerchant")
 	@ResponseBody
-	public List<MerchantVo> showAllMerchants(){		
-		return mm.findAll();	
+	public List<MerchantVo> showAllMerchants() {
+		return mm.findAll();
 	}
-	
-	@RequestMapping(value="loadMerchant")
+
+	@RequestMapping(value = "loadMerchant")
 	@ResponseBody
-	public MerchantVo loadMerchant(String merchantId){
+	public MerchantVo loadMerchant(String merchantId) {
 		MerchantVo mvo = mm.loadMerchant(merchantId);
 		return mvo;
 	}
-	
-	@RequestMapping(value="updateMerchant")
+
+	@RequestMapping(value = "updateMerchant")
 	@ResponseBody
-	public String updateMerchant(Merchant m,String address1,String region1){	
+	public String updateMerchant(Merchant m, String address1, String region1) {
 		Address add = new Address();
 		add.setAddress(address1);
 		add.setRegion(region1);
 		m.setAddress(add);
 		mm.updateMerchant(m);
-		return "true";	
-	}
-	
-	@RequestMapping(value="updateMerchantStatus")
-	@ResponseBody
-	public String updateMerchantStatus(Merchant m){
-		mm.updateMerchantStatus(m);
-		return "true";	
+		return "true";
 	}
 
 	@RequestMapping(value = "login", method = RequestMethod.POST)
@@ -93,11 +86,11 @@ public class MerchantController {
 			if (merchant != null) {
 				String result = getMerchantStatus(merchant.getId());
 				return msm.createMessageStatus("success", result);
-			}
-			else
+			} else
 				return msm.createMessageStatus("fail", "Incorrect Password");
 		} else {
-			MessageStatus messageStatus = msm.createMessageStatus("fail", "Username not found! Please make sure that username is correct!");
+			MessageStatus messageStatus = msm.createMessageStatus("fail",
+					"Username not found! Please make sure that username is correct!");
 			System.out.println(messageStatus.getStatus());
 			return messageStatus;
 		}
@@ -107,28 +100,43 @@ public class MerchantController {
 	public String logout() {
 		return "redirect:login.html";
 	}
-	
-	private String getMerchantStatus(String id) throws Exception{
+
+	@RequestMapping(value = "getAll")
+	@ResponseBody
+	public String requestForMerchantList() throws Exception{
+		ObjectMapper om = new ObjectMapper();
+		List<MerchantVo> list = mm.findAll();
+		return om.writeValueAsString(list);
+	}
+
+	private String getMerchantStatus(String id) throws Exception {
 		// like this?
 		Client client = Client.create();
 		client.setReadTimeout(1000);
-		MultivaluedMap<String, String> params=new MultivaluedMapImpl();
+		MultivaluedMap<String, String> params = new MultivaluedMapImpl();
 		params.add("id", id);
 		WebResource wr = client.resource("http://localhost:8080/Project3Admin/request/status");
 		String result = wr.queryParams(params).accept(MediaType.APPLICATION_JSON_TYPE).get(String.class);
 		System.out.println(result);
 		return result;
-	}	
-	
-	
-	private String requestAdv(String id) throws Exception{
+	}
+
+	private String requestAdv(String id) throws Exception {
 		// NOT YET FINISH...
 		Client client = Client.create();
 		client.setReadTimeout(1000);
-		MultivaluedMap<String, String> params=new MultivaluedMapImpl();
-		//params.add("id", id);
+		MultivaluedMap<String, String> params = new MultivaluedMapImpl();
+		// params.add("id", id);
 		WebResource wr = client.resource("http://localhost:8080/Project3Admin/request/advertisement");
 		String result = wr.queryParams(params).accept(MediaType.APPLICATION_JSON_TYPE).get(String.class);
 		return result;
 	}
+
+		@RequestMapping(value="updateMerchantStatus")
+	@ResponseBody
+	public String updateMerchantStatus(Merchant m){
+		mm.updateMerchantStatus(m);
+		return "true";	
+	}
+	
 }
