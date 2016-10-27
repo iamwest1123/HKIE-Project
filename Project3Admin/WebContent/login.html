@@ -21,8 +21,8 @@
 
 <style>
 #loginForm {
-	width:500px;
-	color:white;
+	width: 500px;
+	color: white;
 	position: absolute;
 	left: 50%;
 	top: 50%;
@@ -39,26 +39,45 @@
 </head>
 <body>
 	<div class="container">
-		<form action="loginAdmin" method="post" id="loginForm" class="form-signin">
+		<form id="loginForm" class="form-signin">
 			<h2 class="form-signin-heading">Please sign in</h2>
-			<label for="inputUsername" class="sr-only">Username</label> 
-				<input type="text" id="inputUsername" class="form-control"
-				placeholder="Username" name="loginName" required autofocus> <label
-				for="inputPassword" class="sr-only">Password</label> <input
-				type="password" id="inputPassword" name="password" class="form-control"
-				placeholder="Password" required>
+			<label for="inputUsername" class="sr-only">Username</label> <input
+				type="text" id="inputUsername" class="form-control"
+				placeholder="Username" name="loginName" required autofocus>
+			<label for="inputPassword" class="sr-only">Password</label> <input
+				type="password" id="inputPassword" name="password"
+				class="form-control" placeholder="Password" required>
 			<div class="checkbox">
 				<label> <input type="checkbox" value="remember-me">
 					Remember me
 				</label> <a href="#" style="float: right">Register</a>
 			</div>
-			<input class="btn btn-primary btn-block" type="submit" value="Sign
-				in"/>
-			<div id ="error"></div>
+			<input class="btn btn-primary btn-block" type="submit"
+				value="Sign
+				in" />
+			<div id="error"></div>
 		</form>
 
 	</div>
 	<!-- /container -->
-
+	<script>
+	$(function(){
+		 $("form").submit(function(e) {
+			 e.preventDefault();
+		        $.ajax({
+		            type:'POST',
+		            url:'loginAdmin',
+		            data:{loginName:$("[name=loginName]").val(),password:$("[name=password]").val()}
+		        }).done(function(result){
+                    if(result.status==="success") {
+                        window.location.assign("http://localhost:8080/Project3Admin/index.html");
+                    } else {
+						$("#error").text(result.reason);
+						$("form")[0].reset();
+                    }
+		        }); 
+		});
+	});   
+	</script>
 </body>
 </html>

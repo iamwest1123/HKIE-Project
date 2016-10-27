@@ -2,7 +2,6 @@ package dao;
 
 import java.util.List;
 
-import po.Admin;
 import po.AdminAdvert;
 
 public interface AdminAdvertDao {

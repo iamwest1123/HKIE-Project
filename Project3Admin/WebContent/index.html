@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script>
+<link href="css/sticky-footer-navbar.css" rel="stylesheet">
+</head>
+<style>
+.content {
+	display: none;
+}
+</style>
+<body>
+
+	<!-- Fixed navbar -->
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Hi test</a>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li id="home" class="active" data-index="search"><a href="#search">Main</a></li>
+					<li id="sett" data-index="setting"><a href="#setting">Setting</a></li>
+					<li><a href="logout">Logout</a></li>
+				</ul>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+	</nav>
+
+	<!-- Begin page content -->
+	<div class="container">
+		<!-- Search Section-->
+		<section class="content" data-index="search">
+			<div class="page-header">
+				<h1>Merchants List</h1>
+			</div>
+			<p class="lead">
+				Pin a fixed-height footer to the bottom of the viewport in desktop
+				browsers with this custom HTML and CSS. A fixed navbar has been
+				added with
+				<code>padding-top: 60px;</code>
+				on the
+				<code>body &gt; .container</code>
+				.
+			</p>
+			<p>
+				Back to <a href="../sticky-footer">the default sticky footer</a>
+				minus the navbar.
+			</p>
+			<div class="row"></div>
+			<!-- edit -->
+		</section>
+		<section class="content" data-index="setting">
+			<div class="page-header">
+				<h1>Setting</h1>
+			</div>
+			<div class="page-header">
+			   <form class="form-horizontal">
+			     <span class="col-sm-1"></span><h3>Change Password</h3>
+				  <div class="form-group">
+				    <label class="col-sm-2 control-label">Username</label>
+				    <div class="col-sm-8">
+				      <p class="form-control-static">email@example.com</p>
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label for="inputPassword" class="col-sm-2 control-label">Password</label>
+				    <div class="col-sm-8">
+				      <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+				    </div>
+				  </div>
+                  <div class="form-group">
+				    <span class="col-sm-2 control-label"></span>
+				    <div class="col-sm-8">
+				      <input class="btn btn-primary btn-block" type="submit" value="Edit"/>
+				    </div>
+				  </div>
+				</form>	
+			</div>
+            <div class="page-header">
+			   <form class="form-horizontal" action="create" method="post">
+			     <span class="col-sm-1"></span><h3>Create Admin</h3>
+				  <div class="form-group">
+				    <label for="loginName" class="col-sm-2 control-label">Username</label>
+				    <div class="col-sm-8">
+				      <input type="password" class="form-control" name="loginName" id="loginName" placeholder="Username">
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label for="createPassword" class="col-sm-2 control-label">Password</label>
+				    <div class="col-sm-8">
+				      <input type="password" class="form-control" name="password" id="inputPassword" placeholder="Password">
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <span class="col-sm-2 control-label"></span>
+				    <div class="col-sm-8">
+				      <input type="submit" class="btn btn-primary btn-block" value="Create" onclick="">
+				    </div>
+				  </div>
+				</form>	
+			</div>
+            <div class="page-header">
+                <span class="col-sm-1"></span><h3>Show All Admin</h3>
+                <div class="col-sm-1"></div><div class="col-sm-10" id="adminTable"></div>
+            </div>
+			<!-- edit -->
+		</section>
+	</div>
+
+	<!--  footer -->
+	<footer class="footer">
+		<div class="container">
+			<p class="text-muted">Place sticky footer content here.</p>
+		</div>
+	</footer>
+	<script>
+	    $(function(){
+	    	$("#home a").trigger("click");
+	    });
+		function loadSetting() {
+			$("#sett a").trigger("click");
+		}
+		function getAdminList() {
+            $.get("showAll",function(data){
+    			var table = "<table class=\"table table-bordered\" style=\"margin-top:20px\"><tr><td>#</td><td>Username</td></tr>";
+    			for (var a=0;a<data.length; a++) {
+    				var tr = "<tr>";
+    				tr+= "<td>"+a+". </td><td>"+data[a].loginName+"</td></tr>";
+    				table += tr;
+    		    }
+    		    table+="</table>";
+    	    	$("#adminTable").html(table);
+            });
+		}
+	    
+        $(".nav a").on("click", function () {
+            $(".nav").find(".active").removeClass("active");
+            $(this).parent().addClass("active");
+            $('.content').hide();
+            var id = $(this).parent().attr("data-index");
+            if(id==="setting") {
+            	getAdminList();
+     		}
+            $('section[data-index="' + $(this).parent().attr("data-index") + '"]').show();
+        });
+    </script>
+</body>
+
+</html>
