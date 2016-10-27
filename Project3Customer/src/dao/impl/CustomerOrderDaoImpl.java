@@ -28,6 +28,7 @@ public class CustomerOrderDaoImpl implements CustomerOrderDao{
 	}
 
 	@Override
+	@Transactional
 	public boolean updateOrder(CustomerOrder o) {
 		CustomerOrder o2 = em.getReference(CustomerOrder.class, o.getId());
 		// TODO copy o to o2
@@ -70,6 +71,11 @@ public class CustomerOrderDaoImpl implements CustomerOrderDao{
 				.setParameter("mid", m)
 				.setMaxResults(100)
 				.getResultList();
+	}
+
+	@Override
+	public CustomerOrder loadOrder(String id) {
+		return em.find(CustomerOrder.class, id);
 	}
 	
 

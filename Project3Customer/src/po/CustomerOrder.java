@@ -17,6 +17,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name="CUSTOMER_ORDERS")
 public class CustomerOrder {
@@ -42,10 +44,12 @@ public class CustomerOrder {
 	
 	@ManyToOne
 	@JoinColumn(name="MERCHANT_ID")
+	@JsonBackReference
 	private Merchant merchant;
 
 	@ManyToOne
 	@JoinColumn(name="CUSTOMER_ID")
+	@JsonBackReference
 	private Customer customer;
 	
 	@OneToMany(mappedBy="customerOrder")

@@ -79,6 +79,7 @@ public class Merchant {
 	private List<Comment> commentList = new ArrayList<Comment>();
 	
 	@OneToMany(mappedBy="merchant")
+	@JsonManagedReference
 	private List<CustomerOrder> customerOrderList = new ArrayList<CustomerOrder>();
 
 	@Override
