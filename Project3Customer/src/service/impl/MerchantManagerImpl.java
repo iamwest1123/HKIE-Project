@@ -17,9 +17,10 @@ public class MerchantManagerImpl implements MerchantManager{
 	private MerchantDao md;
 	
 	@Override
+	@Transactional
 	public List<Merchant> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return md.findAllMerchant();
 	}
 
 	@Override
@@ -31,15 +32,17 @@ public class MerchantManagerImpl implements MerchantManager{
 	}
 
 	@Override
+	@Transactional
 	public void updateMerchant(Merchant m) {
-		// TODO Auto-generated method stub
 		
+		md.updateMerchantInfo(m);
 	}
 
 	@Override
+	@Transactional
 	public void deleteMerchant(String id) {
-		// TODO Auto-generated method stub
 		
+		md.deleteMerchant(id);
 	}
 
 	@Override
