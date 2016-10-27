@@ -1,12 +1,18 @@
 package controller;
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import po.Address;
 import po.Customer;
+import po.Merchant;
 import po.MessageStatus;
 import service.CustomerManager;
 import service.MessageStatusManager;
@@ -53,5 +59,23 @@ public class CustomerController {
 	public CustomerVo loadCustomer(String customerId){
 		CustomerVo cvo = cm.loadCustomer(customerId);
 		return cvo;
+	}
+	
+	@RequestMapping(value="updateCustomer")
+	@ResponseBody
+	public String updateCustomer(Customer c,String Address1,String Address2,String Address3,String Region1,String Region2,String Region3){	
+		Address add = new Address();
+		add.setAddress(Address1);
+		add.setAddress(Address2);
+		add.setAddress(Address3);
+		add.setAddress(Region1);
+		add.setAddress(Region2);
+		add.setAddress(Region3);
+		
+		add.setCustomer(c);
+		c.getAddressList().add(add);
+		
+		cm.updateCustomer(c);
+		return "true";	
 	}
 }
