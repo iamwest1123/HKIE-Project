@@ -94,10 +94,7 @@
 //           $("button").click(function(){
         
         $.ajax({
-            url: 'order/showOrderByCustomer',
-            data: {
-                customerId: '4028b88157fffa970157fffa9b9e0002'
-            }
+            url: 'order/showOrderByCustomer'
         }).done(function(data) {
                 var table = $('<table></table>').addClass('table table-hover table-bordered results');
                 var warningRow=$('<tr></tr>').addClass('warning no-result').append($('<td colspan="5"></td>').append($('<i class="fa fa-warning"></i>')).text("No result"));
