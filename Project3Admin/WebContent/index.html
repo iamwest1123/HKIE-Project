@@ -144,7 +144,7 @@
 			$("#sett a").trigger("click");
 		}
 		function getAdminList() {
-            $.get("showAll",function(data){
+            $.get("admin/showAll",function(data){
     			var table = "<table class=\"table table-bordered\" style=\"margin-top:20px\"><tr><td>#</td><td>Username</td></tr>";
     			for (var a=0;a<data.length; a++) {
     				var tr = "<tr>";
@@ -179,22 +179,32 @@
 					var data = JSON.parse(response.responseText)
 					var table = "<table class=\"table table-striped\">";
 					for (var a=0;a<data.length; a++) {
+						var mid = data[a].id;
 						var tr = "<tr>";
-						tr+= "<td>"+data[a].merchantName+"</td><td>";
-						var status = data[a].status;
-						if(status==="UnderReview") {
-							tr+= "<button onclick=\"accept("+data[a].id+")\">Accept</button>";
-							tr+= "<button onclick=\"reject("+data[a].id+")\">Reject</button>";
-						} else if(status==="Accepted") {
-							tr+= "<button onclick=\"blackList("+data[a].id+")\">BlackList</button>";
-						} else if (status==="Rejected") {
-							tr+= "<button onclick=\"accept("+data[a].id+")\">Accept</button>";
-						} else if (status==="Frozen") {
-							tr+= "<button onclick=\"removeBlackList("+data[a].id+")\">Remove Blacklist</button>";
-						}
-						if (status!=="Deleted")
-							tr+= "<button onclick=\"delete("+data[a].id+")\">Delete</button>";
+						tr+= "<td>"+data[a].merchantName+"</td><td id=\""+mid+"\">";
+						//var status = data[a].status;
+
+			            $.get("checkMerchantStatus",{merchantId:mid},function(result){
+				            var status = result.status;
+				            var tr="";
+							if(status==="UnderReview") {
+								tr+= "<button onclick=\"updateStatus('"+result.id+"','Accepted')\">Accept</button>";
+								tr+= "<button onclick=\"updateStatus('"+result.id+"','Rejected')\">Reject</button>";
+							} else if(status==="Accepted") {
+								tr+= "<button onclick=\"updateStatus('"+result.id+"','Frozen')\">BlackList</button>";
+							} else if (status==="Rejected") {
+								tr+= "<button onclick=\"updateStatus('"+result.id+"','Accepted')\">Accept</button>";
+							} else if (status==="Frozen") {
+								tr+= "<button onclick=\"updateStatus('"+result.id+"','Accepted')\">Remove Blacklist</button>";
+							}
+							if (status!=="Deleted")
+								tr+= "<button onclick=\"deleteStatus('"+result.id+"')\">Delete</button>";
+								console.log(tr);
+							$("#"+result.id).html(tr);
+			            });
+
 						table += tr+"</td></tr>";
+
 				    }
 				    table+="</table>";
 				    $("#listMerchant").html(table);
@@ -202,32 +212,6 @@
 				    $("#listMerchant").show();
 	            }
 	        });
-		    
-			$.get("request/merchantList",function(result){
-				var data = JSON.parse(result)
-				var table = "<table class=\"table table-striped\">";
-				for (var a=0;a<data.length; a++) {
-					var tr = "<tr>";
-					tr+= "<td>"+data[a].merchantName+"</td><td>";
-					var status = data[a].status;
-					if(status==="UnderReview") {
-						tr+= "<button onclick=\"accept("+data[a].id+")\">Accept</button>";
-						tr+= "<button onclick=\"reject("+data[a].id+")\">Reject</button>";
-					} else if(status==="Accepted") {
-						tr+= "<button onclick=\"blackList("+data[a].id+")\">BlackList</button>";
-					} else if (status==="Rejected") {
-						tr+= "<button onclick=\"accept("+data[a].id+")\">Accept</button>";
-					} else if (status==="Frozen") {
-						tr+= "<button onclick=\"removeBlackList("+data[a].id+")\">Remove Blacklist</button>";
-					}
-					if (status!=="Deleted")
-						tr+= "<button onclick=\"delete("+data[a].id+")\">Delete</button>";
-					table += tr+"</td></tr>";
-			    }
-			    table+="</table>";
-			    $("#listMerchant").html(table);
-			})
-		    
 		});
         $(".nav a").on("click", function () {
             $(".nav").find(".active").removeClass("active");
@@ -239,6 +223,11 @@
      		}
             $('section[data-index="' + $(this).parent().attr("data-index") + '"]').show();
         });
+        function updateStatus(targetId,targetStatus) {
+            $.get("admin/updateStatus",{id:targetId,status:targetStatus},function(data){
+            	$("#home a").trigger("click");
+            });  
+        }
     </script>
 </body>
 

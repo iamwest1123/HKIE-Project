@@ -66,7 +66,7 @@
 			 e.preventDefault();
 		        $.ajax({
 		            type:'POST',
-		            url:'loginAdmin',
+		            url:'admin/login',
 		            data:{loginName:$("[name=loginName]").val(),password:$("[name=password]").val()}
 		        }).done(function(result){
                     if(result.status==="success") {
