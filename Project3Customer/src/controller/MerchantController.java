@@ -44,4 +44,11 @@ public class MerchantController {
 	public List<MerchantVo> showAllMerchants(){		
 		return mm.findAll();	
 	}
+	
+	@RequestMapping(value="loadMerchant")
+	@ResponseBody
+	public MerchantVo loadMerchant(String merchantId){
+		MerchantVo mvo = mm.loadMerchant(merchantId);
+		return mvo;
+	}
 }

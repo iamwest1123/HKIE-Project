@@ -79,8 +79,32 @@ public class MerchantManagerImpl implements MerchantManager{
 
 	@Override
 	@Transactional
-	public Merchant loadMerchant(String id) {
-		return md.loadMerchant(id);
+	public MerchantVo loadMerchant(String id) {
+		Merchant m = md.loadMerchant(id);
+		Merchant m1=new Merchant();
+		MerchantVo mvo = null;
+		
+		try {
+			BeanUtils.getProperty(m, "commentList");					
+			
+			for (Comment cm : m.getCommentList()){					
+				BeanUtils.getProperty(cm.getCustomer(), "addressList");			
+				BeanUtils.getProperty(cm.getCustomer(), "customerOrderList");					
+			}
+			
+			BeanUtils.getProperty(m, "dishList");
+			BeanUtils.getProperty(m, "customerOrderList");
+			
+			BeanUtils.copyProperties(m1, m);
+			
+			mvo = new MerchantVo(m1);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();							
+		}				
+		
+		return mvo;
 	}
 
 }
