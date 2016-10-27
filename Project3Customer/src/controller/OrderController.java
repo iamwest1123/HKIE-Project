@@ -60,6 +60,12 @@ public class OrderController {
 	 	om.updateCustomerOrder(o);
 	}
 	
+	@RequestMapping(value="/delOrder",method = RequestMethod.POST)
+	@ResponseBody
+	public void delOrder(String id){
+	 	om.delOrder(id);
+	}
+	
 	@RequestMapping(value="/updateStatus",method = RequestMethod.POST)
 	@ResponseBody
 	public void updateOrders(String id, String status, Date deliveryDate){

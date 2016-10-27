@@ -14,6 +14,7 @@ public interface OrderManager {
 	public List<CustomerOrder> findOrderByMerchants(Merchant m);
 	public List<CustomerOrder> findOrderByCustomer(Customer c);
 	public CustomerOrder loadOrder(String id);
+	public void delOrder(String id);
 	public void updateCustomerOrder(CustomerOrder co);
 	public void updateCustomerStatus(String id, String status, Date deliveryDate);
 	

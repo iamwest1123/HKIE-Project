@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- æ° Bootstrap æ ¸å¿ CSS æä»¶ -->
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+
+<!-- å¯éçBootstrapä¸»é¢æä»¶ï¼ä¸è¬ä¸ç¨å¼å¥ï¼ -->
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+
+<!-- jQueryæä»¶ãå¡å¿å¨bootstrap.min.js ä¹åå¼å¥ -->
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+<!-- ææ°ç Bootstrap æ ¸å¿ JavaScript æä»¶ -->
+<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+<meta charset="UTF-8">
+<title>Customer Register Form</title>
+
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+
+	<p>Customer Register Form</p>
+	<hr/>
+	
+	<form action="customer/addCustomer" method="post">
+		Name:<br>
+		<input id="name" name="name" /><br />
+		Gender(Boolean):<br>
+		<input id="gender" name="name" /><br />
+		Profile Picture:<br>
+		<input id="profilePic" name="profilePic" /><br />
+		Password:<br>
+		<input id="password" name="password" /><br />
+		Login Name:<br>
+		<input id="loginName" name="loginName" /><br />
+		<input id="status" type="hidden" name="status" /><br />
+		
+	</form>
+	
+	<button id="submit">Submit</button>
+	
+	<div id="result"></div>
+	
+	<script>
+        //onload
+        $(function(){
+            $("#submit").on("click", function(e){
+                $.ajax({
+                	
+                    type:'POST',
+                    url:'customer/addCustomer',
+                    data: {
+                    	name: $('#name').val(),                        
+                    	gender: $('#gender').val(), 
+                    	profilePic: $('#profilePic').val(), 
+                    	password: $('#password').val(), 
+                    	loginName: $('#loginName').val(), 
+                    	status: 'UnderReview',
+                    	
+                    }
+                }).done(function(msg){
+                    $('#result').append("<p>" +"Welcome "+ msg.name + "! Your registration is under reviewed. Please wait for admin further process. Thanks!" + "</p>");
+                });
+            });
+        });
+    </script>
+	
+	
+</body>
+</html>

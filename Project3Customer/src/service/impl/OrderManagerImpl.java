@@ -52,4 +52,10 @@ public class OrderManagerImpl implements OrderManager {
 		return cd.findAllByCustomer(c);
 	}
 
+	@Override
+	public void delOrder(String id) {
+		cd.delOrder(id);
+		
+	}
+
 }

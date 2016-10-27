@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import dao.CustomerOrderDao;
 import po.Customer;
 import po.CustomerOrder;
+import po.Dish;
 import po.Merchant;
 import util.ProjectConstant;
 
@@ -90,6 +91,13 @@ public class CustomerOrderDaoImpl implements CustomerOrderDao{
 	@Override
 	public CustomerOrder loadOrder(String id) {
 		return em.find(CustomerOrder.class, id);
+	}
+
+	@Override
+	@Transactional
+	public void delOrder(String id) {
+		CustomerOrder d=this.loadOrder(id);
+		d.setStatus(ProjectConstant.STATUS_DELETED);
 	}
 	
 
