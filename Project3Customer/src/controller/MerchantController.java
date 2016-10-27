@@ -84,7 +84,7 @@ public class MerchantController {
 			System.out.println(m.getLoginName() + m.getPassword());
 			Merchant merchant = mm.findAdminByUsernameAndPassword(m);
 			if (merchant != null) {
-				String result = getMerchant(merchant.getId());
+				String result = getMerchantStatus(merchant.getId());
 				return msm.createMessageStatus("success", result);
 			}
 			else
@@ -101,16 +101,27 @@ public class MerchantController {
 		return "redirect:login.html";
 	}
 	
-	private String getMerchant(String id) throws Exception{
+	private String getMerchantStatus(String id) throws Exception{
 		// like this?
 		Client client = Client.create();
 		client.setReadTimeout(1000);
 		MultivaluedMap<String, String> params=new MultivaluedMapImpl();
 		params.add("id", id);
-		WebResource wr = client.resource("http://localhost:8080/Project3Admin/test");
+		WebResource wr = client.resource("http://localhost:8080/Project3Admin/request/status");
 		String result = wr.queryParams(params).accept(MediaType.APPLICATION_JSON_TYPE).get(String.class);
 		System.out.println(result);
 		return result;
 	}	
 	
+	
+	private String requestAdv(String id) throws Exception{
+		// NOT YET FINISH...
+		Client client = Client.create();
+		client.setReadTimeout(1000);
+		MultivaluedMap<String, String> params=new MultivaluedMapImpl();
+		//params.add("id", id);
+		WebResource wr = client.resource("http://localhost:8080/Project3Admin/request/advertisement");
+		String result = wr.queryParams(params).accept(MediaType.APPLICATION_JSON_TYPE).get(String.class);
+		return result;
+	}
 }
