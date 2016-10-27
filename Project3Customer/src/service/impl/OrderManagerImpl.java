@@ -1,5 +1,6 @@
 package service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,12 @@ public class OrderManagerImpl implements OrderManager {
 	public void updateCustomerOrder(CustomerOrder co) {
 		cd.updateOrder(co);
 
+	}
+
+	@Override
+	public void updateCustomerStatus(String id, String status, Date deliveryDate) {
+		cd.updateOrderStatus(id, status, deliveryDate);
+		
 	}
 
 }
