@@ -70,4 +70,9 @@ public class CustomerManagerImpl implements CustomerManager {
 		return cvo;
 	}
 
+	@Override
+	public Customer load(String customerId) {
+		return cd.loadCustomer(customerId);
+	}
+
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dao.CustomerOrderDao;
+import po.Customer;
 import po.CustomerOrder;
 import po.Merchant;
 import service.OrderManager;
@@ -44,6 +45,11 @@ public class OrderManagerImpl implements OrderManager {
 	public void updateCustomerStatus(String id, String status, Date deliveryDate) {
 		cd.updateOrderStatus(id, status, deliveryDate);
 		
+	}
+
+	@Override
+	public List<CustomerOrder> findOrderByCustomer(Customer c) {
+		return cd.findAllByCustomer(c);
 	}
 
 	@Override
