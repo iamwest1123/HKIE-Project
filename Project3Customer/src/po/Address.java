@@ -11,6 +11,8 @@ import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name="addresses")
 public class Address {
@@ -27,6 +29,7 @@ public class Address {
 	
 	@ManyToOne
 	@JoinColumn(name="CUSTOMER_ID")
+	@JsonManagedReference
 	private Customer customer;
 	
 	public String getId() {
