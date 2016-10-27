@@ -12,13 +12,13 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name="ADMIN_STATUS")
 public class AdminStatus {
 	
-	@Column(length=8)
+	@Column(length=30)
 	String type; //(Customer/ Merchant)
 	
 	@Id
 	String id;
 	
-	@Column(length=7)
+	@Column(length=30)
 	String status; //(active/pending/frozen)
 	
 	public String getType() {
