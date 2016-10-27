@@ -82,8 +82,9 @@ public class CustomerOrderDaoImpl implements CustomerOrderDao{
 
 	@Override
 	public List<CustomerOrder> findAllByMerchant(Merchant m) {
-		return em.createQuery("select o from CustomerOrder o where o.merchant = :mid")
+		return em.createQuery("select o from CustomerOrder o where o.merchant = :mid and not o.status=:st")
 				.setParameter("mid", m)
+				.setParameter("st", ProjectConstant.STATUS_DELETED)
 				.setMaxResults(100)
 				.getResultList();
 	}

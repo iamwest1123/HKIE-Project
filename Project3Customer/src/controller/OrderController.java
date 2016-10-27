@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.tomcat.jni.Mmap;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -19,6 +20,7 @@ import po.Customer;
 import po.CustomerOrder;
 import po.Dish;
 import service.CustomerManager;
+import service.MerchantManager;
 import service.OrderManager;
 
 @Controller
@@ -29,11 +31,18 @@ public class OrderController {
 	OrderManager om;
 	@Autowired
 	CustomerManager cm;
+	@Autowired
+	MerchantManager mm;
 	
 	@RequestMapping(value="/showOrder")
 	@ResponseBody
-	public List<CustomerOrder> showAllOrders(){
-		List<CustomerOrder> list=om.findAll();
+	public List<CustomerOrder> showAllOrders(HttpServletRequest request){
+		
+		HttpSession ses = request.getSession();
+		String id = (String)ses.getAttribute("mid");
+		System.out.println(id);
+//		List<CustomerOrder> list=om.findAll();
+		List<CustomerOrder> list=om.findOrderByMerchants(mm.loadMerchant1(id));
 		List<CustomerOrder> ds=new ArrayList<CustomerOrder>();
 		for(CustomerOrder d:ds){
 			CustomerOrder d1=new CustomerOrder();

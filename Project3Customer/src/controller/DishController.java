@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -57,9 +58,12 @@ public class DishController {
 	
 	@RequestMapping(value="/addDishes",method={RequestMethod.POST})
 	@ResponseBody
-	public void addDishes(Dish dish){
+	public void addDishes(Dish dish,HttpServletRequest request){
 		
-		Merchant m=mm.loadMerchant1("4028b88157fffa970157fffa9b510000");
+		HttpSession ses = request.getSession();
+		String id = (String)ses.getAttribute("mid");
+		
+		Merchant m=mm.loadMerchant1(id);
 		dish.setStatus(ProjectConstant.STATUS_ACCEPTED);
 		dish.setMerchant(m);
 		dm.addDish(dish);
