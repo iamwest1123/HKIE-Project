@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import dao.AdminAdvertDao;
 import po.AdminAdvert;
@@ -17,6 +18,7 @@ public class AdminAdvertDaoImpl implements AdminAdvertDao {
 	private EntityManager em;
 
 	@Override
+	@Transactional
 	public void addAdminAdv(AdminAdvert a) {
 		em.persist(a);
 	}
