@@ -1,12 +1,14 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import po.CustomerOrder;
@@ -31,6 +33,19 @@ public class OrderController {
 		ds.add(d1);
 		}
 		return list;
+	}
+	
+	
+	@RequestMapping(value="/updateOrder",method = RequestMethod.POST)
+	@ResponseBody
+	public void updateOrders(CustomerOrder o){
+	 	om.updateCustomerOrder(o);
+	}
+	
+	@RequestMapping(value="/updateStatus",method = RequestMethod.POST)
+	@ResponseBody
+	public void updateOrders(String id, String status, Date deliveryDate){
+	 	om.updateCustomerStatus( id, status, deliveryDate);
 	}
 	
 	@RequestMapping(value="/showTest")

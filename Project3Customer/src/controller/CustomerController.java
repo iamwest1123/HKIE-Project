@@ -12,14 +12,15 @@ import service.CustomerManager;
 import service.MessageStatusManager;
 
 @Controller
+@RequestMapping(value = "customer")
 public class CustomerController {
 
 	@Autowired
 	private CustomerManager cm;
 	@Autowired
 	private MessageStatusManager msm;
-	
-	@RequestMapping(value = "loginAdmin", method = RequestMethod.POST)
+
+	@RequestMapping(value = "login", method = RequestMethod.POST)
 	@ResponseBody
 	public MessageStatus login(Customer c) throws Exception {
 		if (cm.isExist(c)) {
@@ -36,5 +37,5 @@ public class CustomerController {
 	public String logout() {
 		return "redirect:login.html";
 	}
-	
+
 }

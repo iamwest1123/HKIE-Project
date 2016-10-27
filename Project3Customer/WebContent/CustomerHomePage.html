@@ -39,6 +39,12 @@
         margin-bottom: 20px;
     }
     
+    
+    .carousel-caption{
+        color: blueviolet;
+        font-size: 40px;
+    }
+    
 </style>
 </head>
 <body>
@@ -53,7 +59,7 @@
       <a class="navbar-brand" href="#">Menu</a>
       
        <ul class="nav navbar-nav">
-        <li class="active"><a href="MerchantEditProfile.html">Edit Profile <span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="CustomerEditProfile.html">Edit Profile <span class="sr-only">(current)</span></a></li>
         <li class="active"><a href="CustomerHomePage.html">Customer Homepage <span class="sr-only">(current)</span></a></li>
          <li class="active"><a href="#">View Customer Order <span class="sr-only">(current)</span></a></li>
           <li><a href="#">You have successfully login as a Merchant!</a></li>
@@ -81,20 +87,20 @@
   <div class="carousel-inner" role="listbox">
     <div class="item active">
       <img src="images/kobe.jpg" alt="adv1">
-      <div class="carousel-caption">
-        Advertisement 1
+      <div class="carousel-caption" >
+        <a id="adv1Link">Kobe dinner at <span id="adv1Text"></span></a>
       </div>
     </div>
     <div class="item">
       <img src="images/curry.jpg" alt="adv2">
       <div class="carousel-caption">
-        Advertisement 2
+          <a id="adv2Link">Curry dinner at <span id="adv2Text"></span></a>
       </div>
     </div> 
     <div class="item">
       <img src="images/kobe.jpg" alt="adv3">
       <div class="carousel-caption">
-        Advertisement 3
+          <a id="adv3Link">Kobe dinner at <span id="adv3Text"></span></a>
       </div>
     </div>   
   </div>
@@ -116,6 +122,49 @@
 <script>
 //    adding table
     $(function(){
+        
+        var arrMerchants = [];        
+        
+        $.ajax({
+            type:'GET',
+            url:'advert/chooseAdvert',            
+        }).done(function(msg){
+            var arrMerchantVO = JSON.parse(msg);
+            var arrMerchantIds = [];
+            
+            arrMerchantVO.forEach(function(item){
+                arrMerchantIds.push(item.merchantId);
+            });
+          
+            arrMerchantIds.forEach(function(item){                                
+                $.ajax({
+                    type: 'GET',
+                    url: 'merchant/loadMerchant',
+                    data: {
+                        merchantId: item
+                    }
+                }).done(function(msg){         
+                    
+                    var merchantName = msg.merchantName;
+                    var merchantId = msg.id;
+                    
+                    arrMerchants.push({
+                        id: merchantId,
+                        name: merchantName
+                    });                       
+                    
+                    $('#adv1Text').html(arrMerchants[0].name);
+                    $('#adv1Link').attr('href', "ShoppingPage.html?" + arrMerchants[0].id);
+                    
+                    $('#adv2Text').html(arrMerchants[1].name);
+                    $('#adv2Link').attr('href', "ShoppingPage.html?" + arrMerchants[1].id);
+                    
+                    $('#adv3Text').html(arrMerchants[2].name);
+                    $('#adv3Link').attr('href', "ShoppingPage.html?" + arrMerchants[2].id);
+                });                
+            });
+        });
+        
         
 //           $("button").click(function(){
        $.getJSON('merchant/showMerchant', { get_param: 'value' }, function(data) {

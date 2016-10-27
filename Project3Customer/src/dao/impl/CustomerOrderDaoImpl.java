@@ -1,5 +1,6 @@
 package dao.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -33,11 +34,23 @@ public class CustomerOrderDaoImpl implements CustomerOrderDao{
 		CustomerOrder o2 = em.getReference(CustomerOrder.class, o.getId());
 		// TODO copy o to o2
 		o2.setComment(o.getComment());
-		o2.setDishes(o.getDishes());
+		//o2.setDishes(o.getDishes());
 		o2.setReceiveDate(o.getReceiveDate());
 		o2.setDeliverDate(o.getDeliverDate());
 		o2.setOrderDate(o.getOrderDate());
 		o2.setStatus(o.getStatus());
+		em.persist(o2);
+		return false;
+	}
+	
+	@Override
+	@Transactional
+	public boolean updateOrderStatus(String id, String status, Date deliveryDate) {
+		CustomerOrder o2 = em.find(CustomerOrder.class, id);
+		// TODO copy o to o2
+		//o2.setDishes(o.getDishes());
+		o2.setDeliverDate(deliveryDate);
+		o2.setStatus(status);
 		em.persist(o2);
 		return false;
 	}
@@ -52,7 +65,8 @@ public class CustomerOrderDaoImpl implements CustomerOrderDao{
 	
 	@Override
 	public List<CustomerOrder> findAll() {
-		return em.createQuery("select o from CustomerOrder o")
+		return em.createQuery("select o from CustomerOrder o where not o.status = :st")
+				.setParameter("st", ProjectConstant.STATUS_DELETED)
 				.setMaxResults(100)
 				.getResultList();
 	}

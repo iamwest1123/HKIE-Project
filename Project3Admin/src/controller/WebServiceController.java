@@ -14,30 +14,33 @@ import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.core.util.MultivaluedMapImpl;
 
+import po.AdminAdvert;
 import po.AdminStatus;
+import service.AdminAdvertManager;
 import service.AdminStatusManager;
 
 @Controller
+@RequestMapping(value="request")
 public class WebServiceController {
 
 	@Autowired
-	private AdminStatusManager am;
+	private AdminStatusManager asm;
+	@Autowired
+	private AdminAdvertManager aam;
 	
-	@RequestMapping(value="test",method=RequestMethod.GET)
+	@RequestMapping(value="status",method=RequestMethod.GET)
 	@ResponseBody
-	public String getMerchant(String id) throws Exception{
-//		Client client = Client.create();
-//		client.setReadTimeout(1000);
-//		WebResource wr = client.resource("http://localhost:8080/...");
-//		
-//		String result = wr
-//				.accept(MediaType.APPLICATION_JSON_TYPE)				
-//				.get(String.class);
-//		
-//		return result;
+	public String getMerchantStatus(String id) throws Exception{
 		ObjectMapper om = new ObjectMapper();
-		AdminStatus as = am.checkStatus(id);
+		AdminStatus as = asm.checkStatus(id);
 		return om.writeValueAsString(as);
+	}
+	
+	@RequestMapping(value="advertisement") 
+	@ResponseBody
+	public String requestForAdv(AdminAdvert adv) throws Exception{
+		//...
+		return null;
 	}
 	
 }
