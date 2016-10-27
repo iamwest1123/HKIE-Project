@@ -13,7 +13,7 @@ import po.AdminAdvert;
 @Controller
 public class AdminAdvertController {
 
-	@RequestMapping(value = "loginAdmin", method = RequestMethod.POST)
+	@RequestMapping(value="chooseAdvert", method=RequestMethod.GET)
 	@ResponseBody
 	public List<AdminAdvert> chooseAdvert(){
 		AdminAdvert ad1 = new AdminAdvert();
