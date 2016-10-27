@@ -17,4 +17,5 @@ public interface CustomerOrderDao {
 	public List<CustomerOrder> findAllByMerchant(Merchant m);
 	public boolean updateOrderStatus(String id, String status, Date deliveryDate);
 	public void delOrder(String id);
+	public boolean updateComment(String comment, double rating, String orderID);
 }

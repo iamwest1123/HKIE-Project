@@ -76,13 +76,14 @@ public class OrderController {
 	
 	@RequestMapping(value="/updateStatus",method = RequestMethod.POST)
 	@ResponseBody
-	public void updateOrders(String id, String status, Date deliveryDate, HttpServletRequest request){
-		
-		HttpSession ses = request.getSession();
-		System.out.println("sss");
-		System.out.println(ses.getAttribute("test"));
-		System.out.println(ses.getAttribute("mid"));		
-	 	//om.updateCustomerStatus( id, status, deliveryDate);
+	public void updateOrders(String id, String status, Date deliveryDate){	
+	 	om.updateCustomerStatus( id, status, deliveryDate);
+	}
+	
+	@RequestMapping(value="updateComment")
+	@ResponseBody
+	public void updateComment(String orderId, String comment, double rating){
+		om.updateComment(comment, rating, orderId);
 	}
 	
 	@RequestMapping(value="/showTest")

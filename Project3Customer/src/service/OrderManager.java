@@ -17,5 +17,5 @@ public interface OrderManager {
 	public void delOrder(String id);
 	public void updateCustomerOrder(CustomerOrder co);
 	public void updateCustomerStatus(String id, String status, Date deliveryDate);
-	
+	public void updateComment(String comment, double rating, String orderId);
 }

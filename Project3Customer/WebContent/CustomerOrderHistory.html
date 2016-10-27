@@ -85,8 +85,8 @@
                                                                       $('<th></th>').addClass('col-md-2 col-xs-2').text("SHOP NAME"),
                                                                       $('<th></th>').addClass('col-md-3 col-xs-3').text("STATUS"),
                                                                       $('<th></th>').addClass('col-md-2 col-xs-2').text("DISHES"),
-                                                                      $('<th></th>').addClass('col-md-2 col-xs-2').text(""),
-                                                                      $('<th></th>').addClass('col-md-3 col-xs-3').text("")
+                                                                      $('<th></th>').addClass('col-md-2 col-xs-2').text("RECEIVED"),
+                                                                      $('<th></th>').addClass('col-md-3 col-xs-3').text("COMMENT")
                                                                      ),
                                                warningRow);
 
@@ -118,7 +118,8 @@
             });
         
         
-            var receivebutton = $('<td></td>').append('<button></button>').addClass("btn btn-primary").text("I RECEIVED")
+            var receiveTd = $('<td></td>');
+            var receivebutton = $('<button></button>').addClass("btn btn-primary").text("RECEIVED")
                                                                                 .on("click",function(e){  
                                                                                         $.ajax({
                                                                                                 type:'POST',
@@ -132,22 +133,43 @@
                                                                                                 location.reload();
                                                                                             });});
         
+            receiveTd.append(receivebutton);
+        
             if (element.status != "Delivered"){
-                receivebutton = $('<td></td>').text(" ");
+                receiveTd = $('<td></td>').text(" ");
             }
         
-            var commentbuttom = $('<td></td>').append('<button></button>').addClass("btn btn-primary").text("COMMENT")
-                                                                                .on("click",function(e){  
-                                                                                        $.ajax({
-                                                                                                type:'POST',
-                                                                                                url:'dish/delDishes',
-                                                                                                data:{id:element.id}
-                                                                                            }).done(function(msg){
-                                                                                              row.remove();
-                                                                                            });});
+            var commentTd = $('<td></td>')
+            
+            var commentBoxes = $('<div></div>');
+            var commentArea = $('<textarea></textarea>').attr('id', 'comment' + element.id).attr('placeholder', 'comment');
+            var ratingArea = $('<input></input>').attr('id', 'rating' + element.id).attr('placeholder', 'rating');
+            commentBoxes.append(commentArea).append(ratingArea);
         
+            commentTd.append(commentBoxes);
+            
+            var commentButton = $('<button></button>').addClass("btn btn-primary").text("COMMENT")
+                                                                                .on("click",function(e){  
+                                                                                    $.ajax({
+                                                                                                type:'POST',
+                                                                                                url:'order/updateComment',
+                                                                                                data:{
+                                                                                                    comment: $('#comment' + element.id).val(),
+                                                                                                    rating: parseFloat($('#rating' + element.id).val()),
+                                                                                                    orderId: element.id
+                                                                                                }
+                                                                                            }).done(function(msg){                  
+                                                                                                location.reload();
+                                                                                            });
+                                                                                });
+            
+            commentTd.append(commentButton);
+            
+            console.log(element.comment);
             if (element.status != "Received"){
-                commentbuttom = $('<td></td>').text(" ");
+                commentTd = $('<td></td>').text(" ");
+            }else if (element.comment != null){
+                commentTd = $('<td></td>').text(element.comment.comment);
             }
             
     
@@ -155,8 +177,8 @@
                                             $('<td></td>').text(element.merchant.shopName),
                                             $('<td></td>').text(element.status),
                                             $('<td></td>').text(dstr),                                            
-                                            receivebutton,                                            
-                                            commentbuttom
+                                            receiveTd,                                            
+                                            commentTd
                                            );
             body.append(row);
          
