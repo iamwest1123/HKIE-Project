@@ -90,7 +90,7 @@ public class MerchantController {
 				String result = getMerchantStatus(merchant.getId());
 				
 				HttpSession ses = request.getSession();
-				ses.setAttribute("mid", merchant.getId());				
+				ses.setAttribute(ProjectConstant.SESSION_ATTRIBUTE_MERCHANT_ID, merchant.getId());				
 				
 				return msm.createMessageStatus("success", result);
 			} else

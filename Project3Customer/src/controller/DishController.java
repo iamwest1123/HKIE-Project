@@ -35,7 +35,7 @@ public class DishController {
 	public List<Dish> showAllDishes(HttpServletRequest request){		
 		
 		HttpSession ses = request.getSession();
-		String id = (String)ses.getAttribute("mid");
+		String id = (String)ses.getAttribute(ProjectConstant.SESSION_ATTRIBUTE_MERCHANT_ID);
 		
 //		List<Dish> list=dm.findAll();
 		List<Dish> list=dm.findDishByMerchants(mm.loadMerchant1(id));
