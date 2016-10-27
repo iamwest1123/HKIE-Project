@@ -158,10 +158,10 @@ public class MerchantController {
 		
 		@RequestMapping(value="applyAds")
 		@ResponseBody
-		public String applyAds(String id,HttpServletRequest request){
+		public void applyAds(HttpServletRequest request){
 
 			HttpSession ses = request.getSession();
-			ses.setAttribute(ProjectConstant.SESSION_ATTRIBUTE_MERCHANT_ID, merchant.getId());		
+			String id = (String)ses.getAttribute(ProjectConstant.SESSION_ATTRIBUTE_MERCHANT_ID);	
 			mm.applyAdv(id);
 			
 		}
