@@ -1,270 +1,285 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<!-- 新 Bootstrap 核心 CSS 文件 -->
-<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
 
-<!-- 可选的Bootstrap主题文件（一般不用引入） -->
-<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
 
-<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
 
-<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<!--[if lte IE 8]><script src="js/ie/html5shiv.js"></script><![endif]-->
-<link rel="stylesheet" href="css/main.css" />
-<!--[if lte IE 9]><link rel="stylesheet" href="css/ie9.css" /><![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="css/main.css" />
+    <!--[if lte IE 9]><link rel="stylesheet" href="css/ie9.css" /><![endif]-->
 
 
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-<style>
-    body{
-  padding:20px 20px;
-}
+    <meta charset="ISO-8859-1">
+    <title>Insert title here</title>
+    <style>
 
-.results tr[visible='false'],
-.no-result{
-  display:none;
-}
-
-.results tr[visible='true']{
-  display:table-row;
-}
-
-.counter{
-  padding:8px; 
-  color:#ccc;
-}
-
-    #addDish{
-        margin-top: 10px;
-        margin-bottom: 20px;
-    }
-    
-</style>
+        
+        .results tr[visible='false'],
+        .no-result {
+            display: none;
+        }
+        
+        .results tr[visible='true'] {
+            display: table-row;
+        }
+        
+        .counter {
+            padding: 8px;
+            color: #ccc;
+        }
+        
+        #addDish {
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+                a {
+            text-decoration: none;
+        }
+        
+        table {
+        	margin-top:10px !important;
+        	width:92% !important;
+        }
+        #dishContent, table {
+            margin: 0px 50px 0px 50px;
+        }
+       
+    </style>
 </head>
+
 <body>
 
-<nav class="navbar navbar-default">
- <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Menu</a>
-      
-       <ul class="nav navbar-nav">
-        <li class="active"><a href="MerchantEditProfile.html">Edit Profile <span class="sr-only">(current)</span></a></li>
-        <li class="active"><a href="ShowDish.html">Dishes Management <span class="sr-only">(current)</span></a></li>
-         <li class="active"><a href="ShowOrder.html">View Customer Order <span class="sr-only">(current)</span></a></li>
-           <li class="active" id="apply"><a href="merchant/applyAds">Apply Ads <span class="sr-only">(current)</span></a></li>
-            <li class="active" ><a href="merchant/logout">Logout <span class="sr-only">(current)</span></a></li>
-         
-          <li><a href="#">You have successfully login as a Merchant!</a></li>
-     </ul>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">COMEBUYFOOD</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="MerchantEditProfile.html">Main</a></li>
+                    <li class="active"><a href="ShowDish.html">Dishes Management <span
+							class="sr-only">(current)</span></a></li>
+                    <li><a href="ShowOrder.html">View Customer Order <span
+							class="sr-only">(current)</span></a></li>
+                    <li id="apply"><a href="merchant/applyAds">Apply Ads <span
+							class="sr-only">(current)</span></a></li>
+                    <li><a href="merchant/logout">Logout <span class="sr-only">(current)</span></a></li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </nav>
+ <div style="padding-top: 51px;">
+    <section id="banner">
+        <div class="inner split">
+            <section>
+                <h2>Dish Management</h2>
+            </section>
+            <section>
+                <p>Do you feel that the number of client is not enough? Don't worry! COMEBUYFOOD can save your life!!!More than 100000+ customers are preparing for buying your dishes!</p>
+            </section>
+        </div>
+    </section>
+
+    <hr/>
+	<div id="dishContent">
+    <button id="add" type="button" class="btn btn-success">Add Dish</button>
+
+    <div class="form-group pull-right">
+        <input type="text" class="search form-control" placeholder="Search here">
     </div>
-</nav>
+    <span class="counter pull-right"></span>
 
-<section id="banner">
-				<div class="inner split">
-					<section>
-						<h2>Dish Management</h2>
-					</section>
-					<section>
-						<p>Do you feel that the number of client is not enough? Don't worry! COMEBUYFOOD can save your life!!!More than 100000+ customers are preparing for buying your dishes!</p>
-					</section>
-				</div>
-			</section>
-
-	<hr/>
-	
-<button id="add" type="button" class="btn btn-success">Add Dish</button>
-
-<div class="form-group pull-right">
-    <input type="text" class="search form-control" placeholder="Search here">
-</div>
-<span class="counter pull-right"></span>
-   
     <div style="display:none" id="addForm">
-       <form action="dish/addDishes" method = "post"  id="addDish"  onsubmit="setTimeout(function () { window.location.reload(); }, 10)">
-          <div class="form-group">
-            <label for="exampleTextarea">Dish Name</label>
-             <input type="text" class="form-control" placeholder="food" id="dishName" name="name">
-          </div>
-          
-          <div class="form-group">
-            <label for="exampleTextarea">Description</label>
-             <input type="text" class="form-control" placeholder="description" id="dishDescription" name="description">
-          </div>
-          
-           <div class="form-group">
-            <label for="exampleTextarea">Category</label>
-             <input type="text" class="form-control" placeholder="e.g. fastfood" id="dishCategory" name="category">
-          </div>
-          
-          <div class="form-group">
-            <label for="exampleTextarea">Price</label>
-             <input type="number" class="form-control" placeholder="price" id="dishPrice" name="price">
-          </div>
-          
-          
+        <form action="dish/addDishes" method="post" id="addDish" onsubmit="setTimeout(function () { window.location.reload(); }, 10)">
+            <div class="form-group">
+                <label for="exampleTextarea">Dish Name</label>
+                <input type="text" class="form-control" placeholder="food" id="dishName" name="name">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleTextarea">Description</label>
+                <input type="text" class="form-control" placeholder="description" id="dishDescription" name="description">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleTextarea">Category</label>
+                <input type="text" class="form-control" placeholder="e.g. fastfood" id="dishCategory" name="category">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleTextarea">Price</label>
+                <input type="number" class="form-control" placeholder="price" id="dishPrice" name="price">
+            </div>
+
+
             <div class="form-group">
                 <label for="exampleInputFile">File input</label>
                 <input type="file" class="form-control-file" id="dishPic" name="dishPic" aria-describedby="fileHelp">
                 <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
-              </div>
-              
-              <button type="submit" class="btn btn-primary">Submit</button>
-<!--
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <!--
            <input type="text">
            <input type="text">
            <input type="text">
            <input type="text">
            <input type="text">
 -->
-       </form>
-        
-        
+        </form>
+
+
     </div>
 
 
 
-<script>
-    
-     $("#apply").on("click",function(e){
-            e.preventDefault();
-             $.ajax({
-                                                                                                type:'POST',
-                                                                                                url:'merchant/applyAds'
-                                                                                               
-                                                                                            }).done(function(msg){
-                                                                                             
-                                                                                            });
-            alert("Success");
-        })
-//    adding table
-    $(function(){
-        
-//           $("button").click(function(){
-       $.getJSON('dish/showDishes', { get_param: 'value' }, function(data) {
-     var table = $('<table></table>').addClass('table table-hover table-bordered results');
-             var warningRow=$('<tr></tr>').addClass('warning no-result').append($('<td colspan="5"></td>').append($('<i class="fa fa-warning"></i>')).text("No result"));
-           var head=$('<thead></thead>').append($('<tr></tr>').append($('<th></th>').text("#"),
-                                                                      $('<th></th>').addClass('col-md-2 col-xs-2').text("NAME"),
-                                                                      $('<th></th>').addClass('col-md-3 col-xs-3').text("DESCRIPTION"),
-                                                                      $('<th></th>').addClass('col-md-2 col-xs-2').text("CATEGORY"),
-                                                                      $('<th></th>').addClass('col-md-2 col-xs-2').text("PRICE"),
-                                                                      $('<th></th>').addClass('col-md-3 col-xs-3').text("REMOVE")
-                                                                     ),
-                                               warningRow);
-//           var r=$('<th></th>').addClass('col-md-5 col-xs-5').text("NAME");
-//           var r2=$('<th></th>').addClass('col-md-4 col-xs-4').text("DESCRIPTION");
-           table.append(head);
-           var body=$('<tbody></tbody>');
-           
-         
-           
-//           body.append(warningRow);
-           
-           
-          
-      
-//           table.append(r2);
-           var i=0
-    $.each(data, function(index, element) {
-//        $('body').append($('<div>', {
-//            text: element.name
-//        }));
-       //create table
-            ++i;
-    
-            var row = $('<tr></tr>').append($('<td></td>').text(i),
-                                            $('<td></td>').text(element.name),
-                                            $('<td></td>').text(element.description),
-                                            $('<td></td>').text(element.category),
-                                            $('<td></td>').text(element.price),
-                                            $('<td></td>').append('<button></button>').addClass("btn btn-danger").text("REMOVE")
-                                                                                .on("click",function(e){  
-                                                                                        $.ajax({
-                                                                                                type:'POST',
-                                                                                                url:'dish/delDishes',
-                                                                                                data:{id:element.id}
-                                                                                            }).done(function(msg){
-                                                                                              row.remove();
-                                                                                            });})
-                                            
-                                            
-                                           
-                                           );
-            body.append(row);
-         
-
-
-        
-    });
-           table.append(body);
-           $('body').append(table);
-});
-
-        
-    })
-    
-    
-    
-    </script>
-    
-    
     <script>
-     $(function(){
-       
-         $("#add").on("click",function(e){
-            $("#addForm").toggle();
-         });
-         
-         
-         
-     })
-    
-    
+        $("#apply").on("click", function (e) {
+                e.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: 'merchant/applyAds'
+
+                }).done(function (msg) {
+
+                });
+                alert("Success");
+            })
+            //    adding table
+        $(function () {
+
+            //           $("button").click(function(){
+            $.getJSON('dish/showDishes', {
+                get_param: 'value'
+            }, function (data) {
+                var table = $('<table></table>').addClass('table table-hover table-bordered results');
+                var warningRow = $('<tr></tr>').addClass('warning no-result').append($('<td colspan="5"></td>').append($('<i class="fa fa-warning"></i>')).text("No result"));
+                var head = $('<thead></thead>').append($('<tr></tr>').append($('<th></th>').addClass('col-md-1').text("#"),
+                        $('<th></th>').addClass('col-md-1').text("NAME"),
+                        $('<th></th>').addClass('col-md-1').text("DESCRIPTION"),
+                        $('<th></th>').addClass('col-md-1').text("CATEGORY"),
+                        $('<th></th>').addClass('col-md-1').text("PRICE"),
+                        $('<th></th>').addClass('col-md-1').text("REMOVE")
+                    ),
+                    warningRow);
+                //           var r=$('<th></th>').addClass('col-md-5 col-xs-5').text("NAME");
+                //           var r2=$('<th></th>').addClass('col-md-4 col-xs-4').text("DESCRIPTION");
+                table.append(head);
+                var body = $('<tbody></tbody>');
+
+
+
+                //           body.append(warningRow);
+
+
+
+
+                //           table.append(r2);
+                var i = 0
+                $.each(data, function (index, element) {
+                    //        $('body').append($('<div>', {
+                    //            text: element.name
+                    //        }));
+                    //create table
+                    ++i;
+
+                    var row = $('<tr></tr>').append($('<td></td>').text(i),
+                        $('<td></td>').text(element.name),
+                        $('<td></td>').text(element.description),
+                        $('<td></td>').text(element.category),
+                        $('<td></td>').text(element.price),
+                        $('<td></td>').append('<button></button>').addClass("btn btn-danger").text("REMOVE")
+                        .on("click", function (e) {
+                            $.ajax({
+                                type: 'POST',
+                                url: 'dish/delDishes',
+                                data: {
+                                    id: element.id
+                                }
+                            }).done(function (msg) {
+                                row.remove();
+                            });
+                        })
+
+
+
+                    );
+                    body.append(row);
+
+
+
+
+                });
+                table.append(body);
+                $('body').append(table);
+            });
+
+
+        })
     </script>
 
-<script>
 
-    $(document).ready(function() {
-  $(".search").keyup(function () {
-    var searchTerm = $(".search").val();
-    var listItem = $('.results tbody').children('tr');
-    var searchSplit = searchTerm.replace(/ /g, "'):containsi('")
-    
-  $.extend($.expr[':'], {'containsi': function(elem, i, match, array){
-        return (elem.textContent || elem.innerText || '').toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
-    }
-  });
-    
-  $(".results tbody tr").not(":containsi('" + searchSplit + "')").each(function(e){
-    $(this).attr('visible','false');
-  });
+    <script>
+        $(function () {
 
-  $(".results tbody tr:containsi('" + searchSplit + "')").each(function(e){
-    $(this).attr('visible','true');
-  });
+            $("#add").on("click", function (e) {
+                $("#addForm").toggle();
+            });
 
-  var jobCount = $('.results tbody tr[visible="true"]').length;
-    $('.counter').text(jobCount + ' item');
 
-  if(jobCount == '0') {$('.no-result').show();}
-    else {$('.no-result').hide();}
-		  });
-});
-    
-    
-    
-</script>
+
+        })
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $(".search").keyup(function () {
+                var searchTerm = $(".search").val();
+                var listItem = $('.results tbody').children('tr');
+                var searchSplit = searchTerm.replace(/ /g, "'):containsi('")
+
+                $.extend($.expr[':'], {
+                    'containsi': function (elem, i, match, array) {
+                        return (elem.textContent || elem.innerText || '').toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
+                    }
+                });
+
+                $(".results tbody tr").not(":containsi('" + searchSplit + "')").each(function (e) {
+                    $(this).attr('visible', 'false');
+                });
+
+                $(".results tbody tr:containsi('" + searchSplit + "')").each(function (e) {
+                    $(this).attr('visible', 'true');
+                });
+
+                var jobCount = $('.results tbody tr[visible="true"]').length;
+                $('.counter').text(jobCount + ' item');
+
+                if (jobCount == '0') {
+                    $('.no-result').show();
+                } else {
+                    $('.no-result').hide();
+                }
+            });
+        });
+    </script>
+    </div>
+    </div>
 </body>
+
 </html>
