@@ -191,8 +191,8 @@
 		
 		function saveButtonOnClickListener(event) {
 			console.log('saveButtonOnClickListener');
-			console.log({shoppingItems:shoppingCart});
-			console.log(JSON.stringify({shoppingItems:shoppingCart}));
+//			console.log({shoppingItems:shoppingCart});
+//			console.log(JSON.stringify({shoppingItems:shoppingCart}));
 			$.ajax({
 				type:'POST',
 				url:'shop/setShoppingCart',
@@ -210,10 +210,10 @@
 			console.log('orderButtonOnClickListener');
 			$.ajax({
 				type:'POST',
-				url:'shop/setShoppingCart',
+				url:'shop/makeOrder',
 				data: {
 					merchantId: '4028b88157fffa970157fffa9b510000',
-					cart: shoppingCart
+					cartStr: JSON.stringify({shoppingItems:shoppingCart})
 				}
 			})
 			.done(function(msg){

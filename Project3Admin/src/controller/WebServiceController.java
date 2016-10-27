@@ -43,4 +43,14 @@ public class WebServiceController {
 		return null;
 	}
 	
+	@RequestMapping(value="merchantList")
+	@ResponseBody
+	private String getMerchantList() throws Exception {
+		Client client = Client.create();
+		client.setReadTimeout(100000);
+		WebResource wr = client.resource("http://localhost:8080/Project3Customer/merchant/getAll");
+		String result = wr.accept(MediaType.APPLICATION_JSON_TYPE).get(String.class);
+		return result;
+	}
+	
 }

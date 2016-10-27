@@ -69,6 +69,13 @@ public class MerchantManagerImpl implements MerchantManager{
 		
 		md.updateMerchantInfo(m);
 	}
+	
+	@Override
+	@Transactional
+	public void updateMerchantStatus(Merchant m) {
+		md.updateMerchantStatus(m);
+		
+	}
 
 	@Override
 	@Transactional
@@ -124,4 +131,6 @@ public class MerchantManagerImpl implements MerchantManager{
 	public Merchant findAdminByUsernameAndPassword(Merchant m) {
 		return md.findAdminByUsernameAndPassword(m);
 	}
+
+
 }
