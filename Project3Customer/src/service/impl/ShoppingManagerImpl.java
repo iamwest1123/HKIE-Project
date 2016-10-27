@@ -49,9 +49,12 @@ public class ShoppingManagerImpl implements ShoppingManager {
 	private AddressDao adao;
 
 	@Override
-	public boolean makeOrder(String merchantId, ShoppingCart cart, HttpSession session) {
+	public boolean makeOrder(String merchantId, String customerId, ShoppingCart cart, HttpSession session) {
 		CustomerOrder co = new CustomerOrder();
-		co.setCustomer(cdao.loadCustomer("4028b88157fffa970157fffa9b9e0002"));
+		if (customerId==null) 
+			co.setCustomer(cdao.loadCustomer("4028b88157fffa970157fffa9b9e0002"));
+		else 
+			co.setCustomer(cdao.loadCustomer(customerId));
 		co.setMerchant(mdao.loadMerchant(merchantId));
 		co.setOrderDate(new Date());
 		co.setStatus(ProjectConstant.DELIVERY_STATUS_ORDERED);
@@ -98,6 +101,15 @@ public class ShoppingManagerImpl implements ShoppingManager {
 	@Override
 	public List<Address> getCustomerAddress(String customerId) {
 		Customer c = cdao.loadCustomer(customerId);
-		return c.getAddressList();
+		List<Address> result = new ArrayList<Address>();
+		List<Address> tmpList = c.getAddressList();
+		Map<String, Boolean> tmpMap = new HashMap<String, Boolean>();
+		for (Address a:tmpList) {
+			if (!tmpMap.containsKey(a.getId())) {
+				tmpMap.put(a.getId(), true);
+				result.add(a);
+			}
+		}
+		return result;
 	}
 }

@@ -67,15 +67,21 @@ public class ShoppingController {
 	
 	@RequestMapping(value="makeOrder")
 	@ResponseBody
-	public boolean makeOrder(String merchantId, String cartStr, HttpSession session) {
+	public String makeOrder(String merchantId, String cartStr, HttpSession session) {
 		ShoppingCart cart;
+		String customerId;
 		try {
 			cart = mapper.readValue(cartStr, ShoppingCart.class);
+			Object obj = session.getAttribute(ProjectConstant.SESSION_ATTRIBUTE_CUSTOMER_ID);
+			if (obj==null)
+				customerId = null;
+			else
+				customerId = (String) obj;
+			sm.makeOrder(merchantId, customerId, cart, session);
 		} catch (IOException e) {
 			e.printStackTrace();
-			return false;
 		}
-		return sm.makeOrder(merchantId, cart, session);
+		return "redirect:CustomerOrderHistory.html";
 	}
 
 	@RequestMapping(value="getShopDishes")
@@ -98,7 +104,13 @@ public class ShoppingController {
 	
 	@RequestMapping(value="getCustomerAddress")
 	@ResponseBody
-	public List<Address> getCustomerAddress(String customerId) {
-		return sm.getCustomerAddress(customerId);
+	public List<Address> getCustomerAddress(HttpSession session) {
+		String customerId = null;
+		Object obj = session.getAttribute(ProjectConstant.SESSION_ATTRIBUTE_CUSTOMER_ID);
+		if (obj!=null) {
+			customerId = (String) obj;
+			return sm.getCustomerAddress(customerId);
+		} else
+			return null;
 	}
 }
