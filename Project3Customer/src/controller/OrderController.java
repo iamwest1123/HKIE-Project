@@ -32,4 +32,17 @@ public class OrderController {
 		}
 		return list;
 	}
+	
+	@RequestMapping(value="/showTest")
+	@ResponseBody
+	public CustomerOrder showTest(){
+		List<CustomerOrder> list=om.findAll();
+		List<CustomerOrder> ds=new ArrayList<CustomerOrder>();
+		for(CustomerOrder d:ds){
+			CustomerOrder d1=new CustomerOrder();
+			BeanUtils.copyProperties(d1, d);
+		ds.add(d1);
+		}
+		return list.get(2);
+	}
 }

@@ -31,8 +31,11 @@ public class AdminAdvert {
 	@Column(scale = 0)
 	double balance;
 
-	@Column(name = "START_DATE")
+	@Column(name="START_DATE")
 	Date startDate;
+	
+	@Column(name="EXPIRE_DATE")
+	Date expireDate;
 
 	@Override
 	public int hashCode() {
@@ -135,6 +138,4 @@ public class AdminAdvert {
 	public void setExpireDate(Date expireDate) {
 		this.expireDate = expireDate;
 	}
-
-	Date expireDate;
 }
