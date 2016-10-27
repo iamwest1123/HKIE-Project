@@ -49,28 +49,6 @@ public class ShoppingManagerImpl implements ShoppingManager {
 	private AddressDao adao;
 
 	@Override
-	public ShoppingCart getShoppingCart(String merchantId, HttpSession session) {
-		Object obj = session.getAttribute(ProjectConstant.SESSION_ATTRIBUTE_SHOPPING_CART);
-		if (obj==null)
-			return null;
-		Map<String,ShoppingCart> cartMap = (HashMap<String,ShoppingCart>) obj;
-		return cartMap.get(merchantId);
-	}
-	
-	@Override
-	public boolean setShoppingCart(String merchantId, ShoppingCart cart, HttpSession session) {
-		Object obj = session.getAttribute(ProjectConstant.SESSION_ATTRIBUTE_SHOPPING_CART);
-		Map<String,ShoppingCart> cartMap = null;
-		if (obj==null)
-			cartMap = new HashMap<String,ShoppingCart>();
-		else
-			cartMap = (HashMap<String,ShoppingCart>) obj;
-		cartMap.put(merchantId, cart);
-		session.setAttribute(ProjectConstant.SESSION_ATTRIBUTE_SHOPPING_CART, cartMap);
-		return true;
-	}
-
-	@Override
 	public boolean makeOrder(String merchantId, ShoppingCart cart, HttpSession session) {
 		CustomerOrder co = new CustomerOrder();
 		co.setCustomer(cdao.loadCustomer("4028b88157fffa970157fffa9b9e0002"));
