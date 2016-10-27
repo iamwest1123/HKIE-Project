@@ -55,11 +55,9 @@ public class OrderController {
 	
 	@RequestMapping(value="/showOrderByCustomer")
 	@ResponseBody
-	public List<CustomerOrder> showOrderByCustomer(String customerId, HttpServletRequest request){
+	public List<CustomerOrder> showOrderByCustomer(HttpSession session){
 		
-		HttpSession ses = request.getSession();
-		ses.setAttribute("test", "abc");
-		
+		String customerId = (String)session.getAttribute(ProjectConstant.SESSION_ATTRIBUTE_MERCHANT_ID);
 		
 		Customer c = cm.load(customerId);		
 		List<CustomerOrder> list=om.findOrderByCustomer(c);
