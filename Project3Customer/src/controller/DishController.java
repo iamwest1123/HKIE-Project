@@ -61,7 +61,7 @@ public class DishController {
 	public void addDishes(Dish dish,HttpServletRequest request){
 		
 		HttpSession ses = request.getSession();
-		String id = (String)ses.getAttribute("mid");
+		String id = (String)ses.getAttribute(ProjectConstant.SESSION_ATTRIBUTE_MERCHANT_ID);
 		
 		Merchant m=mm.loadMerchant1(id);
 		dish.setStatus(ProjectConstant.STATUS_ACCEPTED);

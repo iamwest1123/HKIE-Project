@@ -65,7 +65,7 @@ public class MerchantController {
 	@ResponseBody
 	public MerchantVo loadMerchant(HttpServletRequest request) {
 		HttpSession ses = request.getSession();
-		String id = (String)ses.getAttribute("mid");
+		String id = (String)ses.getAttribute(ProjectConstant.SESSION_ATTRIBUTE_MERCHANT_ID);
 	
 		
 		MerchantVo mvo = mm.loadMerchant(id);
@@ -76,7 +76,7 @@ public class MerchantController {
 	@ResponseBody
 	public String updateMerchant(HttpServletRequest request,Merchant m, String address1, String region1) {
 		HttpSession ses = request.getSession();
-		String id = (String)ses.getAttribute("mid");
+		String id = (String)ses.getAttribute(ProjectConstant.SESSION_ATTRIBUTE_MERCHANT_ID);
 	
 		m.setId(id);
 		Address add = new Address();
@@ -161,7 +161,7 @@ public class MerchantController {
 		public String applyAds(String id,HttpServletRequest request){
 
 			HttpSession ses = request.getSession();
-			ses.setAttribute("mid", merchant.getId());		
+			ses.setAttribute(ProjectConstant.SESSION_ATTRIBUTE_MERCHANT_ID, merchant.getId());		
 			mm.applyAdv(id);
 			
 		}

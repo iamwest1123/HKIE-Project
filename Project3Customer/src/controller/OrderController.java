@@ -39,7 +39,7 @@ public class OrderController {
 	public List<CustomerOrder> showAllOrders(HttpServletRequest request){
 		
 		HttpSession ses = request.getSession();
-		String id = (String)ses.getAttribute("mid");
+		String id = (String)ses.getAttribute(ProjectConstant.SESSION_ATTRIBUTE_MERCHANT_ID);
 		System.out.println(id);
 //		List<CustomerOrder> list=om.findAll();
 		List<CustomerOrder> list=om.findOrderByMerchants(mm.loadMerchant1(id));
