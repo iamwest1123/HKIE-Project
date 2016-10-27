@@ -55,7 +55,8 @@
         <li class="active"><a href="MerchantEditProfile.html">Edit Profile <span class="sr-only">(current)</span></a></li>
         <li class="active"><a href="ShowDish.html">Dishes Management <span class="sr-only">(current)</span></a></li>
          <li class="active"><a href="ShowOrder.html">View Customer Order <span class="sr-only">(current)</span></a></li>
-         <li class="active"><a href="merchant/applyAds">Apply Ads <span class="sr-only">(current)</span></a></li>
+           <li class="active" id="apply"><a href="merchant/applyAds">Apply Ads <span class="sr-only">(current)</span></a></li>
+         
           <li><a href="#">You have successfully login as a Merchant!</a></li>
      </ul>
     </div>
@@ -120,6 +121,18 @@
 //    adding table
     $(function(){
         
+        
+        $("#apply").on("click",function(e){
+            e.preventDefault();
+             $.ajax({
+                                                                                                type:'POST',
+                                                                                                url:'merchant/applyAds'
+                                                                                               
+                                                                                            }).done(function(msg){
+                                                                                             
+                                                                                            });
+            alert("Success");
+        })
 //           $("button").click(function(){
        $.getJSON('order/showOrder', { get_param: 'value' }, function(data) {
      var table = $('<table></table>').addClass('table table-hover table-bordered results');
