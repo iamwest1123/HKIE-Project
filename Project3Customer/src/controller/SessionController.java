@@ -56,4 +56,21 @@ public class SessionController {
 	public boolean setCustomerVo() {
 		return false;
 	}
+	
+	@RequestMapping(value="getCustomerId")
+	@ResponseBody
+	public String getCustomerId(HttpSession session) {
+		Object obj = session.getAttribute(ProjectConstant.SESSION_ATTRIBUTE_CUSTOMER_ID);
+		if (obj==null)
+			return "";
+		else
+			return (String) obj;
+	}
+	
+	@RequestMapping(value="setCustomerId")
+	@ResponseBody
+	public boolean setCustomerId(String customerId, HttpSession session) {
+		session.setAttribute(ProjectConstant.SESSION_ATTRIBUTE_CUSTOMER_ID, customerId);
+		return true;
+	}
 }
