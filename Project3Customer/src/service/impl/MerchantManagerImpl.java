@@ -93,6 +93,7 @@ public class MerchantManagerImpl implements MerchantManager{
 		
 		try {
 			BeanUtils.getProperty(m, "commentList");					
+			BeanUtils.getProperty(m, "address");					
 			
 			for (Comment cm : m.getCommentList()){					
 				BeanUtils.getProperty(cm.getCustomer(), "addressList");			

@@ -62,14 +62,22 @@ public class MerchantController {
 
 	@RequestMapping(value = "loadMerchant")
 	@ResponseBody
-	public MerchantVo loadMerchant(String merchantId) {
-		MerchantVo mvo = mm.loadMerchant(merchantId);
+	public MerchantVo loadMerchant(HttpServletRequest request) {
+		HttpSession ses = request.getSession();
+		String id = (String)ses.getAttribute("mid");
+	
+		
+		MerchantVo mvo = mm.loadMerchant(id);
 		return mvo;
 	}
 
 	@RequestMapping(value = "updateMerchant")
 	@ResponseBody
-	public String updateMerchant(Merchant m, String address1, String region1) {
+	public String updateMerchant(HttpServletRequest request,Merchant m, String address1, String region1) {
+		HttpSession ses = request.getSession();
+		String id = (String)ses.getAttribute("mid");
+	
+		m.setId(id);
 		Address add = new Address();
 		add.setAddress(address1);
 		add.setRegion(region1);
