@@ -86,7 +86,7 @@
 		            data:{loginName:$("[name=loginName]").val(),password:$("[name=password]").val()}
 		        }).done(function(result){
                     if(result.status==="success") {
-                    	window.location.assign("http://www.oocl.com");
+                    	window.location.assign("http://localhost:8080/Project3Customer/CustomerHomePage.html");
                     } else {  
                         showError(result.reason);          
                     }
