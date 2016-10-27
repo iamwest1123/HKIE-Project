@@ -89,4 +89,14 @@ public class TestCustomerOrderDaoImpl {
 		
 		
 	}
+	
+	@Test
+	public void testLoad() {
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		CustomerOrderDao dao = (CustomerOrderDao) context.getBean(CustomerOrderDaoImpl.class);
+		dao.loadOrder("8a5eb8265803b9b6015803b9e4390000");
+		
+		
+	}
 }
