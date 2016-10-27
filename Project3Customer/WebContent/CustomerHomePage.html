@@ -13,6 +13,11 @@
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!--[if lte IE 8]><script src="js/ie/html5shiv.js"></script><![endif]-->
+<link rel="stylesheet" href="css/main.css" />
+<!--[if lte IE 9]><link rel="stylesheet" href="css/ie9.css" /><![endif]-->
+
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <style>
@@ -63,19 +68,25 @@
         <li class="active"><a href="CustomerEditProfile.html">Edit Profile <span class="sr-only">(current)</span></a></li>
         <li class="active"><a href="CustomerHomePage.html">Customer Homepage <span class="sr-only">(current)</span></a></li>
          <li class="active"><a href="CustomerOrderHistory.html">View Customer Order <span class="sr-only">(current)</span></a></li>
-          <li><a href="#">You have successfully login as a Merchant!</a></li>
+          <li><a href="#">You have successfully login as a Customer!</a></li>
      </ul>
     </div>
 </nav>
 
-<div class="form-group pull-right">
-    <input type="text" class="search form-control" placeholder="Search here">
-</div>
-<span class="counter pull-right"></span> 
-    
-    <div><h2>Customer Homepage</h2></div>
-    
-    <h3>Advertisements</h3>
+<section id="banner">
+				<div class="inner split">
+					<section>
+						<h2>Welcome to COMEBUYFOOD!!</h2>
+					</section>
+					<section>
+						<p>Do you feel that the number of client is not enough? Don't worry! COMEBUYFOOD can save your life!!!More than 100000+ customers are preparing for buying your dishes!</p>
+						<ul class="actions">
+							<li><a href="#" class="button special">Customer HomePage</a></li>
+						</ul>
+					</section>
+				</div>
+			</section>
+
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
@@ -119,6 +130,11 @@
     
     
     <button id="btn_otherShop" class="btn btn-info">Sorry I want Other Shops please...</button>
+    
+    <div class="form-group pull-right">
+    <input type="text" class="search form-control" placeholder="Search here">
+</div>
+<span class="counter pull-right"></span> 
 
 <script>
 //    adding table
