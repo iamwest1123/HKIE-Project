@@ -101,8 +101,8 @@
 	
 	
 	<script>
+		var merchantId;
 		$(function() {
-			var merchantId;
 			if (location.search)
 				merchantId = location.search.substring(1);
 			else
@@ -271,7 +271,7 @@
 				type:'POST',
 				url:'shop/setShoppingCart',
 				data: {
-					merchantId: '4028b88157fffa970157fffa9b510000',
+					merchantId: merchantId,
 					cartStr: JSON.stringify(shoppingCart)
 				}
 			})
@@ -288,7 +288,7 @@
 				type:'POST',
 				url:'shop/makeOrder',
 				data: {
-					merchantId: '4028b88157fffa970157fffa9b510000',
+					merchantId: merchantId,
 					cartStr: JSON.stringify(shoppingCart)
 				}
 			})

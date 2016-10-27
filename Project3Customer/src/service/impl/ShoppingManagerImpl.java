@@ -76,7 +76,8 @@ public class ShoppingManagerImpl implements ShoppingManager {
 
 	@Override
 	public List<Dish> getDish(String merchantId) {
-		return udao.findDishByMerchantId(merchantId);
+		List<Dish> tmp = udao.findDishByMerchantId(merchantId);
+		return tmp;
 	}
 
 	@Override
@@ -84,6 +85,7 @@ public class ShoppingManagerImpl implements ShoppingManager {
 	public MerchantVo getShopInfo(String merchantId) {
 		Merchant m = mdao.loadMerchant(merchantId);
 		MerchantVo vo = new MerchantVo(m);
+		vo.setDishList(udao.findDishByMerchantId(merchantId));
 		return vo;
 	}
 
