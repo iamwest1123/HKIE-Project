@@ -12,6 +12,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name="COMMENTS")
 public class Comment {
@@ -32,10 +34,12 @@ public class Comment {
 	
 	@ManyToOne
 	@JoinColumn(name="CUSTOMER_ID")
+	@JsonBackReference
 	Customer customer;
 	
 	@ManyToOne
 	@JoinColumn(name="MERCHANT_ID")
+	@JsonBackReference
 	Merchant merchant;
 	// advance
 	
