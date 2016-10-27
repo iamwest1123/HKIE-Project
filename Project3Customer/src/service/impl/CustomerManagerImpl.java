@@ -26,4 +26,9 @@ public class CustomerManagerImpl implements CustomerManager {
 		return cd.findAdminByUsernameAndPassword(c);
 	}
 
+	@Override
+	public Customer load(String customerId) {
+		return cd.loadCustomer(customerId);
+	}
+
 }

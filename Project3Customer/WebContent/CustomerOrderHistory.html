@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- 新 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+
+<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<style>
+    body{
+  padding:20px 20px;
+}
+
+.results tr[visible='false'],
+.no-result{
+  display:none;
+}
+
+.results tr[visible='true']{
+  display:table-row;
+}
+
+.counter{
+  padding:8px; 
+  color:#ccc;
+}
+
+    #addDish{
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+    
+</style>
+</head>
+<body>
+<nav class="navbar navbar-default">
+ <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Menu</a>
+      
+       <ul class="nav navbar-nav">
+        <li class="active"><a href="CustomerEditProfile.html">Edit Profile <span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="CustomerHomePage.html">Customer Homepage <span class="sr-only">(current)</span></a></li>
+         <li class="active"><a href="#">View Customer Order <span class="sr-only">(current)</span></a></li>
+          <li><a href="#">You have successfully login as a Merchant!</a></li>
+     </ul>
+    </div>
+</nav>
+
+<div class="form-group pull-right">
+    <input type="text" class="search form-control" placeholder="Search here">
+</div>
+<span class="counter pull-right"></span>      
+
+    <div><h2>Customer Order History</h2></div>
+    
+<script>
+//    adding table
+    $(function(){
+        
+//           $("button").click(function(){
+        
+        $.ajax({
+            url: 'order/showOrderByCustomer',
+            data: {
+                customerId: '4028b88157fffa970157fffa9b9e0002'
+            }
+        }).done(function(data) {
+                var table = $('<table></table>').addClass('table table-hover table-bordered results');
+                var warningRow=$('<tr></tr>').addClass('warning no-result').append($('<td colspan="5"></td>').append($('<i class="fa fa-warning"></i>')).text("No result"));
+                var head=$('<thead></thead>').append($('<tr></tr>').append($('<th></th>').text("#"),
+                                                                      $('<th></th>').addClass('col-md-2 col-xs-2').text("SHOP NAME"),
+                                                                      $('<th></th>').addClass('col-md-3 col-xs-3').text("STATUS"),
+                                                                      $('<th></th>').addClass('col-md-2 col-xs-2').text("DISHES"),
+                                                                      $('<th></th>').addClass('col-md-2 col-xs-2').text(""),
+                                                                      $('<th></th>').addClass('col-md-3 col-xs-3').text("")
+                                                                     ),
+                                               warningRow);
+
+
+                table.append(head);
+                var body=$('<tbody></tbody>');
+           
+         
+           
+//           body.append(warningRow);
+           
+           
+          
+      
+//           table.append(r2);
+           var i=0
+    $.each(data, function(index, element) {
+//        $('body').append($('<div>', {
+//            text: element.name
+//        }));
+       //create table
+            ++i;
+        
+            var dstr = ""; 
+                    
+            element.dishes.forEach(function(d){
+                dstr = dstr.concat(d.dish.name + "*" + d.quantity +  ",    ");
+                console.log(dstr);
+            });
+        
+        
+            var receivebutton = $('<td></td>').append('<button></button>').addClass("btn btn-primary").text("I RECEIVED")
+                                                                                .on("click",function(e){  
+                                                                                        $.ajax({
+                                                                                                type:'POST',
+                                                                                                url:'order/updateStatus',
+                                                                                                data:{
+                                                                                                    id: element.id,
+                                                                                                    status: "Received",
+                                                                                                    deliveryDate: new Date()
+                                                                                                }
+                                                                                            }).done(function(msg){                  
+                                                                                                location.reload();
+                                                                                            });});
+        
+            if (element.status != "Delivered"){
+                receivebutton = $('<td></td>').text(" ");
+            }
+            
+    
+            var row = $('<tr></tr>').append($('<td></td>').text(i),
+                                            $('<td></td>').text(element.merchant.shopName),
+                                            $('<td></td>').text(element.status),
+                                            $('<td></td>').text(dstr),                                            
+                                            receivebutton,                                            
+                                            $('<td></td>').append('<button></button>').addClass("btn btn-primary").text("COMMENT")
+                                                                                .on("click",function(e){  
+                                                                                        $.ajax({
+                                                                                                type:'POST',
+                                                                                                url:'dish/delDishes',
+                                                                                                data:{id:element.id}
+                                                                                            }).done(function(msg){
+                                                                                              row.remove();
+                                                                                            });})
+                                           );
+            body.append(row);
+         
+
+
+        
+    });
+           table.append(body);
+           $('body').append(table);
+});
+
+        
+    })
+    
+    
+    
+    </script>
+    
+    
+    <script>
+     $(function(){
+       
+         $("#add").on("click",function(e){
+            $("#addForm").toggle();
+         });
+         
+         
+         
+     })
+    
+    
+    </script>
+
+<script>
+
+    $(document).ready(function() {
+  $(".search").keyup(function () {
+    var searchTerm = $(".search").val();
+    var listItem = $('.results tbody').children('tr');
+    var searchSplit = searchTerm.replace(/ /g, "'):containsi('")
+    
+  $.extend($.expr[':'], {'containsi': function(elem, i, match, array){
+        return (elem.textContent || elem.innerText || '').toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
+    }
+  });
+    
+  $(".results tbody tr").not(":containsi('" + searchSplit + "')").each(function(e){
+    $(this).attr('visible','false');
+  });
+
+  $(".results tbody tr:containsi('" + searchSplit + "')").each(function(e){
+    $(this).attr('visible','true');
+  });
+
+  var jobCount = $('.results tbody tr[visible="true"]').length;
+    $('.counter').text(jobCount + ' item');
+
+  if(jobCount == '0') {$('.no-result').show();}
+    else {$('.no-result').hide();}
+		  });
+});
+    
+    
+    
+</script>
+</body>
+</html>
