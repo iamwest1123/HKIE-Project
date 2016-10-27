@@ -8,6 +8,12 @@
 <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
 <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
 <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!--[if lte IE 8]><script src="js/ie/html5shiv.js"></script><![endif]-->
+<link rel="stylesheet" href="css/main.css" />
+<!--[if lte IE 9]><link rel="stylesheet" href="css/ie9.css" /><![endif]-->
+
 	<style>
 		div[class^='col'] {
 			border: 1px solid green;
@@ -15,6 +21,39 @@
 	</style>
 </head>
 <body>
+
+<nav class="navbar navbar-default">
+ <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Menu</a>
+      
+       <ul class="nav navbar-nav">
+        <li class="active"><a href="CustomerEditProfile.html">Edit Profile <span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="CustomerHomePage.html">Customer Homepage <span class="sr-only">(current)</span></a></li>
+         <li class="active"><a href="CustomerOrderHistory.html">View Customer Order <span class="sr-only">(current)</span></a></li>
+          <li><a href="#">You have successfully login as a Customer!</a></li>
+     </ul>
+    </div>
+</nav>
+
+<section id="banner">
+				<div class="inner split">
+					<section>
+						<h2>Shopping Page</h2>
+					</section>
+					<section>
+						<p>Do you feel that the number of client is not enough? Don't worry! COMEBUYFOOD can save your life!!!More than 100000+ customers are preparing for buying your dishes!</p>
+					</section>
+				</div>
+			</section>
+			
+			<hr />
+
 	<div class="container">
 		<div class="row"> 
 			<div id="shopInfo" class="col-sm-12">SHOP INFO</div>
@@ -33,7 +72,7 @@
 					<table id="comments" class="table"></table>
 				</div>
 			</div>
-			<div class="col-sm-3">
+			<div class="col-sm-3" style="padding: 0;">
 				<table id="cart" class="table">
 					<tr>
 						<th>Name</th>
