@@ -9,9 +9,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import po.Admin;
-import po.User;
 import service.AdminManager;
-import service.UserManager;
 
 public class TestAdmin {
 

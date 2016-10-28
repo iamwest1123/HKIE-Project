@@ -159,6 +159,7 @@
             type:'GET',
             url:'advert/chooseAdvert',            
         }).done(function(msg){
+            console.log(msg);
             var arrMerchantVO = JSON.parse(msg);
             var arrMerchantIds = [];
             
@@ -169,15 +170,14 @@
             arrMerchantIds.forEach(function(item){                                
                 $.ajax({
                     type: 'GET',
-                    url: 'merchant/loadMerchant',
+                    url: 'merchant/findMerchant',
                     data: {
-                        merchantId: item
+                        id: item
                     }
                 }).done(function(msg){         
-                    
+                    console.log(msg);
                     var merchantName = msg.merchantName;
                     var merchantId = msg.id;
-                    
                     arrMerchants.push({
                         id: merchantId,
                         name: merchantName
