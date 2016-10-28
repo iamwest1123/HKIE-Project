@@ -43,9 +43,13 @@
 		Closing Hour(Integer):<br>
 		<input id="closingHour" name="closingHour"><br />
 		Gender(Boolean):<br>
-		<input id="gender" name="gender"><br />
+		<input id="genderM" type="radio" name="gender" value="true">M<br />
+		<input id="genderF" type="radio" name="gender" value="FALSE">F<br />
+		
 		Can Pre Order(Boolean):<br>
-		<input id="canPreOrder" name="canPreOrder"><br />
+		<input id="canPreOrderY" type="radio" name="canPreOrder" value="true">Y<br />
+		<input id="canPreOrderN" type="radio" name="canPreOrder" value="false">N<br />
+		
 		Address:<br>
 		<input type="text" id="address1" name="address1"><br />
 		Region:<br>
@@ -61,6 +65,7 @@
         //onload
         $(function(){
             $("#submit").on("click", function(e){
+            	alert($("input[name='gender']:checked").val());
                 $.ajax({
                 	
                     type:'POST',
@@ -75,8 +80,11 @@
                     	category: $('#category').val(),
                     	openingHour: $('#openingHour').val(),
                     	closingHour: $('#closingHour').val(),
-                    	gender: $('#gender').val(),
-                    	canPreOrder: $('#canPreOrder').val(),
+                    	
+                    	
+                    	gender: $("input[name='gender']:checked").val() === 'true',
+                    	
+                    	canPreOrder: $("input[name='canPreOrder']:checked").val() === 'true',
 
                     	address1: $("#address1").val(),
                     	region1: $("#region1").val(),

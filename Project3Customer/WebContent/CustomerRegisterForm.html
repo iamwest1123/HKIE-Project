@@ -27,7 +27,9 @@
 		Name:<br>
 		<input id="name" name="name" /><br />
 		Gender(Boolean):<br>
-		<input id="gender" name="name" /><br />
+		<input id="genderM" type="radio" name="gender" value="true">M<br />
+		<input id="genderF" type="radio" name="gender" value="FALSE">F<br />
+		
 		Profile Picture:<br>
 		<input id="profilePic" name="profilePic" /><br />
 		Password:<br>
@@ -52,7 +54,7 @@
                     url:'customer/addCustomer',
                     data: {
                     	name: $('#name').val(),                        
-                    	gender: $('#gender').val(), 
+                    	gender: $("input[name='gender']:checked").val() === 'true',
                     	profilePic: $('#profilePic').val(), 
                     	password: $('#password').val(), 
                     	loginName: $('#loginName').val(), 
