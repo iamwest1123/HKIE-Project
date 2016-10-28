@@ -89,6 +89,8 @@ public class CustomerController {
 		c1.setGender(c.getGender());
 		c1.setProfilePic(c.getProfilePic());
 		c1.setLoginName(c.getLoginName());
+		System.out.println(Address1+".......................");
+		System.out.println(Address2+".......................");
 		System.out.println(Address3+".......................");
 		Address add1 = new Address();
 		Address add2 = new Address();
@@ -104,9 +106,15 @@ public class CustomerController {
 		add2.setCustomer(c1);
 		add3.setCustomer(c1);
 		c1.getAddressList().clear();
-		c1.getAddressList().add(add1);
-		c1.getAddressList().add(add2);
-		c1.getAddressList().add(add3);
+		if (add1.getAddress()==null || add1.getRegion()==null ||
+				"".equals(add1.getAddress()) || "".equals(add1.getAddress()))
+			c1.getAddressList().add(add1);
+		if (add2.getAddress()==null || add2.getRegion()==null ||
+				"".equals(add2.getAddress()) || "".equals(add2.getAddress()))
+			c1.getAddressList().add(add2);
+		if (add3.getAddress()==null || add3.getRegion()==null ||
+				"".equals(add3.getAddress()) || "".equals(add3.getAddress()))
+			c1.getAddressList().add(add3);
 		
 		
 		cm.updateCustomer(c1);
