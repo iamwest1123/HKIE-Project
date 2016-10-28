@@ -41,7 +41,8 @@ public class ShoppingController {
 		if (obj==null)
 			return new ShoppingCart();
 		Map<String,ShoppingCart> cartMap = (HashMap<String,ShoppingCart>) obj;
-		return cartMap.get(merchantId);
+		ShoppingCart c = cartMap.get(merchantId);
+		return ((c==null)?new ShoppingCart():c);
 	}
 	
 	@RequestMapping(value="setShoppingCart")
