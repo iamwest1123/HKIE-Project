@@ -26,6 +26,16 @@
         crossorigin="anonymous"></script>
         
     <link href="css/cover.css" rel="stylesheet">
+    
+    <style>
+.modal-header {
+	background-color:#23272D;
+}
+.modal-body label{
+	text-shadow:none;
+	color:black;
+}
+</style>
   </head>
 
   <body>
@@ -57,7 +67,69 @@
         <!--/.navbar-collapse -->
       </div>
     </nav>
+    	<div class="alert alert-success" id="succeddMsg" style="display:none;">
+    	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    	<strong>Welcome</strong>, <span id="successMsg"></span>
+  	</div>
     <div id="dialog" title="Warning"></div>
+    
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">Ready to Join? Create a New Account</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="loginName">Login Name</label> <input type="text"
+									class="form-control" id="loginName" name="loginName">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="password">Password</label> <input
+									type="password" class="form-control" 
+									name="password" id="password"> 
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="name">Name</label> <input type="text"
+									class="form-control" id="name" name="name">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="gender">Gender(Boolean):</label> <input
+									type="text" class="form-control" 
+									name="gender" id="gender">
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="shopPic">Shop Picture URL:</label>
+						<input id="shopPic" class="form-control" type="file" name="shopPic">
+					</div>
+					<input type="hidden" class="form-control" name="status" id="status"> 
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal" id="submit">Register</button>
+				</div>
+			</div>
+		</div>
+	</div>
+    
+    
     <div class="site-wrapper">
       <div class="site-wrapper-inner">
         <div class="cover-container">
@@ -65,7 +137,8 @@
             <h1 class="cover-heading">Wanna buy food at any where?</h1>
             <p class="lead">Do you feel that the restaurant near you is uneatable? Don't worry! <b>COMEBUYFOOD</b> can save your life!!!More than <b>6000+</b> merchants is waiting for your order!</p>>
             <p class="lead">
-              <a href="#" class="btn btn-lg btn-default">Sign up now!</a>
+              <a href="#" class="btn btn-lg btn-default" data-toggle="modal"
+							data-target="#myModal">Sign up now!</a>
             </p>
           </div>
           <div class="mastfoot">
@@ -90,8 +163,30 @@
                     } else {  
                         showError(result.reason);          
                     }
-		        }); 
+		        });
 		});
+
+         $("#submit").on("click", function(e){
+             $.ajax({
+             	
+                 type:'POST',
+                 url:'customer/addCustomer',
+                 data: {
+                 	name: $('#name').val(),                        
+                 	gender: $('#gender').val(), 
+                 	profilePic: $('#profilePic').val(), 
+                 	password: $('#password').val(), 
+                 	loginName: $('#loginName').val(), 
+                 	status: 'UnderReview',
+                 	
+                 }
+             }).done(function(msg){
+                 $("#successMsg").text(msg.merchantName + "! Your registration is under reviewed. Please wait for admin further process. Thanks!");
+                 $("#succeddMsg").show();
+             }).fail(function(error){
+				 alert("Error!Please check!");
+			 }); 
+         });	
 	});   
 
 	function showError(reason) {
