@@ -75,4 +75,10 @@ public class CustomerManagerImpl implements CustomerManager {
 		return cd.loadCustomer(customerId);
 	}
 
+	@Override
+	public Customer loadCustomer1(String id) {
+		
+		return cd.loadCustomer(id);
+	}
+
 }

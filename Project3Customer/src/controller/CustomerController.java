@@ -62,14 +62,27 @@ public class CustomerController {
 	
 	@RequestMapping(value="loadCustomer")
 	@ResponseBody
-	public CustomerVo loadCustomer(String customerId){
-		CustomerVo cvo = cm.loadCustomer(customerId);
+	public CustomerVo loadCustomer(HttpServletRequest request){
+		HttpSession ses = request.getSession();
+		String id = (String)ses.getAttribute(ProjectConstant.SESSION_ATTRIBUTE_CUSTOMER_ID);
+		id = "4028b88157fffa970157fffa9b510000";
+		System.out.println("........" + id+ "............");
+		CustomerVo cvo = cm.loadCustomer(id);
 		return cvo;
 	}
 	
 	@RequestMapping(value="updateCustomer")
 	@ResponseBody
-	public String updateCustomer(Customer c,String Address1,String Address2,String Address3,String Region1,String Region2,String Region3){	
+	public String updateCustomer(HttpServletRequest request,Customer c,String Address1,String Address2,String Address3,String Region1,String Region2,String Region3){	
+		HttpSession ses = request.getSession();
+		String id = (String)ses.getAttribute(ProjectConstant.SESSION_ATTRIBUTE_CUSTOMER_ID);
+	
+		Customer c1=cm.loadCustomer1(id);
+		c1.setName(c.getName());
+		c1.setGender(c.getGender());
+		c1.setProfilePic(c.getProfilePic());
+		c1.setLoginName(c.getLoginName());
+		
 		Address add = new Address();
 		add.setAddress(Address1);
 		add.setAddress(Address2);
@@ -77,11 +90,11 @@ public class CustomerController {
 		add.setAddress(Region1);
 		add.setAddress(Region2);
 		add.setAddress(Region3);
+	
+		add.setCustomer(c1);
+		c1.getAddressList().add(add);
 		
-		add.setCustomer(c);
-		c.getAddressList().add(add);
-		
-		cm.updateCustomer(c);
+		cm.updateCustomer(c1);
 		return "true";	
 	}
 }
