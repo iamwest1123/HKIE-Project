@@ -65,7 +65,7 @@ public class CustomerController {
 	public CustomerVo loadCustomer(HttpServletRequest request){
 		HttpSession ses = request.getSession();
 		String id = (String)ses.getAttribute(ProjectConstant.SESSION_ATTRIBUTE_CUSTOMER_ID);
-		id = "4028b88157fffa970157fffa9b510000";
+
 		System.out.println("........" + id+ "............");
 		CustomerVo cvo = cm.loadCustomer(id);
 		return cvo;
@@ -82,17 +82,25 @@ public class CustomerController {
 		c1.setGender(c.getGender());
 		c1.setProfilePic(c.getProfilePic());
 		c1.setLoginName(c.getLoginName());
-		
-		Address add = new Address();
-		add.setAddress(Address1);
-		add.setAddress(Address2);
-		add.setAddress(Address3);
-		add.setAddress(Region1);
-		add.setAddress(Region2);
-		add.setAddress(Region3);
+		System.out.println(Address3+".......................");
+		Address add1 = new Address();
+		Address add2 = new Address();
+		Address add3 = new Address();
+		add1.setAddress(Address1);
+		add2.setAddress(Address2);
+		add3.setAddress(Address3);
+		add1.setRegion(Region1);
+		add2.setRegion(Region2);
+		add3.setRegion(Region3);
 	
-		add.setCustomer(c1);
-		c1.getAddressList().add(add);
+		add1.setCustomer(c1);
+		add2.setCustomer(c1);
+		add3.setCustomer(c1);
+		c1.getAddressList().clear();
+		c1.getAddressList().add(add1);
+		c1.getAddressList().add(add2);
+		c1.getAddressList().add(add3);
+		
 		
 		cm.updateCustomer(c1);
 		return "true";	

@@ -44,7 +44,7 @@ public class Customer {
 	@Column(length=30)
 	private String status;
 	
-	@OneToMany(mappedBy="customer", cascade={CascadeType.PERSIST,CascadeType.REMOVE},fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="customer", cascade={CascadeType.PERSIST,CascadeType.REMOVE,CascadeType.MERGE},fetch=FetchType.EAGER)
 	@JsonBackReference
 	private List<Address> addressList = new ArrayList<Address>();
 	

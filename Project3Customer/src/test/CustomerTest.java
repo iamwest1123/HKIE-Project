@@ -6,6 +6,7 @@ import org.apache.tomcat.util.buf.UDecoder;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.transaction.annotation.Transactional;
 
 import dao.CustomerDao;
 import dao.impl.CustomerDaoImpl;
@@ -45,6 +46,7 @@ public class CustomerTest {
 	}
 	
 	@Test
+	@Transactional
 	public void testUpdate(){
 		
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
@@ -52,12 +54,13 @@ public class CustomerTest {
 		Customer c=new Customer();
 		c.setGender(true);
 		c.setLoginName("testUpdate");
-		c.setName("Update");
+		c.setName("Update123");
 		c.setPassword("0000");
 		c.setStatus(ProjectConstant.STATUS_ACCEPTED);
-		cd.addCustomer(c);
+		//cd.addCustomer(c);
+		c.setId("4028b88157fffa970157fffa9b510000");
 		c.setPassword("12345");
-		c.setName("Pending");
+		c.setName("Update123");
 		cd.updateCustomer(c);
 		
 	}
