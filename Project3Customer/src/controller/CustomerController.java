@@ -54,10 +54,10 @@ public class CustomerController {
 	return "redirect:../loginC.html";
 	}
 	
-	@RequestMapping(value = "logout")
-	public String logout() {
-		return "redirect:login.html";
-	}
+//	@RequestMapping(value = "logout")
+//	public String logout() {
+//		return "redirect:login.html";
+//	}
 
 	@RequestMapping(value="addCustomer")
 	@ResponseBody
