@@ -48,6 +48,13 @@ public class CustomerController {
 	}
 
 	@RequestMapping(value = "logout")
+	public String logout(HttpServletRequest request) {
+	HttpSession session = request.getSession();
+	session.invalidate();
+	return "redirect:../loginC.html";
+	}
+	
+	@RequestMapping(value = "logout")
 	public String logout() {
 		return "redirect:login.html";
 	}
