@@ -6,6 +6,7 @@ import javax.jms.MessageListener;
 import javax.jms.TextMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -13,10 +14,11 @@ import dao.AdminAdvertDao;
 import dto.AdvertApplicationDto;
 import mq.QueueConsumer;
 import po.AdminAdvert;
+import service.AdminAdvertManager;
 
 public class AdvertApplicationConsumer implements MessageListener,QueueConsumer {
 	@Autowired
-	private AdminAdvertDao adao;
+	private AdminAdvertManager aam;
 	
 	@Override
 	public void onMessage(Message arg0) {
@@ -26,8 +28,9 @@ public class AdvertApplicationConsumer implements MessageListener,QueueConsumer 
 			if (dto!=null) {
 				System.out.println(dto.getMerchantId());
 				AdminAdvert aa = new AdminAdvert(); 
-				aa.setId(dto.getMerchantId());
-				adao.addAdminAdv(aa);
+				//aa.setId(dto.getMerchantId());
+				aa.setMerchantId(dto.getMerchantId());
+				aam.addAdminAdv(aa);
 			}
 		} catch (JMSException e) {
 			e.printStackTrace();

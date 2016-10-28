@@ -24,12 +24,12 @@ public class AdminAdvert {
 	@Column
 	String merchantId;
 
-	@Column(length = 7)
+	@Column(length = 30)
 	String status; // (active/pending/frozen)
 
 	// advance
 	@Column(scale = 0)
-	double balance;
+	Double balance;
 
 	@Column(name="START_DATE")
 	Date startDate;

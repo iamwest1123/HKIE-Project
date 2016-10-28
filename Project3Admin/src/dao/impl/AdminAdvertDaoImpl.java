@@ -18,7 +18,6 @@ public class AdminAdvertDaoImpl implements AdminAdvertDao {
 	private EntityManager em;
 
 	@Override
-	@Transactional
 	public void addAdminAdv(AdminAdvert a) {
 		em.persist(a);
 	}
