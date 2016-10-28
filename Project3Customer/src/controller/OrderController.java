@@ -57,7 +57,7 @@ public class OrderController {
 	@ResponseBody
 	public List<CustomerOrder> showOrderByCustomer(HttpSession session){
 		
-		String customerId = (String)session.getAttribute(ProjectConstant.SESSION_ATTRIBUTE_MERCHANT_ID);
+		String customerId = (String)session.getAttribute(ProjectConstant.SESSION_ATTRIBUTE_CUSTOMER_ID);		
 		
 		Customer c = cm.load(customerId);		
 		List<CustomerOrder> list=om.findOrderByCustomer(c);

@@ -2,10 +2,12 @@
 <html>
 <head>
 <!-- æ° Bootstrap æ ¸å¿ CSS æä»¶ -->
-<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
 
 <!-- å¯éçBootstrapä¸»é¢æä»¶ï¼ä¸è¬ä¸ç¨å¼å¥ï¼ -->
-<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+<link rel="stylesheet"
+	href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
 <!-- 
 <link rel="stylesheet" href="css/style.css">
  -->
@@ -23,97 +25,165 @@
 <meta charset="UTF-8">
 <title>Customer Edit Profile</title>
 <style>
-    body{
-  padding:20px 20px;
+.results tr[visible='false'], .no-result {
+	display: none;
 }
 
-.results tr[visible='false'],
-.no-result{
-  display:none;
+.results tr[visible='true'] {
+	display: table-row;
 }
 
-.results tr[visible='true']{
-  display:table-row;
+.counter {
+	padding: 8px;
+	color: #ccc;
 }
 
-.counter{
-  padding:8px; 
-  color:#ccc;
+#addDish {
+	margin-top: 10px;
+	margin-bottom: 20px;
 }
 
-    #addDish{
-        margin-top: 10px;
-        margin-bottom: 20px;
-    }
-    
+a {
+	text-decoration: none;
+}
+
+form {
+	margin: 0px 150px 0px 150px;
+}
+
+#update {
+	margin-top: 15px;
+	float: right;
+}
 </style>
 <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
-<nav class="navbar navbar-default">
- <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Menu</a>
-      
-       <ul class="nav navbar-nav">
-        <li class="active"><a href="CustomerEditProfile.html">Edit Profile <span class="sr-only">(current)</span></a></li>
-        <li class="active"><a href="CustomerHomePage.html">Customer Homepage <span class="sr-only">(current)</span></a></li>
-         <li class="active"><a href="CustomerOrderHistory.html">View Customer Order <span class="sr-only">(current)</span></a></li>
-     </ul>
-    </div>
-</nav>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">COMEBUYFOOD</a>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li class="active"><a href="CustomerEditProfile.html">Edit
+							Profile <span class="sr-only">(current)</span>
+					</a></li>
+					<li><a href="CustomerHomePage.html">Customer Homepage <span
+							class="sr-only">(current)</span></a></li>
+					<li><a href="CustomerOrderHistory.html">View Customer
+							Order <span class="sr-only">(current)</span>
+					</a></li>
+					<li><a href="customer/logout">Logout <span class="sr-only">(current)</span></a></li>
+				</ul>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+	</nav>
+	<div style="padding-top: 51px;">
+		<section id="banner">
+			<div class="inner split">
+				<section>
+					<h2>Customer Edit Profile</h2>
+				</section>
+				<section>
+					<p>Do you feel that the number of client is not enough? Don't
+						worry! COMEBUYFOOD can save your life!!!More than 100000+
+						customers are preparing for buying your dishes!</p>
+				</section>
+			</div>
+		</section>
+		<hr />
 
-<section id="banner">
-				<div class="inner split">
-					<section>
-						<h2>Customer Edit Profile</h2>
-					</section>
-					<section>
-						<p>Do you feel that the number of client is not enough? Don't worry! COMEBUYFOOD can save your life!!!More than 100000+ customers are preparing for buying your dishes!</p>
-					</section>
+		<form action="customer/loadCustomer" method="post">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="loginName">Login Name</label> <input type="text"
+							class="form-control" id="loginName" name="loginName">
+					</div>
 				</div>
-			</section>
-	<hr/>
-	
-	<form action="customer/loadCustomer" method="post">
-		Name:<br>
-		<input id="name" name="name" /><br />
-		Gender(Boolean):<br>
-		<input id="gender" name="name" /><br />
-		Profile Picture:<br>
-		<input id="profilePic" name="profilePic" /><br />
-		
-		Login Name:<br>
-		<input id="loginName" name="loginName" /><br />
-		Status:<br>
-		<input id="status" name="status" readonly/><br />
-		
-		Address1:<br>
-		<input id="Address1" name="Address1"/><br />
-		Region1:<br>
-		<input id="Region1" name="Region1"/><br />
-		
-		Address2:<br>
-		<input id="Address2" name="Address2"/><br />
-		Region2:<br>
-		<input id="Region2" name="Region2"/><br />
-	
-		Address3:<br>
-		<input id="Address3" name="Address3"/><br />
-		Region3:<br>
-		<input id="Region3" name="Region3"/><br />
-	
-	</form>
-	
-	<button id="update" class="button special">Update</button>	
-	<div id="result"></div>
-	
-	<script>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="name">Name</label> <input type="text"
+							class="form-control" id="name" name="name">
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="gender">Gender(Boolean)</label> <input type="text"
+							class="form-control" id="gender" name="gender">
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="status">Status</label> <input type="text"
+							class="form-control" id="status" name="status">
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="gender">Address1</label> <input type="text"
+							class="form-control" id="gender" name="gender">
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="status">Region1</label> <input type="text"
+							class="form-control" id="status" name="status">
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="gender">Address1</label> <input type="text"
+							class="form-control" id="gender" name="gender">
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="status">Region1</label> <input type="text"
+							class="form-control" id="status" name="status">
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="gender">Address2</label> <input type="text"
+							class="form-control" id="gender" name="gender">
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="status">Region1</label> <input type="text"
+							class="form-control" id="status" name="status">
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+                <label for="profilePic">Profile Picture</label>
+                <input id="profilePic" class="form-control" type="text" name="profilePic">
+            </div>
+            <button id="update" class="button special">Update</button>
+		</form>
+
+
+		<div id="result"></div>
+
+		<script>
 		$(function() {
 			$.ajax({
 				type:'POST',
@@ -153,5 +223,6 @@
             });
 		});
 	</script>
+	</div>
 </body>
 </html>

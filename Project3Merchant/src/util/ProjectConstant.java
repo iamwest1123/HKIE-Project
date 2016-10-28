@@ -33,6 +33,6 @@ public class ProjectConstant {
 	public static final String CATEGORY_KOREAN="Korean";
 	public static final String CATEGORY_ASIAN="Asian";
 	
-	public static final String CHOOSE_ADV_WS_URL = "http://localhost:8080/Project3Admin/request/advertisement";
+	public static final String CHOOSE_ADV_WS_URL = "http://localhost:8080/Project3Admin/chooseAdvert";
 	
 }

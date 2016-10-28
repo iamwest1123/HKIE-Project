@@ -30,6 +30,7 @@ public class AdvertApplicationConsumer implements MessageListener,QueueConsumer 
 				AdminAdvert aa = new AdminAdvert(); 
 				//aa.setId(dto.getMerchantId());
 				aa.setMerchantId(dto.getMerchantId());
+				aa.setBalance(0);
 				aam.addAdminAdv(aa);
 			}
 		} catch (JMSException e) {
