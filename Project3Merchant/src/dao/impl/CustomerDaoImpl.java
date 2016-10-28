@@ -33,9 +33,8 @@ public class CustomerDaoImpl implements CustomerDao {
 	}
 
 	@Override
-	@Transactional
 	public void updateCustomer(Customer c) {
-		Customer customer=this.loadCustomer(c.getId());
+		Customer customer=em.find(Customer.class, c.getId());
 		customer.setAddressList(c.getAddressList());
 		customer.setCustomerOrderList(c.getCustomerOrderList());
 		customer.setGender(c.getGender());
@@ -43,8 +42,8 @@ public class CustomerDaoImpl implements CustomerDao {
 		customer.setName(c.getName());
 		customer.setPassword(c.getPassword());
 		customer.setProfilePic(c.getProfilePic());
-
-		em.persist(customer);
+//		em.persist(customer);
+		em.merge(customer);
 	}
 
 	@Override
