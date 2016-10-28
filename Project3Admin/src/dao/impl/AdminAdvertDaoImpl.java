@@ -31,9 +31,9 @@ public class AdminAdvertDaoImpl implements AdminAdvertDao {
 	@Override
 	public void updateAdminAdv(AdminAdvert u) {
 		AdminAdvert aa = loadAdminAdv(u.getId());
-		aa.setBalance(u.getBalance());
-		aa.setExpireDate(u.getExpireDate());
-		aa.setStartDate(u.getStartDate());
+//		aa.setBalance(u.getBalance());
+//		aa.setExpireDate(u.getExpireDate());
+//		aa.setStartDate(u.getStartDate());
 		aa.setStatus(u.getStatus());
 	}
 

@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import po.Admin;
+import po.AdminAdvert;
 import po.AdminStatus;
 import po.MessageStatus;
+import service.AdminAdvertManager;
 import service.AdminManager;
 import service.AdminStatusManager;
 import service.MessageStatusManager;
@@ -28,7 +30,8 @@ public class AdminController {
 	private AdminManager am;
 	@Autowired 
 	private AdminStatusManager asm;
-	
+	@Autowired
+	private AdminAdvertManager aam;
 	@Autowired
 	private MessageStatusManager msm;
 
@@ -80,6 +83,13 @@ public class AdminController {
 	@ResponseBody
 	public MessageStatus updateStatus(AdminStatus as) {
 		asm.updateStatus(as);
+		return msm.createMessageStatus("success");
+	}
+	
+	@RequestMapping(value="updateAStatus")
+	@ResponseBody
+	public MessageStatus updateAStatus(AdminAdvert aa) {
+		aam.updateAdminAdv(aa);
 		return msm.createMessageStatus("success");
 	}
 	

@@ -31,6 +31,7 @@ public class AdvertApplicationConsumer implements MessageListener,QueueConsumer 
 				//aa.setId(dto.getMerchantId());
 				aa.setMerchantId(dto.getMerchantId());
 				aa.setBalance(0);
+				aa.setStatus("UnderReview");
 				aam.addAdminAdv(aa);
 			}
 		} catch (JMSException e) {
