@@ -86,6 +86,7 @@ public class MerchantController {
 		m1.setOpeningHour(m.getOpeningHour());
 		m1.setClosingHour(m.getClosingHour());
 		m1.setCanPreOrder(m.getCanPreOrder());
+		m1.setGender(m.getGender());
 		Address add = new Address();
 		add.setAddress(address1);
 		add.setRegion(region1);

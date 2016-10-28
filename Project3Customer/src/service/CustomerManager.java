@@ -11,4 +11,5 @@ public interface CustomerManager {
 	public Customer load(String customerId);
 	public void updateCustomer(Customer c);
 	public CustomerVo loadCustomer(String id);
+	public Customer loadCustomer1(String id);
 }
