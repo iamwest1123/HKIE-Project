@@ -50,7 +50,7 @@ public class AdminController {
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.invalidate();
-		return "redirect:login.html";
+		return "redirect:../loginA.html";
 	}
 
 	@RequestMapping(value = "showAll", method = RequestMethod.GET)

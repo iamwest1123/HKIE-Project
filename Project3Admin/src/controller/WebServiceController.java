@@ -1,5 +1,8 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 
@@ -39,8 +42,9 @@ public class WebServiceController {
 	@RequestMapping(value="advertisement") 
 	@ResponseBody
 	public String requestForAdv(AdminAdvert adv) throws Exception{
-		//...
-		return null;
+		ObjectMapper om = new ObjectMapper();
+		List<AdminAdvert> list = aam.findAllAdv();
+		return om.writeValueAsString(list);	
 	}
 	
 	@RequestMapping(value="merchantList")
