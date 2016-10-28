@@ -4,6 +4,9 @@ import static org.hamcrest.CoreMatchers.nullValue;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +19,7 @@ import po.Merchant;
 import po.MessageStatus;
 import service.CustomerManager;
 import service.MessageStatusManager;
+import util.ProjectConstant;
 import vo.CustomerVo;
 import vo.MerchantVo;
 
@@ -30,12 +34,14 @@ public class CustomerController {
 
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	@ResponseBody
-	public MessageStatus login(Customer c) throws Exception {
+	public MessageStatus login(Customer c, HttpServletRequest request) throws Exception {
 		if (cm.isExist(c)) {
 			Customer customer = cm.findAdminByUsernameAndPassword(c);
-			if (customer != null)
+			if (customer != null) {
+				HttpSession ses = request.getSession();
+				ses.setAttribute(ProjectConstant.SESSION_ATTRIBUTE_CUSTOMER_ID, customer.getId());
 				return msm.createMessageStatus("success");
-			else
+			} else
 				return msm.createMessageStatus("fail", "Incorrect Password");
 		} else
 			return msm.createMessageStatus("fail", "Username not found! Please make sure that username is correct!");
