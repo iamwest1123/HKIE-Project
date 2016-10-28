@@ -150,15 +150,14 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label for="gender">Gender(Boolean)</label> <input type="text"
-									class="form-control" id="gender" name="gender">
+								<label for="gender">Gender(Boolean)</label><br> <input id="genderM" type="radio" name="gender" value="true"><span style="color:black">M</span>
+		<input id="genderF" type="radio" name="gender" value="FALSE"><span style="color:black">F</span><br />
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label for="canPreOrder">Can Pre Order(Boolean)</label> <input
-									type="text" class="form-control" 
-									name="canPreOrder" id="canPreOrder">
+								<label for="canPreOrder">Can Pre Order(Boolean)</label><br> <input id="canPreOrderY" type="radio" name="canPreOrder" value="true"><span style="color:black">Y</span> 
+		<input id="canPreOrderN" type="radio" name="canPreOrder" value="false"><span style="color:black">N</span><br />
 							</div>
 						</div>
 					</div>
@@ -265,8 +264,9 @@
             	category: $('#category').val(),
             	openingHour: $('#openingHour').val(),
             	closingHour: $('#closingHour').val(),
-            	gender: $('#gender').val(),
-            	canPreOrder: $('#canPreOrder').val(),
+            	gender: $("input[name='gender']:checked").val() === 'true',
+            	
+            	canPreOrder: $("input[name='canPreOrder']:checked").val() === 'true',
 
             	address1: $("#address1").val(),
             	region1: $("#region1").val(),

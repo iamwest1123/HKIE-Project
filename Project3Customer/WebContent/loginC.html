@@ -109,9 +109,8 @@
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label for="gender">Gender(Boolean):</label> <input
-									type="text" class="form-control" 
-									name="gender" id="gender">
+								<label for="gender">Gender:</label><br> <input id="genderM" type="radio" name="gender" value="true"><span style="color:black">M</span> 
+		<input id="genderF" type="radio" name="gender" value="FALSE"><span style="color:black">F</span><br />
 							</div>
 						</div>
 					</div>
@@ -173,7 +172,7 @@
                  url:'customer/addCustomer',
                  data: {
                  	name: $('#name').val(),                        
-                 	gender: $('#gender').val(), 
+                 	gender: $("input[name='gender']:checked").val() === 'true',
                  	profilePic: $('#profilePic').val(), 
                  	password: $('#password').val(), 
                  	loginName: $('#loginName').val(), 
@@ -181,7 +180,7 @@
                  	
                  }
              }).done(function(msg){
-                 $("#successMsg").text(msg.merchantName + "! Your registration is under reviewed. Please wait for admin further process. Thanks!");
+                 $("#successMsg").text(msg.name + "! Your registration is under reviewed. Please wait for admin further process. Thanks!");
                  $("#succeddMsg").show();
              }).fail(function(error){
 				 alert("Error!Please check!");
