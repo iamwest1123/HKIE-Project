@@ -1,23 +1,88 @@
 package po;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.hibernate.annotations.GenericGenerator;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+@Entity
+@Table(name="MERCHANTS")
 public class Merchant {
+	@Id
+	@GenericGenerator(name="merchantId", strategy="uuid")
+	@GeneratedValue(generator="merchantId")
 	private String id;
+	
+	@Column(name="MERCHANT_NAME", length=50)
 	private String merchantName;
-	private String gender;
-	private Date registerTime;
+	
+	@Column(name="SHOP_NAME", length=50)
 	private String shopName;
+
+	@Column(name="TEL_NUM", length=20)
 	private String telNum;
-	private Address address;
+
+	@Column(name="SHOP_PIC")
 	private String shopPic;
-	String password;
-	String loginName;
+	
+	@Column(name="PASSWORD", length=30)
+	private String password;
+	
+	@Column(name="LOGIN_NAME", length=30)
+	private String loginName;
+	
+	@Column(name="STATUS", length=30)
 	private String status;
-	String category;
-	Integer openingHour;
-	Integer closingHour;
-	Boolean canPreOrder;
+	
+	@Column(name="CATEGORY", length=30)
+	private String category;
+	
+	@Column(name="OPENING_HOUR")
+	private Integer openingHour;
+
+	@Column(name="CLOSING_HOUR")
+	private Integer closingHour;
+	
+	@Column(columnDefinition="char(1)")
+	private Boolean gender;
+	
+	@Column(name="CAN_PREORDER",columnDefinition="char(1)")
+	private Boolean canPreOrder;
+
+	@Column(name="REGISTER_TIME")
+	private Date registerTime;
+	
+	@OneToOne(cascade={CascadeType.PERSIST},fetch=FetchType.EAGER)
+	@JoinColumn(name="ADDRESS_ID")
+	private Address address;
+	
+	@OneToMany(mappedBy="merchant",fetch=FetchType.EAGER)
+	@JsonBackReference
+	private List<Dish> dishList = new ArrayList<Dish>();
+	
+	@OneToMany(mappedBy="merchant",fetch=FetchType.EAGER)
+	@JsonManagedReference
+	private List<Comment> commentList = new ArrayList<Comment>();
+	
+	@OneToMany(mappedBy="merchant",fetch=FetchType.EAGER)
+	@JsonBackReference
+	private List<CustomerOrder> customerOrderList = new ArrayList<CustomerOrder>();
 
 	@Override
 	public int hashCode() {
@@ -126,10 +191,10 @@ public class Merchant {
 	public void setMerchantName(String merchantName) {
 		this.merchantName = merchantName;
 	}
-	public String getGender() {
+	public Boolean getGender() {
 		return gender;
 	}
-	public void setGender(String gender) {
+	public void setGender(Boolean gender) {
 		this.gender = gender;
 	}
 	public Date getRegisterTime() {
@@ -222,7 +287,4 @@ public class Merchant {
 	public void setCustomerOrderList(List<CustomerOrder> customerOrderList) {
 		this.customerOrderList = customerOrderList;
 	}
-	List<Dish> dishList;
-	List<Comment> commentList;
-	List<CustomerOrder> customerOrderList;
 }
