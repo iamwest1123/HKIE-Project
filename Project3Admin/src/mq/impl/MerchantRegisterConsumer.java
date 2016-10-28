@@ -13,11 +13,13 @@ import dao.AdminStatusDao;
 import dto.MerchantRegisterRequestDto;
 import mq.QueueConsumer;
 import po.AdminStatus;
+import service.AdminStatusManager;
 
 public class MerchantRegisterConsumer implements MessageListener,QueueConsumer {
 
 	@Autowired
-	AdminStatusDao sdao;
+	private AdminStatusManager asm;
+	
 	
 	@Override
 	public void onMessage(Message arg0) {
@@ -27,7 +29,10 @@ public class MerchantRegisterConsumer implements MessageListener,QueueConsumer {
 			if (dto!=null) {
 				AdminStatus as = new AdminStatus();
 				as.setId(dto.getMerchantId());
-				as.setStatus(dto.getMerchantStatus());
+				as.setStatus("UnderReview");
+				System.out.println(as.getId());
+				System.out.println(as.getStatus());
+				asm.addStatus(as);
 			}
 		} catch (JMSException e) {
 			e.printStackTrace();

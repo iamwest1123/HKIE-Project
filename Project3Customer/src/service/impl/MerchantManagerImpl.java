@@ -10,7 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import dao.MerchantDao;
 import dto.AdvertApplicationDto;
+import dto.MerchantRegisterRequestDto;
 import mq.impl.AdvertApplicationProducer;
+import mq.impl.MerchantRegisterProducer;
 import po.Comment;
 import po.Merchant;
 import service.MerchantManager;
@@ -24,6 +26,9 @@ public class MerchantManagerImpl implements MerchantManager{
 	
 	@Autowired
 	private AdvertApplicationProducer ap;
+	
+	@Autowired
+	private MerchantRegisterProducer mrp;
 	
 	@Override
 	@Transactional
@@ -64,7 +69,12 @@ public class MerchantManagerImpl implements MerchantManager{
 	@Transactional
 	public void registMerchant(Merchant m) {
 		
+		MerchantRegisterRequestDto mrr = new MerchantRegisterRequestDto();
+		
 		md.addMerchant(m);
+		System.out.println(m.getId());
+		mrr.setMerchantId(m.getId());
+		mrp.send(mrr);
 		
 	}
 
