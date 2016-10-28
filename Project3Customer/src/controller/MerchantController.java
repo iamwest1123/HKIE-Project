@@ -72,6 +72,13 @@ public class MerchantController {
 		return mvo;
 	}
 
+	@RequestMapping(value = "findMerchant")
+	@ResponseBody
+	public MerchantVo findMerchant(String id) {
+		MerchantVo mvo = mm.loadMerchant(id);
+		return mvo;
+	}
+	
 	@RequestMapping(value = "updateMerchant")
 	@ResponseBody
 	public String updateMerchant(HttpServletRequest request,Merchant m, String address1, String region1) {
